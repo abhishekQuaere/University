@@ -29,7 +29,7 @@ namespace UniversityRecruitment.DBContext
                 throw;
             }
         }
-        
+
         //public List<T> ListOfPostForApplying<T>(int PostId)
         //{
         //    try
@@ -50,12 +50,12 @@ namespace UniversityRecruitment.DBContext
             try
             {
                 DynamicParameters dynamicParameters = new DynamicParameters();
-                dynamicParameters.Add("Id", model.UserId, DbType.Int32);
+                dynamicParameters.Add("Id", model.UserId, DbType.Int64);
                 dynamicParameters.Add("PostCode", model.postCode, DbType.Int32);
-                dynamicParameters.Add("ApplyingCategory", model.Category, DbType.Int32);
-                dynamicParameters.Add("ApplyingSubCategory", model.SubCategory, DbType.Int32);
-                dynamicParameters.Add("Specialization", model.SpecializationOfThePost, DbType.Int32);
-                dynamicParameters.Add("IpAddress", model.IpAddress, DbType.Int32);
+                dynamicParameters.Add("ApplyingCategory", model.Category, DbType.String);
+                dynamicParameters.Add("ApplyingSubCategory", model.SubCategory == null ? model.SubCategory = String.Empty : model.SubCategory, DbType.String);
+                dynamicParameters.Add("Specialization", model.SpecializationOfThePost == null ? model.SpecializationOfThePost = String.Empty : model.SpecializationOfThePost, DbType.String);
+                dynamicParameters.Add("IpAddress", model.IpAddress, DbType.String);
                 var res = _dapper.ExecuteGet<T>("ApplyForPost", dynamicParameters);
                 return res;
             }
@@ -65,7 +65,7 @@ namespace UniversityRecruitment.DBContext
             }
         }
 
-        public dynamic ListOfPostForApplying(string PostTypeId,long UserId)
+        public dynamic ListOfPostForApplying(string PostTypeId, long UserId)
         {
             postListPara req = new postListPara();
             ApplicantModel model = new ApplicantModel();
@@ -92,6 +92,66 @@ namespace UniversityRecruitment.DBContext
                 return model;
             }
 
+        }
+
+        public dynamic GetPostListForPayment(long Id)
+        {
+            AppliedForm model = new AppliedForm();
+
+            using (SqlConnection objConnection = new SqlConnection(DapperDbContext.connect()))
+            {
+                try
+                {
+                    DynamicParameters parammeter = new DynamicParameters();
+                    parammeter.Add("Id", Id);
+
+                    var reader = objConnection.QueryMultiple("GetPostListForPayment", parammeter, commandType: System.Data.CommandType.StoredProcedure);
+                    var list = reader.Read<AppliedForm>().ToList();
+                    var list1 = reader.Read<FessPaid>().ToList();
+
+                    model.list = list;
+                    model.list1 = list1;
+
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                return model;
+            }
+
+        }
+
+        public ResearchGuidance SaveResearchGuidances(ResearchGuidance model)
+        {
+            var res = new ResearchGuidance();
+            if (model.researchGuidances.Count() > 0)
+            {
+                foreach (var itm in model.researchGuidances)
+                {
+                    try
+                    {
+                        DynamicParameters dynamicParameters = new DynamicParameters();
+                        dynamicParameters.Add("Id", model.Id, DbType.Int64);
+                        dynamicParameters.Add("Degree", itm.Degree, DbType.Int32);
+                        dynamicParameters.Add("Subject", itm.Subject, DbType.String);
+                        dynamicParameters.Add("NoOfStudent", itm.NoOfStudents, DbType.String);
+                        dynamicParameters.Add("ThesisSubmitted", itm.ThesisSubmitted, DbType.String);
+                        dynamicParameters.Add("SubmissionDate", itm.SubmissionDate, DbType.String);
+                        dynamicParameters.Add("DegreeAwarded", itm.DegreeAwarded, DbType.String);
+                        dynamicParameters.Add("IpAddress", model.IpAddress, DbType.String);
+                        dynamicParameters.Add("DocumentPath", itm.DocumentPath, DbType.String);
+                        dynamicParameters.Add("AwardDate", itm.AwardDate, DbType.String);
+                        res = _dapper.ExecuteGet<ResearchGuidance>("ManageApplicantResearchGuidance", dynamicParameters);
+                       
+                    }
+                    catch (Exception ex)
+                    {
+                        throw;
+                    }
+                }
+            }
+            return res;
         }
 
     }

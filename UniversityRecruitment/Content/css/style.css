@@ -8255,3 +8255,15 @@ table {
 .fg-bitbucket {
 	color: #205081 !important;
 }
+
+/*02-03-2023*/
+
+.table-responsive{
+	overflow-x: scroll;
+}
+
+@media screen and (min-width: 480px) {
+	.table-responsive {
+		overflow-x: scroll;
+	}
+}
