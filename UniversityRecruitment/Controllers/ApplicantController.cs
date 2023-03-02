@@ -114,6 +114,11 @@ namespace UniversityRecruitment.Controllers
             return View();
         }
 
+        public ActionResult ProjectConsultancy()
+        {
+            return View();
+        }
+
 
 
 
