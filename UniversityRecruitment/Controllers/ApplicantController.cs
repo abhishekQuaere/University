@@ -110,6 +110,26 @@ namespace UniversityRecruitment.Controllers
         }
 
 
+        #region Priyanshu
+        public JsonResult SaveExperienceDetails(Experience model)
+        {
+
+            AccountDb repo = new AccountDb();
+            Experience obj = new Experience();
+            if (model.Designationlist != null && model.Designationlist.Count() > 0)
+            {
+                obj = repo.SaveDesignationDetails(model);
+            }
+            if (model.Agencylist != null && model.Agencylist.Count() > 0)
+            {
+                obj = repo.saveAgencyDetails(model);
+            }
+            return Json( JsonRequestBehavior.AllowGet);
+
+        }
+
+        #endregion
+
 
     }
 }
