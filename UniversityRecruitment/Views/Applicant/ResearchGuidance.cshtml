@@ -1,0 +1,164 @@
+﻿
+@{
+    ViewBag.Title = "ResearchGuidance";
+    Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
+}
+
+<style>
+    .mysheader {
+        background-color: #096499;
+    }
+
+</style>
+
+<div class="row page-titles">
+    <div class="col-md-7 align-self-center">
+        <h3 class="text-themecolor">
+            Research Guidance, Project and Consultancy
+        </h3>
+        <p>Research Guidance</p>
+    </div>
+    <div class="col-md-5 align-self-center">
+
+    </div>
+
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header mysheader">
+                    <h4 class="m-b-0 text-white">
+                        (A) RESEARCH GUIDANCE
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">Degree</label>
+                                <div class="col-sm-12">
+                                    <select id="" class="form-control">
+                                        <option selected="selected" value="-1">-- select --</option>
+                                        <option value="M. Phil.">M. Phil.</option>
+                                        <option value="PG Dissertation">PG Dissertation</option>
+                                        <option value="Ph. D.">Ph. D.</option>
+
+                                    </select>
+                                    @*<span id="body_reqDegree" class="validator" style="display:none;">select an item</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">Subject / Course</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+                                    @*<span id="body_reqSubject" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">No. of Students</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+                                    @*<span id="body_reqNoOfStudents" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">Thesis Submitted</label>
+                                <div class="col-sm-12">
+                                    <select class="form-control">
+                                        <option selected="selected" value="-1">-- select --</option>
+
+                                    </select>
+                                    @*<span id="body_reqThesisSubmitted" class="validator" style="display:none;">select an item</span>*@
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="body_divDegreeAwarded" class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">Degree Awarded</label>
+                                <div class="col-sm-12">
+                                    <select class="form-control">
+                                        <option selected="selected" value="-1">-- select --</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+
+                                    </select>
+                                    @*<span id="body_reqDegreeAwarded" class="validator" style="display:none;">select an item</span>*@
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-sm-12">Upload Scanned Attachment</label>
+                                <div class="col-sm-12">
+                                    <input type="file" class="form-control">
+                                    @*<span id="body_reqUpload" class="validator" style="display:none;">upload file</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">&nbsp;</label>
+                                <div class="col-sm-12">
+                                    <a class="btn btn-primary btn-shadow" href="#"><span class="fa fa-plus-circle"></span> Add</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr class="table-primary">
+                                            <th>Serial</th>
+                                            <th>Degree</th>
+                                            <th>No. of Students</th>
+                                            <th>Thesis Submitted</th>
+                                            <th>Degree Awarded</th>
+                                            <th>API Score</th>
+                                            <th>Attachment</th>
+                                            <th></th>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="card-shadow-primary col-sm-12 card bg-secondary">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a id="" class="btn btn-warning text-dark shadow" href=""><span class="fa fa-save"></span> Save</a>
+                        <a id="" class="btn btn-success text-dark shadow pull-right" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

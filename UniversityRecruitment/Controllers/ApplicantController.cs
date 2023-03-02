@@ -101,8 +101,6 @@ namespace UniversityRecruitment.Controllers
             return View();
         }
 
-        
-
         public ActionResult ResearchDegree()
         {
             return View();
@@ -112,6 +110,22 @@ namespace UniversityRecruitment.Controllers
         {
             return View();
         }
+
+        public ActionResult Information()
+        {
+            return View();
+        }
+
+        public ActionResult Acceptance()
+        {
+            return View();
+        }
+
+        public ActionResult ResearchGuidance()
+        {
+            return View();
+        }
+
 
 
 
