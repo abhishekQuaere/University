@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using UniversityRecruitment.Models;
+using System.Data.SqlClient;
 
 namespace UniversityRecruitment.DBContext
 {
@@ -28,7 +29,7 @@ namespace UniversityRecruitment.DBContext
                 throw;
             }
         }
-        
+
         public List<SelectListItem> CityList(int StateId)
         {
             try
@@ -78,7 +79,7 @@ namespace UniversityRecruitment.DBContext
                 throw ex;
             }
         }
-        
+
         public T CheckAuthorization<T>(Login model)
         {
             try
@@ -96,7 +97,7 @@ namespace UniversityRecruitment.DBContext
                 throw ex;
             }
         }
-        
+
         public T GetUserInformation<T>(int ApplicationId)
         {
             try
@@ -111,8 +112,8 @@ namespace UniversityRecruitment.DBContext
                 throw ex;
             }
         }
-        
-        public T InsertOtp<T>(string Otp,string Purpose, string EmailOrPhone, string MessageBody,int ApplicationId)
+
+        public T InsertOtp<T>(string Otp, string Purpose, string EmailOrPhone, string MessageBody, int ApplicationId)
         {
             try
             {
@@ -130,8 +131,8 @@ namespace UniversityRecruitment.DBContext
                 throw ex;
             }
         }
-        
-        public T ValidateOtp<T>(string Otp,int ApplicationId)
+
+        public T ValidateOtp<T>(string Otp, int ApplicationId)
         {
             try
             {
@@ -146,5 +147,81 @@ namespace UniversityRecruitment.DBContext
                 throw ex;
             }
         }
+
+
+
+        #region Priyanshu
+
+        public dynamic SaveDesignationDetails(Experience model)
+        {
+
+            Experience obj = new Experience();
+
+            var res = new Experience();
+            try
+            {
+                var perm = new DynamicParameters();
+                if (model.Designationlist.Count() > 0)
+                {
+                    for (int i = 0; i < model.Designationlist.Count; i++)
+                    {
+                        perm.Add("@id", model.UserId);
+                        perm.Add("@Designation", model.Designationlist[i].Designation);
+                        perm.Add("@NatureOfPost", model.Designationlist[i].NatureofPost);
+                        perm.Add("@Salary", model.Designationlist[i].GradeAgp);
+                        perm.Add("@Employer", model.Designationlist[i].NameAddress);
+                        perm.Add("@FromDate", model.Designationlist[i].DesignationPeriodFrom);
+                        perm.Add("@ToDate", model.Designationlist[i].DesignationPeriodTo);
+                        perm.Add("@DocumentPath", model.Designationlist[i].DesignationImage);
+                        perm.Add("@IpAddress", model.Ipaddress);
+                        res = _dapper.ExecuteGet<Experience>("ManageApplicantWorkExperience", perm);
+                    }
+                }
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+
+        }
+
+
+        public dynamic saveAgencyDetails(Experience model)
+        {
+
+            Experience obj = new Experience();
+            var res = new Experience();
+            try
+            {
+                if (model.Agencylist.Count() > 0)
+                {
+                    var perm = new DynamicParameters();
+                    for (int i = 0; i < model.Agencylist.Count; i++)
+                    {
+                        perm.Add("@id", model.UserId);
+                        perm.Add("@Agency", model.Agencylist[i].Agency);
+                        perm.Add("@HostInstitution", model.Agencylist[i].HostInstitution);
+                        perm.Add("@FromDate", model.Agencylist[i].AgencyPeriodFrom);
+                        perm.Add("@ToDate", model.Agencylist[i].AgencyPeriodTo);
+                        perm.Add("@DocumentPath", model.Agencylist[i].AgencyImage);
+                        perm.Add("@IpAddress", model.Ipaddress);
+                        res = _dapper.ExecuteGet<Experience>("ManageApplicantPostDoctoral", perm);
+                    }
+                }
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        #endregion
+
+
+
     }
 }
