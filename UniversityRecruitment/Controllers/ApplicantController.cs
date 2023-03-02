@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -15,8 +18,10 @@ namespace UniversityRecruitment.Controllers
 
         ApplicantDB apdb = new ApplicantDB();
         SessionManager sm = new SessionManager();
+        Common com = new Common();
+        DapperDbContext _dapper = new DapperDbContext();
 
-        public ActionResult Index(string  PostTypeId)
+        public ActionResult Index(string PostTypeId)
         {
             ApplicantModel model = new ApplicantModel();
             ViewBag.PostList = apdb.PostList();
@@ -40,7 +45,7 @@ namespace UniversityRecruitment.Controllers
             }
             else
             {
-                res = apdb.ListOfPostForApplying("PROF",sm.userId);
+                res = apdb.ListOfPostForApplying("PROF", sm.userId);
             }
             return PartialView("_PostList", res);
         }
@@ -55,11 +60,11 @@ namespace UniversityRecruitment.Controllers
                 var result = apdb.saveAppliedForm<saveAppliedForm>(model);
                 model.ResponseCode = result.ResponseCode;
                 model.ResponseMessage = result.ResponseMessage;
-            }           
+            }
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
-       [HttpGet]
+        [HttpGet]
         public ActionResult PersonalDetails()
         {
             Personalinfo obj = new Personalinfo();
@@ -131,8 +136,53 @@ namespace UniversityRecruitment.Controllers
         {
             return View();
         }
+        public JsonResult SaveResearchGuidances(ResearchGuidance model)
+        {
+            if (model.researchGuidances.Count() > 0 && model.researchGuidances != null)
+            {
+                model = apdb.SaveResearchGuidances(model);
+            }
+            else
+            {
+                model.ResponseMessage = "Something went wrong !";
+            }
 
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
 
+        public JsonResult UploadFile(HttpPostedFileBase File)
+        {
+            string Dirpath = "~/Content/writereaddata/ResearchGuidance/";
+            string path = "";
+            string filename = File.FileName;
+            bool res = false;
+            string msg = "";
+            if (!Directory.Exists(Server.MapPath(Dirpath)))
+            {
+                Directory.CreateDirectory(Server.MapPath(Dirpath));
+            }
+            string ext = Path.GetExtension(File.FileName);
+            var status = com.ValidateImagePDF_FileExtWithSize(File, 2048);
+            if (status == "Valid")
+            {
+
+                filename = DateTime.Now.ToString("yyyyMMddHHmmssffff") + "_" + filename;
+                string completepath = Path.Combine(Server.MapPath(Dirpath), filename);
+                if (System.IO.File.Exists(completepath))
+                {
+                    System.IO.File.Delete(completepath);
+                }
+
+                File.SaveAs(completepath);
+                path = Dirpath + filename;
+                res = true;
+            }
+            else
+            {
+                msg = status;
+            }
+            return Json(new { result = res, fpath = path, mesg = msg });
+        }
 
 
     }

@@ -29,7 +29,7 @@ namespace UniversityRecruitment.DBContext
                 throw;
             }
         }
-        
+
         //public List<T> ListOfPostForApplying<T>(int PostId)
         //{
         //    try
@@ -65,7 +65,7 @@ namespace UniversityRecruitment.DBContext
             }
         }
 
-        public dynamic ListOfPostForApplying(string PostTypeId,long UserId)
+        public dynamic ListOfPostForApplying(string PostTypeId, long UserId)
         {
             postListPara req = new postListPara();
             ApplicantModel model = new ApplicantModel();
@@ -120,6 +120,38 @@ namespace UniversityRecruitment.DBContext
                 return model;
             }
 
+        }
+
+        public ResearchGuidance SaveResearchGuidances(ResearchGuidance model)
+        {
+            var res = new ResearchGuidance();
+            if (model.researchGuidances.Count() > 0)
+            {
+                foreach (var itm in model.researchGuidances)
+                {
+                    try
+                    {
+                        DynamicParameters dynamicParameters = new DynamicParameters();
+                        dynamicParameters.Add("Id", model.Id, DbType.Int64);
+                        dynamicParameters.Add("Degree", itm.Degree, DbType.Int32);
+                        dynamicParameters.Add("Subject", itm.Subject, DbType.String);
+                        dynamicParameters.Add("NoOfStudent", itm.NoOfStudents, DbType.String);
+                        dynamicParameters.Add("ThesisSubmitted", itm.ThesisSubmitted, DbType.String);
+                        dynamicParameters.Add("SubmissionDate", itm.SubmissionDate, DbType.String);
+                        dynamicParameters.Add("DegreeAwarded", itm.DegreeAwarded, DbType.String);
+                        dynamicParameters.Add("IpAddress", model.IpAddress, DbType.String);
+                        dynamicParameters.Add("DocumentPath", itm.DocumentPath, DbType.String);
+                        dynamicParameters.Add("AwardDate", itm.AwardDate, DbType.String);
+                        res = _dapper.ExecuteGet<ResearchGuidance>("ManageApplicantResearchGuidance", dynamicParameters);
+                       
+                    }
+                    catch (Exception ex)
+                    {
+                        throw;
+                    }
+                }
+            }
+            return res;
         }
 
     }

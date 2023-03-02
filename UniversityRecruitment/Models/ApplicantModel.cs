@@ -99,4 +99,24 @@ namespace UniversityRecruitment.Models
         public string ApplyingSubCategory { get; set; }
     }
 
+    public class ResearchGuidance
+    {
+        public int Id { get; set; }
+        public string Degree { get; set; }
+        public string DegreeAwarded { get; set; }
+        public string AwardDate { get; set; }
+        public string DocumentPath { get; set; }
+        public string IpAddress { get; set; }
+        public string Subject { get; set; }
+        public int NoOfStudents { get; set; }
+        public string ThesisSubmitted { get; set; }
+        public string SubmissionDate { get; set; }
+        public string Awarded { get; set; }
+        public string Attachment { get; set; }
+        public string ResponseCode { get; set; }
+        public string ResponseMessage { get; set; }
+        public string RootPath { get; set; }
+        public IEnumerable<ResearchGuidance> researchGuidances { get; set; }
+    }
+
 }
