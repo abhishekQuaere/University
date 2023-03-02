@@ -52,9 +52,9 @@ namespace UniversityRecruitment.DBContext
                 DynamicParameters dynamicParameters = new DynamicParameters();
                 dynamicParameters.Add("Id", model.UserId, DbType.Int32);
                 dynamicParameters.Add("PostCode", model.postCode, DbType.Int32);
-                dynamicParameters.Add("ApplyingCategory", model.Category, DbType.Int32);
-                dynamicParameters.Add("ApplyingSubCategory", model.SubCategory, DbType.Int32);
-                dynamicParameters.Add("Specialization", model.SpecializationOfThePost, DbType.Int32);
+                dynamicParameters.Add("ApplyingCategory", model.Category, DbType.String);
+                dynamicParameters.Add("ApplyingSubCategory", model.SubCategory, DbType.String);
+                dynamicParameters.Add("Specialization", model.SpecializationOfThePost, DbType.String);
                 dynamicParameters.Add("IpAddress", model.IpAddress, DbType.Int32);
                 var res = _dapper.ExecuteGet<T>("ApplyForPost", dynamicParameters);
                 return res;

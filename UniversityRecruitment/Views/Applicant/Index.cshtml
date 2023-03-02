@@ -49,7 +49,7 @@
                                             {
                                                 <tr class=''>
                                                     <td class="postCode">@itm.Code</td>
-                                                    <td style='font-weight: bold;' class="post">@itm.PostName<input type="hidden" value="@itm.PostTypeId" class="postId" /></td>
+                                                    <td style='font-weight: bold;' class="PostType">@itm.PostType</td>
                                                     <td class="sub">@itm.PostName</td>
                                                     <td class="UR">@itm.UR</td>
                                                     <td class="OBC">@itm.OBC</td>
@@ -155,7 +155,8 @@
                 Information!
                 <br />
                 ...
-                <input type="hidden" id="post" />
+                <input type="hidden" id="postCode" />
+                <input type="hidden" id="PostType" />
                 <input type="hidden" id="sub" />
                 <input type="hidden" id="UR" />
                 <input type="hidden" id="OBC" />
@@ -191,7 +192,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btnSave">Save changes</button>
+                <button type="button" class="btn btn-primary btnSave">Save</button>
             </div>
         </div>
     </div>
@@ -242,10 +243,11 @@
         });
     });
 
-        $(".btnApply").on('click', function () {
+    $(".btnApply").on('click', function () {
         debugger;
         var tr = $(this).closest('tr');
-        var post = tr.find('.post').text();
+        var postCode = tr.find('.postCode').text();
+        var PostType = tr.find('.PostType').text();
         var sub = tr.find('.sub').text();
         var UR = tr.find('.UR').text();
         var OBC = tr.find('.OBC').text();
@@ -260,7 +262,8 @@
         var Category = tr.find('.Category').text();
         var lastDate = tr.find('.lastDate').text();
 
-        $('#post').val(post);
+        $('#post').val(postCode);
+        $('#PostType').val(PostType);
         $('#sub').val(sub);
         $('#UR').val(UR);
         $('#OBC').val(OBC);
@@ -287,7 +290,7 @@
         //    $('#Category').val('PWD');
         //}
 
-        $("#modalTitel").text('APPLY FOR THE POST OF ' + post + ' FOR ' + sub + '');
+        $("#modalTitel").text('APPLY FOR THE POST OF ' + PostType + ' FOR ' + sub + '');
         $("#exampleModal").modal("show");
 
     });
@@ -298,19 +301,13 @@
         var model = {};
 
         var postCode = $('#postCode').val();
-        var post = $('#post').val();
-        var postId = $('#postId').val();
-        var subAndDeptId = $('#subAndDeptId').val();
+        var PostType = $('#PostType').val();
         var Category = $('#Category').val();
-        var lastDate = $('#lastDate').val();
         var Specialization = $('#Specialization').val();
 
         model.postCode = postCode;
-        model.post = post;
-        model.postId = postId;
-        model.subAndDeptId = subAndDeptId;
+        model.PostType = PostType;
         model.Category = Category;
-        model.lastDate = lastDate;
         model.SpecializationOfThePost = Specialization;
 
         $.ajax({
@@ -321,7 +318,8 @@
             dataType: "json",
             success: function (data) {
                 debugger;
-                if (data != null) {
+                if (data.ResponseCode == 0) {
+                    swal("", data.ResponseMessage, "success");
                 }
                 else {
                     swal("", "Somthing went wrong !", "error");

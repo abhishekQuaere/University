@@ -57,8 +57,7 @@ namespace UniversityRecruitment.Models
     {
         public string postCode { get; set; }
         public string post { get; set; }
-        public int postId { get; set; }
-        public int subAndDeptId { get; set; }
+        public string PostType { get; set; }
         public string Category { get; set; }
         public string SubCategory { get; set; }
         public string lastDate { get; set; }
@@ -68,7 +67,8 @@ namespace UniversityRecruitment.Models
         public string TransactionId { get; set; }
         public string TransactionDate { get; set; }
         public long UserId { get; set; }
-        public string msg { get; set; }
+        public int ResponseCode { get; set; }
+        public string ResponseMessage { get; set; }
         public string FormNumber { get; set; }
         public string IpAddress { get; set; }
     }

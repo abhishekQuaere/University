@@ -51,8 +51,10 @@ namespace UniversityRecruitment.Controllers
             if (model != null)
             {
                 model.UserId = sm.userId;
+                model.IpAddress = Common.GetIPAddress();
                 var result = apdb.saveAppliedForm<saveAppliedForm>(model);
-                model.msg = result.msg;
+                model.ResponseCode = result.ResponseCode;
+                model.ResponseMessage = result.ResponseMessage;
             }           
             return Json(model, JsonRequestBehavior.AllowGet);
         }
