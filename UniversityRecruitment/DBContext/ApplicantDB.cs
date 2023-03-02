@@ -118,7 +118,7 @@ namespace UniversityRecruitment.DBContext
                     {
                         DynamicParameters dynamicParameters = new DynamicParameters();
                         dynamicParameters.Add("Id", model.Id, DbType.Int64);
-                        dynamicParameters.Add("Degree", itm.Degree, DbType.Int32);
+                        dynamicParameters.Add("Degree", itm.Degree, DbType.String);
                         dynamicParameters.Add("Subject", itm.Subject, DbType.String);
                         dynamicParameters.Add("NoOfStudent", itm.NoOfStudents, DbType.String);
                         dynamicParameters.Add("ThesisSubmitted", itm.ThesisSubmitted, DbType.String);
