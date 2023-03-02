@@ -30,21 +30,6 @@ namespace UniversityRecruitment.DBContext
             }
         }
 
-        //public List<T> ListOfPostForApplying<T>(int PostId)
-        //{
-        //    try
-        //    {
-        //        DynamicParameters dynamicParameters = new DynamicParameters();
-        //        dynamicParameters.Add("PostId", PostId, DbType.Int32);
-        //        var res = _dapper.GetAll<T>("Proc_ListOfPostForApplying", dynamicParameters);
-        //        return res;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw;
-        //    }
-        //}
-
         public T saveAppliedForm<T>(saveAppliedForm model)
         {
             try
