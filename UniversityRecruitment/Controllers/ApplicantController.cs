@@ -91,7 +91,9 @@ namespace UniversityRecruitment.Controllers
 
         public ActionResult FeePayment()
         {
-            return View();
+            AppliedForm model = new AppliedForm();
+            model = apdb.GetPostListForPayment(sm.userId);
+            return View(model);
         }
 
         public ActionResult FeeRecipt()

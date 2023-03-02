@@ -50,12 +50,12 @@ namespace UniversityRecruitment.DBContext
             try
             {
                 DynamicParameters dynamicParameters = new DynamicParameters();
-                dynamicParameters.Add("Id", model.UserId, DbType.Int32);
+                dynamicParameters.Add("Id", model.UserId, DbType.Int64);
                 dynamicParameters.Add("PostCode", model.postCode, DbType.Int32);
                 dynamicParameters.Add("ApplyingCategory", model.Category, DbType.String);
-                dynamicParameters.Add("ApplyingSubCategory", model.SubCategory, DbType.String);
-                dynamicParameters.Add("Specialization", model.SpecializationOfThePost, DbType.String);
-                dynamicParameters.Add("IpAddress", model.IpAddress, DbType.Int32);
+                dynamicParameters.Add("ApplyingSubCategory", model.SubCategory == null ? model.SubCategory = String.Empty : model.SubCategory, DbType.String);
+                dynamicParameters.Add("Specialization", model.SpecializationOfThePost == null ? model.SpecializationOfThePost = String.Empty : model.SpecializationOfThePost, DbType.String);
+                dynamicParameters.Add("IpAddress", model.IpAddress, DbType.String);
                 var res = _dapper.ExecuteGet<T>("ApplyForPost", dynamicParameters);
                 return res;
             }
@@ -80,6 +80,34 @@ namespace UniversityRecruitment.DBContext
                     var reader = objConnection.QueryMultiple("GetPostListToApply", req, commandType: System.Data.CommandType.StoredProcedure);
                     var list = reader.Read<ApplicantModel>().ToList();
                     var list1 = reader.Read<AppliedForm>().ToList();
+
+                    model.list = list;
+                    model.list1 = list1;
+
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                return model;
+            }
+
+        }
+
+        public dynamic GetPostListForPayment(long Id)
+        {
+            AppliedForm model = new AppliedForm();
+
+            using (SqlConnection objConnection = new SqlConnection(DapperDbContext.connect()))
+            {
+                try
+                {
+                    DynamicParameters parammeter = new DynamicParameters();
+                    parammeter.Add("Id", Id);
+
+                    var reader = objConnection.QueryMultiple("GetPostListForPayment", parammeter, commandType: System.Data.CommandType.StoredProcedure);
+                    var list = reader.Read<AppliedForm>().ToList();
+                    var list1 = reader.Read<FessPaid>().ToList();
 
                     model.list = list;
                     model.list1 = list1;

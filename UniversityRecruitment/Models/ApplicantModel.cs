@@ -51,11 +51,15 @@ namespace UniversityRecruitment.Models
         public string TransactionDate { get; set; }
         public string Specialization { get; set; }
         public string ApplyingSubCategory { get; set; }
+        public string FeeAmount { get; set; }
+        public int AllowPayment { get; set; }
+        public IEnumerable<AppliedForm> list { get; set; }
+        public IEnumerable<FessPaid> list1 { get; set; }
     }
 
     public class saveAppliedForm
     {
-        public string postCode { get; set; }
+        public int postCode { get; set; }
         public string post { get; set; }
         public string PostType { get; set; }
         public string Category { get; set; }
@@ -77,6 +81,22 @@ namespace UniversityRecruitment.Models
     {
         public string PostTypeId { get; set; }
         public long Id { get; set; }
+    }
+
+    public class FessPaid
+    {
+        public int Id { get; set; }
+        public string FormNo { get; set; }
+        public int PostCode { get; set; }
+        public string PostType { get; set; }
+        public string ApplyingCategory { get; set; }
+        public string PostName { get; set; }
+        public string SystemDate { get; set; }
+        public int FeePaid { get; set; }
+        public string ReferenceNo { get; set; }
+        public string TransactionId { get; set; }
+        public string TransactionDate { get; set; }
+        public string ApplyingSubCategory { get; set; }
     }
 
 }

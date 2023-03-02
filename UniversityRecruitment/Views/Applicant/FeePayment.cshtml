@@ -1,4 +1,4 @@
-﻿
+﻿@model UniversityRecruitment.Models.AppliedForm
 @{
     ViewBag.Title = "FeePayment";
     Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
@@ -43,20 +43,34 @@
                                     <th>Select to Pay</th>
                                 </tr>
                             </thead>
-                            @*<tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Nigam</td>
-                                        <td>Eichmann</td>
-                                        <td>@@Genelia</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Roshan</td>
-                                        <td>Rogahn</td>
-                                        <td>@@Hritik</td>
-                                    </tr>
-                                </tbody>*@
+                            <tbody>
+                                @if (Model.list != null)
+                                {
+                                    if (Model.list.Count() > 0)
+                                    {
+                                        foreach (var itm in Model.list)
+                                        {
+                                            if (itm.AllowPayment == 1 && itm.FeePaid == 0)
+                                            {
+                                                <tr>
+                                                    <td>@itm.PostCode</td>
+                                                    <td>@itm.FormNo</td>
+                                                    <td>@itm.PostType</td>
+                                                    <td>@itm.PostName</td>
+                                                    <td>@itm.ApplyingCategory</td>
+                                                    <td>@itm.SystemDate</td>
+                                                    <td>@itm.FeeAmount</td>
+                                                    @if (itm.FeePaid == 0)
+                                                    {
+                                                        <td><input class="chk" type="checkbox" /></td>
+                                                    }
+                                                    else { }
+                                                </tr>
+                                            }
+                                        }
+                                    }
+                                }
+                            </tbody>
                         </table>
                     </div>
                     <div class="form-group m-b-0">
@@ -79,7 +93,7 @@
                     <div class="table-responsive">
                         <table class="table full-color-table full-info-table hover-table">
                             <thead>
-                                <tr">
+                                <tr>
                                     <th>Post Code</th>
                                     <th>Form No.</th>
                                     <th>Type Of Post</th>
@@ -92,21 +106,30 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="">
-                                    <td>3016</td>
-                                    <td>23301600001</td>
-                                    <td>Assistant Professor</td>
-                                    <td>सांख्यिकी</td>
-                                    <td>UR</td>
-                                    <td>01/03/2023 02:17 PM</td>
-                                    <td>23000013001</td>
-                                    <td>TEST01032023021751PM</td>
-                                    <td>01/03/2023 02:17 PM</td>
-                                </tr>
-                                </tbody>
+                                @if (Model.list1 != null)
+                                {
+                                    if (Model.list1.Count() > 0)
+                                    {
+                                        foreach (var itm in Model.list1)
+                                        {
+                                            <tr>
+                                                <td>@itm.PostCode</td>
+                                                <td>@itm.FormNo</td>
+                                                <td>@itm.PostType</td>
+                                                <td>@itm.PostName</td>
+                                                <td>@itm.ApplyingCategory</td>
+                                                <td>@itm.SystemDate</td>
+                                                <td>@itm.ReferenceNo</td>
+                                                <td>@itm.TransactionId</td>
+                                                <td>@itm.TransactionDate</td>
+                                            </tr>
+                                        }
+                                    }
+                                }
+                            </tbody>
                         </table>
                     </div>
-                    
+
                 </div>
 
             </div>
