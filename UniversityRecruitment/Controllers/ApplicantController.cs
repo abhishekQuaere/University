@@ -109,6 +109,11 @@ namespace UniversityRecruitment.Controllers
             return View();
         }
 
+        public ActionResult ResearchGuidance()
+        {
+            return View();
+        }
+
 
 
 

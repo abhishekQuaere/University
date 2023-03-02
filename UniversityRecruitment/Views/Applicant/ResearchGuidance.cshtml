@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Lectures";
+    ViewBag.Title = "ResearchGuidance";
     Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
 }
 
@@ -8,18 +8,20 @@
     .mysheader {
         background-color: #096499;
     }
+
 </style>
+
 <div class="row page-titles">
-    <div class="col-md-5 align-self-center">
-        <h3 class="text-themecolor">
-            Special Lectures
-        </h3>
-        <p>Special Lectures / Resource Person / Paper presentation in Seminars / Conferences / Full paper in Conference Proceddings.</p>
-    </div>
     <div class="col-md-7 align-self-center">
+        <h3 class="text-themecolor">
+            Research Guidance, Project and Consultancy
+        </h3>
+        <p>Research Guidance</p>
+    </div>
+    <div class="col-md-5 align-self-center">
 
     </div>
-    
+
 </div>
 
 <div class="container-fluid">
@@ -28,79 +30,81 @@
             <div class="card">
                 <div class="card-header mysheader">
                     <h4 class="m-b-0 text-white">
-                        Research Degree
+                        (A) RESEARCH GUIDANCE
                     </h4>
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-2">
                             <div class="form-group">
-                                <label for=" " id=" " class="col-sm-12">Title of Lecture / Talk / Presentation</label>
+                                <label class="col-sm-12">Degree</label>
                                 <div class="col-sm-12">
-                                    <input name=" " type="text" class="form-control">
-                                    @*<span id="body_reqTitle" class="validator" style="display:none;">enter value</span>*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label class="col-sm-12">Name of Program with Date</label>
-                                <div class="col-sm-12">
-                                    <input type="text" class="form-control">
-                                    @*<span id="body_reqAcademicSession" class="validator" style="display:none;">enter value</span>*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label class="col-sm-12">Type</label>
-                                <div class="col-sm-12">
-                                    <select id=" " class="form-control">
-                                        <option value="-1">-- select --</option>
-                                        <option value="Lecture">Lecture</option>
-                                        <option value="Resource Person">Resource Person</option>
-                                        <option value="Paper Presentation in Seminar / Conference">Paper Presentation in Seminar / Conference</option>
-                                        <option value="Full Paper in Conference Proceedings">Full Paper in Conference Proceedings</option>
+                                    <select id="" class="form-control">
+                                        <option selected="selected" value="-1">-- select --</option>
+                                        <option value="M. Phil.">M. Phil.</option>
+                                        <option value="PG Dissertation">PG Dissertation</option>
+                                        <option value="Ph. D.">Ph. D.</option>
 
                                     </select>
-                                    @*<span id="body_reqLectureType" class="validator" style="display:none;">select an item</span>*@
+                                    @*<span id="body_reqDegree" class="validator" style="display:none;">select an item</span>*@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">Subject / Course</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+                                    @*<span id="body_reqSubject" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">No. of Students</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+                                    @*<span id="body_reqNoOfStudents" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">Thesis Submitted</label>
+                                <div class="col-sm-12">
+                                    <select class="form-control">
+                                        <option selected="selected" value="-1">-- select --</option>
+
+                                    </select>
+                                    @*<span id="body_reqThesisSubmitted" class="validator" style="display:none;">select an item</span>*@
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="body_divDegreeAwarded" class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">Degree Awarded</label>
+                                <div class="col-sm-12">
+                                    <select class="form-control">
+                                        <option selected="selected" value="-1">-- select --</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+
+                                    </select>
+                                    @*<span id="body_reqDegreeAwarded" class="validator" style="display:none;">select an item</span>*@
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
+
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label class="col-sm-12">Level</label>
+                                <label class="col-sm-12">Upload Scanned Attachment</label>
                                 <div class="col-sm-12">
-                                    <select  id=" " class="form-control">
-                                        <option value="-1">-- select --</option>
-                                        <option value="International (Abroad)">International (Abroad)</option>
-                                        <option value="International (Within Country)">International (Within Country)</option>
-                                        <option value="National">National</option>
-                                        <option value="State">State</option>
-                                        <option value="University">University</option>
-
-                                    </select>
-                                    @*<span id="body_reqLectureLevel" class="validator" style="display:none;">select an item</span>*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label class="col-sm-12">Organizing Body / Agency</label>
-                                <div class="col-sm-12">
-                                    <input name=" " type="text" class="form-control">
-                                    @*<span id="body_reqAgency" class="validator" style="display:none;">enter value</span>*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label id=" " class="col-sm-12">Upload Scanned Attachment</label>
-                                <div class="col-sm-12">
-                                    <input type="file" id=" " class="form-control">
-                                    @*<span id="body_reqAwardUpload" class="validator" style="display:none;">upload file</span>*@
+                                    <input type="file" class="form-control">
+                                    @*<span id="body_reqUpload" class="validator" style="display:none;">upload file</span>*@
                                 </div>
                             </div>
                         </div>
@@ -121,11 +125,11 @@
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr class="table-primary">
-                                            <th>Title of Lecture</th>
-                                            <th>Name of Program with Date</th>
-                                            <th>Type</th>
-                                            <th>Level</th>
-                                            <th>Organizing Body / Agency</th>
+                                            <th>Serial</th>
+                                            <th>Degree</th>
+                                            <th>No. of Students</th>
+                                            <th>Thesis Submitted</th>
+                                            <th>Degree Awarded</th>
                                             <th>API Score</th>
                                             <th>Attachment</th>
                                             <th></th>
@@ -142,6 +146,7 @@
         </div>
 
     </div>
+
 
     <div class="row">
         <div class="card-shadow-primary col-sm-12 card bg-secondary">
