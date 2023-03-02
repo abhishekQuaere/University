@@ -872,6 +872,19 @@
     <Content Include="Views\Shared\_ApplicantLayout.cshtml" />
     <Content Include="Views\Applicant\Index.cshtml" />
     <Content Include="Views\Applicant\_PostList.cshtml" />
+    <Content Include="Views\Applicant\AcademicDetails.cshtml" />
+    <Content Include="Views\Applicant\Activities.cshtml" />
+    <Content Include="Views\Applicant\Awards.cshtml" />
+    <Content Include="Views\Applicant\Experience.cshtml" />
+    <Content Include="Views\Applicant\FeePayment.cshtml" />
+    <Content Include="Views\Applicant\FeeRecipt.cshtml" />
+    <Content Include="Views\Applicant\PersonalDetails.cshtml" />
+    <Content Include="Views\Applicant\ResearchDegree.cshtml" />
+    <Content Include="Views\Applicant\UploadPhoto.cshtml" />
+    <Content Include="Views\Applicant\Acceptance.cshtml" />
+    <Content Include="Views\Applicant\Information.cshtml" />
+    <Content Include="Views\Applicant\Lectures.cshtml" />
+    <Content Include="Views\Applicant\ResearchGuidance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

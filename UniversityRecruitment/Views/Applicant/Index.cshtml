@@ -49,7 +49,7 @@
                                             {
                                                 <tr class=''>
                                                     <td class="postCode">@itm.Code</td>
-                                                    <td style='font-weight: bold;' class="post">@itm.PostName<input type="hidden" value="@itm.PostTypeId" class="postId" /></td>
+                                                    <td style='font-weight: bold;' class="PostType">@itm.PostType</td>
                                                     <td class="sub">@itm.PostName</td>
                                                     <td class="UR">@itm.UR</td>
                                                     <td class="OBC">@itm.OBC</td>
@@ -147,7 +147,7 @@
         <div class="modal-content" style="width:130%;">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalTitel"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close btnClose" onclick="btnClose()" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -155,7 +155,8 @@
                 Information!
                 <br />
                 ...
-                <input type="hidden" id="post" />
+                <input type="hidden" id="postCode" />
+                <input type="hidden" id="PostType" />
                 <input type="hidden" id="sub" />
                 <input type="hidden" id="UR" />
                 <input type="hidden" id="OBC" />
@@ -163,9 +164,7 @@
                 <input type="hidden" id="ST" />
                 <input type="hidden" id="EWS" />
                 <input type="hidden" id="PWD" />
-                <input type="hidden" id="postCode" />
                 <input type="hidden" id="postId" />
-                <input type="hidden" id="subAndDeptId" />
                 <input type="hidden" id="lastDate" />
             </div>
 
@@ -180,7 +179,7 @@
                              new SelectListItem{ Text="ST", Value = "ST" },
                              new SelectListItem{ Text="EWS", Value = "EWS" },
                              new SelectListItem{ Text="PWD", Value = "PWD" },
-                        }, "-- Select --", new { @class = "form-control" })
+                        }, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger" })
             </div>
 
@@ -190,8 +189,24 @@
                 @Html.TextBoxFor(x => x.Specialization, new { @class = "form-control" })
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btnSave">Save changes</button>
+                <button type="button" class="btn btn-secondary btnClose" onclick="btnClose()" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btnSave">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width:130%;">
+            <div class="modal-header">
+            </div>
+
+            <div class="modal-body text-center responseMessage">
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btnClose1" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -242,10 +257,11 @@
         });
     });
 
-        $(".btnApply").on('click', function () {
+    $(".btnApply").on('click', function () {
         debugger;
         var tr = $(this).closest('tr');
-        var post = tr.find('.post').text();
+        var postCode = tr.find('.postCode').text();
+        var PostType = tr.find('.PostType').text();
         var sub = tr.find('.sub').text();
         var UR = tr.find('.UR').text();
         var OBC = tr.find('.OBC').text();
@@ -260,7 +276,8 @@
         var Category = tr.find('.Category').text();
         var lastDate = tr.find('.lastDate').text();
 
-        $('#post').val(post);
+        $('#post').val(postCode);
+        $('#PostType').val(PostType);
         $('#sub').val(sub);
         $('#UR').val(UR);
         $('#OBC').val(OBC);
@@ -287,7 +304,7 @@
         //    $('#Category').val('PWD');
         //}
 
-        $("#modalTitel").text('APPLY FOR THE POST OF ' + post + ' FOR ' + sub + '');
+        $("#modalTitel").text('APPLY FOR THE POST OF ' + PostType + ' FOR ' + sub + '');
         $("#exampleModal").modal("show");
 
     });
@@ -298,19 +315,13 @@
         var model = {};
 
         var postCode = $('#postCode').val();
-        var post = $('#post').val();
-        var postId = $('#postId').val();
-        var subAndDeptId = $('#subAndDeptId').val();
+        var PostType = $('#PostType').val();
         var Category = $('#Category').val();
-        var lastDate = $('#lastDate').val();
         var Specialization = $('#Specialization').val();
 
         model.postCode = postCode;
-        model.post = post;
-        model.postId = postId;
-        model.subAndDeptId = subAndDeptId;
+        model.PostType = PostType;
         model.Category = Category;
-        model.lastDate = lastDate;
         model.SpecializationOfThePost = Specialization;
 
         $.ajax({
@@ -321,15 +332,47 @@
             dataType: "json",
             success: function (data) {
                 debugger;
-                if (data != null) {
+                if (data.ResponseCode == 0) {
+                    //swal("", data.ResponseMessage, "success");
+                    $('.responseMessage').html(data.ResponseMessage);
+                    $('#exampleModal1').modal("show");
+                    $('#exampleModal').modal("hide");
+                    btnClose();
                 }
                 else {
-                    swal("", "Somthing went wrong !", "error");
+                    swal("", data.ResponseMessage, "info");
                 }
             },
             error: function (e) {
             }
         });
+
+    })
+
+    function btnClose () {
+
+        $('#modalTitel').text('');
+        $('#postCode').val('');
+        $('#PostType').val('');
+        $('#sub').val('');
+        $('#UR').val('');
+        $('#OBC').val('');
+        $('#SC').val('');
+        $('#ST').val('');
+        $('#EWS').val('');
+        $('#PWD').val('');
+        $('#postId').val('');
+        $('#lastDate').val('');
+        $('#Category').val('General');
+        $('#Specialization').val('');
+
+
+    }
+
+    $('.btnClose1').click(function () {
+        debugger;
+        $('#responseMessage').html('');
+        window.location.reload();
 
     })
 

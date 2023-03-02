@@ -51,14 +51,17 @@ namespace UniversityRecruitment.Models
         public string TransactionDate { get; set; }
         public string Specialization { get; set; }
         public string ApplyingSubCategory { get; set; }
+        public string FeeAmount { get; set; }
+        public int AllowPayment { get; set; }
+        public IEnumerable<AppliedForm> list { get; set; }
+        public IEnumerable<FessPaid> list1 { get; set; }
     }
 
     public class saveAppliedForm
     {
-        public string postCode { get; set; }
+        public int postCode { get; set; }
         public string post { get; set; }
-        public int postId { get; set; }
-        public int subAndDeptId { get; set; }
+        public string PostType { get; set; }
         public string Category { get; set; }
         public string SubCategory { get; set; }
         public string lastDate { get; set; }
@@ -68,7 +71,8 @@ namespace UniversityRecruitment.Models
         public string TransactionId { get; set; }
         public string TransactionDate { get; set; }
         public long UserId { get; set; }
-        public string msg { get; set; }
+        public int ResponseCode { get; set; }
+        public string ResponseMessage { get; set; }
         public string FormNumber { get; set; }
         public string IpAddress { get; set; }
     }
@@ -77,6 +81,42 @@ namespace UniversityRecruitment.Models
     {
         public string PostTypeId { get; set; }
         public long Id { get; set; }
+    }
+
+    public class FessPaid
+    {
+        public int Id { get; set; }
+        public string FormNo { get; set; }
+        public int PostCode { get; set; }
+        public string PostType { get; set; }
+        public string ApplyingCategory { get; set; }
+        public string PostName { get; set; }
+        public string SystemDate { get; set; }
+        public int FeePaid { get; set; }
+        public string ReferenceNo { get; set; }
+        public string TransactionId { get; set; }
+        public string TransactionDate { get; set; }
+        public string ApplyingSubCategory { get; set; }
+    }
+
+    public class ResearchGuidance
+    {
+        public int Id { get; set; }
+        public string Degree { get; set; }
+        public string DegreeAwarded { get; set; }
+        public string AwardDate { get; set; }
+        public string DocumentPath { get; set; }
+        public string IpAddress { get; set; }
+        public string Subject { get; set; }
+        public int NoOfStudents { get; set; }
+        public string ThesisSubmitted { get; set; }
+        public string SubmissionDate { get; set; }
+        public string Awarded { get; set; }
+        public string Attachment { get; set; }
+        public string ResponseCode { get; set; }
+        public string ResponseMessage { get; set; }
+        public string RootPath { get; set; }
+        public IEnumerable<ResearchGuidance> researchGuidances { get; set; }
     }
 
 }
