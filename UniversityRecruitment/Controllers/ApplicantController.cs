@@ -62,6 +62,7 @@ namespace UniversityRecruitment.Controllers
         {
             Personalinfo obj = new Personalinfo();
             obj.ID = Convert.ToInt32(ID);
+            obj = apdb.GetApplicantPersonalinfo<Personalinfo>(Convert.ToInt32(ID));
             ViewBag.ddlstate = apdb.BindState();
             
             return View(obj);
@@ -77,11 +78,12 @@ namespace UniversityRecruitment.Controllers
         public ActionResult PersonalDetails(Personalinfo obj)
         {
             Personalinfo model = new Personalinfo();
+            ViewBag.ddlstate = apdb.BindState();
             model = apdb.SavePersonalInfo<Personalinfo>(obj);
             if(model.ResponseCode == 0)
             {
                 TempData["Message"] = "Updated Succesfuly" ;
-                return View(obj);
+                return View();
             }
             return View();
         }

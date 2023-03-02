@@ -20,283 +20,348 @@
         <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
     </div>
 </div>
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header bg-info">
-                    <h4 class="m-b-0 text-white"><b>BASIC DETAILS</b></h4>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label for="body_txtFname" class="col-sm-12 required">First Name <span class="text-danger">*</span></label>
-                                <div class="col-sm-12">
-                                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "First Name", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
-                                    @*<input type="text" class=" form-control" placeholder="Enter Your name">*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label for="body_txtFname" class="col-sm-12 required">Middle Name </label>
-                                <div class="col-sm-12">
-                                    @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control", @placeholder = "Middle Name", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.MiddleName, "", new { @class = "text-danger" })
-                                    @*<input type="text" class=" form-control" placeholder="Enter Your Middle Name">*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label for="body_txtFname" class="col-sm-12 required">Surname </label>
-                                <div class="col-sm-12">
-                                    @Html.TextBoxFor(m => m.SurName, new { @class = "form-control", @placeholder = "Sur Name", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.SurName, "", new { @class = "text-danger" })
-                                    @*<input type="text" class=" form-control" placeholder="Enter Your Surname">*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label for="body_ddlGender" class="col-sm-12 required">Gender<span class="text-danger">*</span></label>
-                                <div class="col-sm-12">
-                                    @*@Html.RadioButtonFor(model => model.Gender, "Female", new { @id = "female" })
-                                        Female
-                                        @Html.RadioButtonFor(model => model.Gender, "Male", new { @id = "male" })
-                                        Male*@
-                                    <select id="Gender" class=" form-control">
-                                        <option value="-1">-- select --</option>
-                                        <option selected="selected" value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                        <option value="Transgender">Transgender</option>
-
-                                    </select>
-
-                                </div>
-                            </div>
-                        </div>
+<form method="post">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-info">
+                        <h4 class="m-b-0 text-white"><b>BASIC DETAILS</b></h4>
                     </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="body_txtFname" class="col-sm-12 required">First Name <span class="text-danger">*</span></label>
+                                    <div class="col-sm-12">
+                                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "First Name", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                                        @*<input type="text" class=" form-control" placeholder="Enter Your name">*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="body_txtFname" class="col-sm-12 required">Middle Name </label>
+                                    <div class="col-sm-12">
+                                        @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control", @placeholder = "Middle Name", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(m => m.MiddleName, "", new { @class = "text-danger" })
+                                        @*<input type="text" class=" form-control" placeholder="Enter Your Middle Name">*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="body_txtFname" class="col-sm-12 required">Surname </label>
+                                    <div class="col-sm-12">
+                                        @Html.TextBoxFor(m => m.SurName, new { @class = "form-control", @placeholder = "Sur Name", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(m => m.SurName, "", new { @class = "text-danger" })
+                                        @*<input type="text" class=" form-control" placeholder="Enter Your Surname">*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="body_ddlGender" class="col-sm-12 required">Gender<span class="text-danger">*</span></label>
+                                    <div class="col-sm-12">
+                                        @*@Html.RadioButtonFor(model => model.Gender, "Female", new { @id = "female" })
+                                            Female
+                                            @Html.RadioButtonFor(model => model.Gender, "Male", new { @id = "male" })
+                                            Male*@
+                                        <select id="Gender" name="Gender" class=" form-control">
+                                            <option value="-1">-- select --</option>
+                                            <option selected="selected" value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Transgender">Transgender</option>
 
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="body_txtFname" class="col-sm-12 required">Father Name <span class="text-danger">*</span></label>
-                                <div class="col-sm-12">
-                                    @Html.TextBoxFor(m => m.FatherName, new { @class = "form-control", @placeholder = "Father Name", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.FatherName, "", new { @class = "text-danger" })
-                                    @*<input type="text" class=" form-control" placeholder=" ">*@
+                                        </select>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="body_txtFname" class="col-sm-12 required">Mother's Name <span class="text-danger">*</span></label>
-                                <div class="col-sm-12">
-                                    @Html.TextBoxFor(m => m.MotherName, new { @class = "form-control", @placeholder = "Mother Name", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.MotherName, "", new { @class = "text-danger" })
-                                    @*<input type="text" class=" form-control" placeholder=" ">*@
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="body_txtFname" class="col-sm-12 required">Father Name <span class="text-danger">*</span></label>
+                                    <div class="col-sm-12">
+                                        @Html.TextBoxFor(m => m.FatherName, new { @class = "form-control", @placeholder = "Father Name", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(m => m.FatherName, "", new { @class = "text-danger" })
+                                        @*<input type="text" class=" form-control" placeholder=" ">*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="body_txtFname" class="col-sm-12 required">Mother's Name <span class="text-danger">*</span></label>
+                                    <div class="col-sm-12">
+                                        @Html.TextBoxFor(m => m.MotherName, new { @class = "form-control", @placeholder = "Mother Name", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(m => m.MotherName, "", new { @class = "text-danger" })
+                                        @*<input type="text" class=" form-control" placeholder=" ">*@
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label for="body_txtDob" class="col-sm-12 required">Date of Birth<span class="text-danger">*</span></label>
-                                <div class="col-sm-12">
-                                    @Html.TextBoxFor(m => m.DOB, new { @class = "form-control datepicker", @placeholder = "dd-mm-yyyy" })
-                                    @*<input type="text" class="form-control">*@
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="body_txtDob" class="col-sm-12 required">Date of Birth<span class="text-danger">*</span></label>
+                                    <div class="col-sm-12">
+                                        @Html.TextBoxFor(m => m.DOB, new { @class = "form-control datepicker", @placeholder = "dd-mm-yyyy" })
+                                        @*<input type="text" class="form-control">*@
 
 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="body_txtFname" class="col-sm-12 required">Birth City / District <span class="text-danger">*</span></label>
+                                    <div class="col-sm-12">
+                                        @Html.TextBoxFor(m => m.City, new { @class = "form-control", @placeholder = "City", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
+                                        @*<input type="text" class=" form-control" placeholder=" ">*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="body_txtFname" class="col-sm-12 required">Birth State <span class="text-danger">*</span></label>
+                                    <div class="col-sm-12">
+                                        @Html.TextBoxFor(m => m.State, new { @class = "form-control", @placeholder = "State", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(m => m.State, "", new { @class = "text-danger" })
+                                        @*<input type="text" class=" form-control" placeholder=" ">*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="body_txtFname" class="col-sm-12 required">Birth Country <span class="text-danger">*</span></label>
+                                    <div class="col-sm-12">
+                                        @Html.TextBoxFor(m => m.Country, new { @class = "form-control", @placeholder = "Country", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(m => m.Country, "", new { @class = "text-danger" })
+                                        @*<input type="text" class=" form-control" placeholder=" ">*@
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label for="body_txtFname" class="col-sm-12 required">Birth City / District <span class="text-danger">*</span></label>
-                                <div class="col-sm-12">
-                                    @Html.TextBoxFor(m => m.City, new { @class = "form-control", @placeholder = "City", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
-                                    @*<input type="text" class=" form-control" placeholder=" ">*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label for="body_txtFname" class="col-sm-12 required">Birth State <span class="text-danger">*</span></label>
-                                <div class="col-sm-12">
-                                    @Html.TextBoxFor(m => m.State, new { @class = "form-control", @placeholder = "State", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.State, "", new { @class = "text-danger" })
-                                    @*<input type="text" class=" form-control" placeholder=" ">*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label for="body_txtFname" class="col-sm-12 required">Birth Country <span class="text-danger">*</span></label>
-                                <div class="col-sm-12">
-                                    @Html.TextBoxFor(m => m.Country, new { @class = "form-control", @placeholder = "Country", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.Country, "", new { @class = "text-danger" })
-                                    @*<input type="text" class=" form-control" placeholder=" ">*@
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <label class="col-sm-12 required">Category<span class="text-danger">*</span></label>
-                            <div class="col-sm-12">
-                                @*@Html.DropDownListFor(m => m.Category, new SelectList(ViewBag.ddlCourseType, "Value", "Text"), "-- Select --", new { @class = "form-control select" })
-                                    @Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger" })*@
-                                <select id="Category" class="form-control">
-                                    <option value="">-- select --</option>
-                                    <option selected="selected" value="General">General</option>
-                                    <option value="OBC">OBC</option>
-                                    <option value="SC">SC</option>
-                                    <option value="ST">ST</option>
-
-                                </select>
-                            </div>
-
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label class="col-sm-12 required">Nationality <span class="text-danger">*</span></label>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label class="col-sm-12 required">Category<span class="text-danger">*</span></label>
                                 <div class="col-sm-12">
-                                    @Html.TextBoxFor(m => m.Nationality, new { @class = "form-control", @placeholder = "Nationality", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.Nationality, "", new { @class = "text-danger" })
-                                    @*<input type="text" class="form-control" />*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label class="col-sm-12 required">Marital Status <span class="text-danger">*</span></label>
-                                <div class="col-sm-12">
-                                    <select id="MaritalStatus" class="form-control">
+                                    @*@Html.DropDownListFor(m => m.Category, new SelectList(ViewBag.ddlCourseType, "Value", "Text"), "-- Select --", new { @class = "form-control select" })
+                                        @Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger" })*@
+                                    <select id="Category" class="form-control">
                                         <option value="">-- select --</option>
-                                        <option value="Single">Single</option>
-                                        <option selected="selected" value="Married">Married</option>
-                                        <option value="Widowed">Widowed</option>
-                                        <option value="Divorced">Divorced</option>
-                                        <option value="Separated">Separated</option>
+                                        <option selected="selected" value="General">General</option>
+                                        <option value="OBC">OBC</option>
+                                        <option value="SC">SC</option>
+                                        <option value="ST">ST</option>
 
                                     </select>
                                 </div>
+
                             </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label class="col-sm-12 required">AADHAR No. <span class="text-danger">*</span></label>
-                                <div class="col-sm-12">
-                                    @Html.TextBoxFor(m => m.Adhar, new { @class = "form-control", @placeholder = "Adhar No.", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.Adhar, "", new { @class = "text-danger" })
-                                    @*<input type="text" class="form-control">*@
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-12 required">Upload AADHAR</label>
-                                <div class="col-sm-12">
-                                    <div class="col-md-6">
-                                        <input class="form-control" type="file" id="fileuploadAadhar" />
-                                        @Html.HiddenFor(m => m.AdharImage, new { @class = "form-control" })
-                                    </div>
-                                    <div class="col-md-6">
-                                        @if (!string.IsNullOrEmpty(Model.AdharImage))
-                                        {
-                                            <img src="@Model.AdharImage" height="50" width="50" id="imgAadharFront" />
-                                        }
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="col-sm-12 required">Nationality <span class="text-danger">*</span></label>
+                                    <div class="col-sm-12">
+                                        @Html.TextBoxFor(m => m.Nationality, new { @class = "form-control", @placeholder = "Nationality", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(m => m.Nationality, "", new { @class = "text-danger" })
+                                        @*<input type="text" class="form-control" />*@
                                     </div>
                                 </div>
                             </div>
-                            @*<input type="file" class="form-control">*@
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="col-sm-12 required">Marital Status <span class="text-danger">*</span></label>
+                                    <div class="col-sm-12">
+                                        <select id="MaritalStatus" name="MaritalStatus" class="form-control">
+                                            <option value="">-- select --</option>
+                                            <option value="Single">Single</option>
+                                            <option selected="selected" value="Married">Married</option>
+                                            <option value="Widowed">Widowed</option>
+                                            <option value="Divorced">Divorced</option>
+                                            <option value="Separated">Separated</option>
 
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="col-sm-12 required">AADHAR No. <span class="text-danger">*</span></label>
+                                    <div class="col-sm-12">
+                                        @Html.TextBoxFor(m => m.Adhar, new { @class = "form-control", @placeholder = "Adhar No.", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(m => m.Adhar, "", new { @class = "text-danger" })
+                                        @*<input type="text" class="form-control">*@
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-12 required">Upload AADHAR</label>
+                                    <div class="col-sm-12">
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="file" id="fileuploadAadhar" />
+                                            @Html.HiddenFor(m => m.AdharImage, new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-md-6">
+                                            @if (!string.IsNullOrEmpty(Model.AdharImage))
+                                            {
+                                                <img src="@Model.AdharImage" height="50" width="50" id="imgAadharFront" />
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<input type="file" class="form-control">*@
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
-</div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-info">
+                        <h4 class="m-b-0 text-white">ADDRESS & CONTACT DETAILS</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="card-title"><b>Permanent Address</b></div>
+                                <div class="form-group">
+                                    <label class="col-sm-12">Address Line 1</label>
+                                    <div class="col-sm-12">
+                                        @Html.TextBoxFor(m => m.Address1, new { @class = "form-control", @placeholder = "Address Line 1", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(m => m.Address1, "", new { @class = "text-danger" })
+                                        @*<input type="text" class="form-control">*@
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header bg-info">
-                    <h4 class="m-b-0 text-white">ADDRESS & CONTACT DETAILS</h4>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="card-title"><b>Permanent Address</b></div>
-                            <div class="form-group">
-                                <label class="col-sm-12">Address Line 1</label>
-                                <div class="col-sm-12">
-                                    @Html.TextBoxFor(m => m.Address1, new { @class = "form-control", @placeholder = "Address Line 1", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.Address1, "", new { @class = "text-danger" })
-                                    @*<input type="text" class="form-control">*@
-
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-12">Address Line 2</label>
-                                <div class="col-sm-12">
-                                    @Html.TextBoxFor(m => m.Address2, new { @class = "form-control", @placeholder = "Address Line 2", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.Address2, "", new { @class = "text-danger" })
-                                    @*<input type="text" class="form-control">*@
+                                <div class="form-group">
+                                    <label class="col-sm-12">Address Line 2</label>
+                                    <div class="col-sm-12">
+                                        @Html.TextBoxFor(m => m.Address2, new { @class = "form-control", @placeholder = "Address Line 2", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(m => m.Address2, "", new { @class = "text-danger" })
+                                        @*<input type="text" class="form-control">*@
 
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <label class="col-sm-12">State</label>
-                                            <div class="col-sm-12">
-                                                @Html.DropDownListFor(m => m.StateId, new SelectList(ViewBag.ddlstate, "Value", "Text"), "-- Select --", new { @class = "form-control select" })
-                                                @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
-                                                <input type="text" class="form-control" id="otherState" name="otherState" style="display:none;">
-                                                @*<span id="body_reqPermanentState" class="validator" style="display:none;">select value</span>
-                                                    <input name="ctl00$body$txtPermanentStateOther" type="text" autocomplete="off" id="body_txtPermanentStateOther" class="form-control" style="display: none;">
-                                                    <span id="body_CsValPermanentStateOther" class="validator" style="display:none;">enter value</span>*@
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label class="col-sm-12">State</label>
+                                                <div class="col-sm-12">
+                                                    @Html.DropDownListFor(m => m.StateId, new SelectList(ViewBag.ddlstate, "Value", "Text"), "-- Select --", new { @class = "form-control select" })
+                                                    @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
+                                                    <input type="text" class="form-control" id="otherState" name="otherState" style="display:none;">
+                                                    @*<span id="body_reqPermanentState" class="validator" style="display:none;">select value</span>
+                                                        <input name="ctl00$body$txtPermanentStateOther" type="text" autocomplete="off" id="body_txtPermanentStateOther" class="form-control" style="display: none;">
+                                                        <span id="body_CsValPermanentStateOther" class="validator" style="display:none;">enter value</span>*@
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="col-sm-12">City</label>
+                                                <div class="col-sm-12">
+                                                    @Html.DropDownListFor(m => m.CityId, new SelectList(string.Empty, "CityId", "CityName"), "-- Select --", new { @class = "form-control select" })
+                                                    @Html.ValidationMessageFor(m => m.CityId, "", new { @class = "text-danger" })
+                                                    <input type="text" class="form-control" id="otherCity" name="otherCity" style="display:none;">
+                                                    @*<span id="body_reqPermanentCity" class="validator" style="display:none;">select value</span>
+                                                        <input name="ctl00$body$txtPermanentCityOther" type="text" autocomplete="off" id="body_txtPermanentCityOther" class="form-control" style="display: none;">
+                                                        <span id="body_CsValPermanentCityOther" class="validator" style="display:none;">enter value</span>*@
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <label class="col-sm-12">City</label>
-                                            <div class="col-sm-12">
-                                                @Html.DropDownListFor(m => m.CityId, new SelectList(string.Empty, "CityId", "CityName"), "-- Select --", new { @class = "form-control select" })
-                                                @Html.ValidationMessageFor(m => m.CityId, "", new { @class = "text-danger" })
-                                                <input type="text" class="form-control" id="otherCity" name="otherCity" style="display:none;">
-                                                @*<span id="body_reqPermanentCity" class="validator" style="display:none;">select value</span>
-                                                    <input name="ctl00$body$txtPermanentCityOther" type="text" autocomplete="off" id="body_txtPermanentCityOther" class="form-control" style="display: none;">
-                                                    <span id="body_CsValPermanentCityOther" class="validator" style="display:none;">enter value</span>*@
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label class="col-sm-12">Pin Code</label>
+                                                <div class="col-sm-12">
+                                                    @Html.TextBoxFor(m => m.Pincode, new { @class = "form-control", @placeholder = "Pincode", @autocomplete = "off" })
+                                                    @Html.ValidationMessageFor(m => m.Pincode, "", new { @class = "text-danger" })
+                                                    @*<input type="text" class="form-control">*@
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <div class="row">
-                                        <div class="col-sm-6">
+                            <div class="col-sm-6">
+                                <div class="card-title">
+                                    Mailing Address &nbsp; &nbsp;
+                                    <span style="text-transform: initial; color: #000; font-weight: normal;"><input id="SameMailingAddress" type="checkbox" name="SameMailingAddress"><label for="SameMailingAddress">Same as permanent address</label></span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-12">Address Line 1</label>
+                                    <div class="col-sm-12">
+                                        @Html.TextBoxFor(m => m.MAddress1, new { @class = "form-control", @placeholder = "Address Line 1", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(m => m.Address1, "", new { @class = "text-danger" })
+                                        @*<input type="text" class="form-control">*@
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-12">Address Line 2</label>
+                                    <div class="col-sm-12">
+                                        @Html.TextBoxFor(m => m.MAddress2, new { @class = "form-control", @placeholder = "Address Line 2", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(m => m.Address2, "", new { @class = "text-danger" })
+                                        @*<input type="text" class="form-control">*@
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label class="col-sm-12">State</label>
+                                                <div class="col-sm-12">
+                                                    @Html.DropDownListFor(m => m.MStateId, new SelectList(ViewBag.ddlstate, "Value", "Text"), "-- Select --", new { @class = "form-control select" })
+                                                    @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
+                                                    <input type="text" class="form-control" id="SotherState" name="SotherState" style="display:none;">
+                                                    @*<span id="body_reqMailingState" class="validator" style="display:none;">select value</span>
+                                                        <input name="ctl00$body$txtMailingStateOther" type="text" autocomplete="off" id="body_txtMailingStateOther" class="form-control" disabled="" style="display: none;">
+                                                        <span id="body_CsValMailingStateOther" class="validator" style="display:none;">enter value</span>*@
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="col-sm-12">City</label>
+                                                <div class="col-sm-12">
+                                                    @Html.DropDownListFor(m => m.MCityId, new SelectList(string.Empty, "CityId", "CityName"), "-- Select --", new { @class = "form-control select" })
+                                                    @Html.ValidationMessageFor(m => m.CityId, "", new { @class = "text-danger" })
+                                                    <input type="text" class="form-control" id="SotherCity" name="SotherCity" style="display:none;">
+                                                    @*<span id="body_reqMailingCity" class="validator" style="display:none;">select value</span>
+                                                        <input name="ctl00$body$txtMailingCityOther" type="text" autocomplete="off" id="body_txtMailingCityOther" class="form-control" disabled="" style="display: none;">
+                                                        <span id="body_CsValMailingCityOther" class="validator" style="display:none;">enter value</span>*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
                                             <label class="col-sm-12">Pin Code</label>
                                             <div class="col-sm-12">
-                                                @Html.TextBoxFor(m => m.Pincode, new { @class = "form-control", @placeholder = "Pincode", @autocomplete = "off" })
+                                                @Html.TextBoxFor(m => m.MPincode, new { @class = "form-control", @placeholder = "Pincode", @autocomplete = "off" })
                                                 @Html.ValidationMessageFor(m => m.Pincode, "", new { @class = "text-danger" })
                                                 @*<input type="text" class="form-control">*@
 
@@ -306,137 +371,73 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="card-title">
-                                Mailing Address &nbsp; &nbsp;
-                                <span style="text-transform: initial; color: #000; font-weight: normal;"><input id="SameMailingAddress" type="checkbox" name="SameMailingAddress"><label for="SameMailingAddress">Same as permanent address</label></span>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-12">Address Line 1</label>
-                                <div class="col-sm-12">
-                                    @Html.TextBoxFor(m => m.MAddress1, new { @class = "form-control", @placeholder = "Address Line 1", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.Address1, "", new { @class = "text-danger" })
-                                    @*<input type="text" class="form-control">*@
-
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-12">Address Line 2</label>
-                                <div class="col-sm-12">
-                                    @Html.TextBoxFor(m => m.MAddress2, new { @class = "form-control", @placeholder = "Address Line 2", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.Address2, "", new { @class = "text-danger" })
-                                    @*<input type="text" class="form-control">*@
-
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card-title">Contact Details</div>
+                                <div class="form-group">
                                     <div class="row">
-                                        <div class="col-sm-6">
-                                            <label class="col-sm-12">State</label>
-                                            <div class="col-sm-12">
-                                                @Html.DropDownListFor(m => m.MStateId, new SelectList(ViewBag.ddlstate, "Value", "Text"), "-- Select --", new { @class = "form-control select" })
-                                                @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
-                                                <input type="text" class="form-control" id="SotherState" name="SotherState" style="display:none;">
-                                                @*<span id="body_reqMailingState" class="validator" style="display:none;">select value</span>
-                                                    <input name="ctl00$body$txtMailingStateOther" type="text" autocomplete="off" id="body_txtMailingStateOther" class="form-control" disabled="" style="display: none;">
-                                                    <span id="body_CsValMailingStateOther" class="validator" style="display:none;">enter value</span>*@
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <label class="col-sm-12">City</label>
-                                            <div class="col-sm-12">
-                                                @Html.DropDownListFor(m => m.MCityId, new SelectList(string.Empty, "CityId", "CityName"), "-- Select --", new { @class = "form-control select" })
-                                                @Html.ValidationMessageFor(m => m.CityId, "", new { @class = "text-danger" })
-                                                <input type="text" class="form-control" id="SotherCity" name="SotherCity" style="display:none;">
-                                                @*<span id="body_reqMailingCity" class="validator" style="display:none;">select value</span>
-                                                    <input name="ctl00$body$txtMailingCityOther" type="text" autocomplete="off" id="body_txtMailingCityOther" class="form-control" disabled="" style="display: none;">
-                                                    <span id="body_CsValMailingCityOther" class="validator" style="display:none;">enter value</span>*@
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label class="col-sm-12">Pin Code</label>
-                                        <div class="col-sm-12">
-                                            @Html.TextBoxFor(m => m.MPincode, new { @class = "form-control", @placeholder = "Pincode", @autocomplete = "off" })
-                                            @Html.ValidationMessageFor(m => m.Pincode, "", new { @class = "text-danger" })
-                                            @*<input type="text" class="form-control">*@
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="col-sm-12 required">Mobile</label>
+                                                <div class="col-sm-12">
+                                                    @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control", @placeholder = "Mobile", @autocomplete = "off" })
+                                                    @Html.ValidationMessageFor(m => m.Mobile, "", new { @class = "text-danger" })
+                                                    @*<input type="text" class="form-control">*@
 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label class="col-sm-12">Alternate Mobile</label>
+                                                <div class="col-sm-12">
+                                                    @Html.TextBoxFor(m => m.AlternateMobile, new { @class = "form-control", @placeholder = "Alternate Mobile", @autocomplete = "off" })
+                                                    @Html.ValidationMessageFor(m => m.AlternateMobile, "", new { @class = "text-danger" })
+                                                    @*<input type="text" class="form-control">*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="col-sm-12">Email</label>
+                                                <div class="col-sm-12">
+                                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email", @autocomplete = "off" })
+                                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                                    @*<input type="text" class="form-control">*@
+
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card-shadow-primary col-sm-12 card bg-secondary">
+                <div class="card-body">
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="card-title">Contact Details</div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label class="col-sm-12 required">Mobile</label>
-                                            <div class="col-sm-12">
-                                                @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control", @placeholder = "Mobile", @autocomplete = "off" })
-                                                @Html.ValidationMessageFor(m => m.Mobile, "", new { @class = "text-danger" })
-                                                @*<input type="text" class="form-control">*@
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label class="col-sm-12">Alternate Mobile</label>
-                                            <div class="col-sm-12">
-                                                @Html.TextBoxFor(m => m.AlternateMobile, new { @class = "form-control", @placeholder = "Alternate Mobile", @autocomplete = "off" })
-                                                @Html.ValidationMessageFor(m => m.AlternateMobile, "", new { @class = "text-danger" })
-                                                @*<input type="text" class="form-control">*@
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-12">Email</label>
-                                            <div class="col-sm-12">
-                                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "College Code", @autocomplete = "off" })
-                                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                                                @*<input type="text" class="form-control">*@
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <button type="submit" id="body_BtnSave" class="btn btn-warning text-dark shadow" href="#"><span class="fa fa-save"></span> Save</button>
+                            <button type="submit" id="body_BtnSaveNext" class="btn btn-success text-dark shadow pull-right" href="#"><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></button>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-</div>
 
-
-
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="card-shadow-primary col-sm-12 card bg-secondary">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <a id="body_BtnSave" class="btn btn-warning text-dark shadow" href="#"><span class="fa fa-save"></span> Save</a>
-                        <a id="body_BtnSaveNext" class="btn btn-success text-dark shadow pull-right" href="#"><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+</form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
 </script>
 
@@ -469,13 +470,13 @@ maxDate: '-1d'
     var Pincode = $("#Pincode").val();
        var otherS = $("#otherState").val();
     var otjerC = $("#otherCity").val();
-    $("#MAddress1").Append(Address1);
-    $("#MAddress2").Append(Address2);
-    $("#MStateId").Append(StateId);
-     $("#MCityId").Append(CityId);
-    $("#MPincode").Append(Pincode);
-     $("#SotherState").Append(otherS);
-    $("#SotherCity").Append(otjerC);
+    $("#MAddress1").val(Address1);
+    $("#MAddress2").val(Address2);
+    $("#MStateId").val(StateId);
+     $("#MCityId").val(CityId);
+    $("#MPincode").val(Pincode);
+     $("#SotherState").val(otherS);
+    $("#SotherCity").val(otjerC);
 }
 })
 
@@ -505,6 +506,7 @@ maxDate: '-1d'
                 else {
                        LoadCourseM($("#MStateId").val(), "@Model.MCityId", "MCityId");
                 }
+
 
             });
 
@@ -544,7 +546,7 @@ maxDate: '-1d'
                 $.ajax({
                     type: "POST",
                     url: '@Url.Action("CityList", "Applicant")',
-                    data: { MStateId: MStateId },
+                    data: { StateId: MStateId },
                     dataType: 'json',
                     success: function (data) {
                         if (data.length > 0) {
