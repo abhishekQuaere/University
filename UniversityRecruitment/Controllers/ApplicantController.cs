@@ -190,6 +190,8 @@ namespace UniversityRecruitment.Controllers
 
             AccountDb repo = new AccountDb();
             Experience obj = new Experience();
+            model.UserId = sm.userId;
+            model.Ipaddress = Common.GetIPAddress();
             if (model.Designationlist != null && model.Designationlist.Count() > 0)
             {
                 obj = repo.SaveDesignationDetails(model);
@@ -200,6 +202,41 @@ namespace UniversityRecruitment.Controllers
             }
             return Json( JsonRequestBehavior.AllowGet);
 
+        }
+
+
+        public JsonResult UploadExperienceFile(HttpPostedFileBase File)
+        {
+            string Dirpath = "~/Content/writereaddata/Experience/";
+            string path = "";
+            string filename = File.FileName;
+            bool res = false;
+            string msg = "";
+            if (!Directory.Exists(Server.MapPath(Dirpath)))
+            {
+                Directory.CreateDirectory(Server.MapPath(Dirpath));
+            }
+            string ext = Path.GetExtension(File.FileName);
+            var status = com.ValidateImagePDF_FileExtWithSize(File, 2048);
+            if (status == "Valid")
+            {
+
+                filename = DateTime.Now.ToString("yyyyMMddHHmmssffff") + "_" + filename;
+                string completepath = Path.Combine(Server.MapPath(Dirpath), filename);
+                if (System.IO.File.Exists(completepath))
+                {
+                    System.IO.File.Delete(completepath);
+                }
+
+                File.SaveAs(completepath);
+                path = Dirpath + filename;
+                res = true;
+            }
+            else
+            {
+                msg = status;
+            }
+            return Json(new { result = res, fpath = path, mesg = msg });
         }
 
         #endregion

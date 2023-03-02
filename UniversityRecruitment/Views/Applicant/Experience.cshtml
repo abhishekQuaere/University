@@ -106,9 +106,11 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Upload Scanned Attachment</label>
                                 <div class="col-sm-12">
-                                    <input type="file" class="form-control" id="DesignationImage">
+                                    <input type="file" class="form-control" id="DesignationImage" onchange="Fileupload(this)">
+                                    <span id="DesignationImageAnchor" style="display: none;" class="input-group-text btn-download"></span>
                                     @*<span id="body_reqAppointmentUpload" class="validator" style="display:none;">upload file</span>*@
                                 </div>
+                                <span class="smallpdf">(File Format:JPG/JPEG and PDF । Max File Size: 2 MB)</span>
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -122,11 +124,11 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-12" >
 
-                            <div class="table-responsive">
+                            <div class="table-responsive" id="tab" >
                                 <table class="table table-bordered">
-                                    <tbody>
+                                    <thead>
                                         <tr class="table-primary">
                                             <th rowspan="2">Designation</th>
                                             <th rowspan="2">Nature of Post</th>
@@ -142,7 +144,8 @@
                                             <th>Duration</th>
                                         </tr>
 
-                                    </tbody>
+                                    </thead>
+                                    <tbody id="TblDesignation"></tbody>
                                 </table>
                             </div>
 
@@ -214,9 +217,10 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Upload Scanned Attachment</label>
                                 <div class="col-sm-12">
-                                    <input type="file" class="form-control" id="AgencyImage">
-                                    @*<span id="body_reqDoctoralUpload" class="validator" style="display:none;">upload file</span>*@
+                                    <input type="file" class="form-control" id="AgencyImage" onchange="Fileupload(this)">
+                                    <span id="AgencyImageAnchor" style="display: none;" class="input-group-text btn-download"></span>
                                 </div>
+                                <span class="smallpdf">(File Format:JPG/JPEG and PDF । Max File Size: 2 MB)</span>
                             </div>
                         </div>
                         <div class="col-sm-2">
@@ -233,8 +237,8 @@
                         <div class="col-sm-12">
 
                             <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <tbody>
+                                <table class="table table-bordered" id="tab1">
+                                    <thead>
                                         <tr class="table-primary">
                                             <th rowspan="2">Agency</th>
                                             <th rowspan="2">Host Institution</th>
@@ -248,7 +252,8 @@
                                             <th>Duration</th>
                                         </tr>
 
-                                    </tbody>
+                                    </thead>
+                                    <tbody id="TblAgency"></tbody>
                                 </table>
                             </div>
 
@@ -286,10 +291,10 @@
         var NameAddress = $('#NameAddress').val();
         var DesignationPeriodFrom = $('#DesignationPeriodFrom').val();
         var DesignationPeriodTo = $('#DesignationPeriodTo').val();
-        var DesignationImage = $('#DesignationImage').val();
+        var href = $('.anchor').attr('href');
 
 
-        var row = '<tr><td class="Desig">' + Designation + '</td><td class="NaturePost">' + NatureofPost + '</td><td class="GradeandAgp" >' + GradeAgp + '</td><td  class="NameAdd">' + NameAddress + '</td><td  class="DPeriodFrom">' + DesignationPeriodFrom + '</td><td  class="DPeriodTo">' + DesignationPeriodTo + '</td><td  class="DgImg">' + DesignationImage + '</td></tr>';
+        var row = '<tr><td class="Desig">' + Designation + '</td><td class="NaturePost">' + NatureofPost + '</td><td class="GradeandAgp" >' + GradeAgp + '</td><td  class="NameAdd">' + NameAddress + '</td><td  class="DPeriodFrom">' + DesignationPeriodFrom + '</td><td  class="DPeriodTo">' + DesignationPeriodTo + '</td><td ></td><td><span class="input-group-text btn-download" href=' + href +'><a href=' + href +' target="_blank" class="btn btn-warning dldbtn"><i class="fa fa-download"></i></a></span></td></tr>';
 
         $('#TblDesignation').append(row);
         $('#Designation').val('');
@@ -311,10 +316,10 @@
         var HostInstitution = $('#HostInstitution').val();
         var AgencyPeriodFrom = $('#AgencyPeriodFrom').val();
         var AgencyPeriodTo = $('#AgencyPeriodTo').val();
-        var AgencyImage = $('#AgencyImage').val();
+        var href = $('.anchor').attr('href');
 
 
-        var row = '<tr><td class="Agen">' + Agency + '</td><td class="HostInsti">' + HostInstitution + '</td><td  class="AgPeriodFrom">' + AgencyPeriodFrom + '</td><td class="AgPeriodTo" >' + AgencyPeriodTo + '</td><td  class="AgeImage">' + AgencyImage + '</td></tr>';
+        var row = '<tr><td class="Agen">' + Agency + '</td><td class="HostInsti">' + HostInstitution + '</td><td  class="AgPeriodFrom">' + AgencyPeriodFrom + '</td><td class="AgPeriodTo" >' + AgencyPeriodTo + '</td><td></td><td><span class="input-group-text btn-download" href=' + href +'><a href=' + href +' target="_blank" class="btn btn-warning dnldbtn"><i class="fa fa-download"></i></a></span></td></tr>';
 
         $('#TblAgency').append(row);
         $('#Agency').val('');
@@ -347,7 +352,7 @@
             DesignationEntry.NameAddress = $(this).find('.NameAdd').text();
             DesignationEntry.DesignationPeriodFrom = $(this).find('.DPeriodFrom').text();
             DesignationEntry.DesignationPeriodTo = $(this).find('.DPeriodTo').text();
-            DesignationEntry.DesignationImage = $(this).find('.DgImg').text();
+            DesignationEntry.DesignationImage = $(this).find('.dldbtn').attr('href');
             entrylist.push(DesignationEntry)
 
         });
@@ -358,7 +363,7 @@
             AgencyEntry.HostInstitution = $(this).find('.HostInsti').text();
             AgencyEntry.AgencyPeriodFrom = $(this).find('.AgPeriodFrom').text();
             AgencyEntry.AgencyPeriodTo = $(this).find('.AgPeriodTo').text();
-            AgencyEntry.AgencyImage = $(this).find('.AgeImage').text();
+            AgencyEntry.AgencyImage = $(this).find('.dnldbtn').attr('href');
             Agencyentrylist.push(AgencyEntry)
 
 
@@ -390,6 +395,76 @@
         }
 
          
+        }
+
+
+    function Fileupload(obj) {
+        debugger;
+        var filename = $(obj)[0].files[0].name;
+        var fileId = $(obj).attr("id");
+        var ext = obj.value.match(/\.(.+)$/)[1];
+
+        switch (ext) {
+            case 'pdf':
+            case 'jpg':
+            case 'jpeg':
+                var fileSize = ($("#" + fileId)[0].files[0].size / 1024 / 1024);
+                if (fileSize > 2) {
+                    swal("", "File size should not exceed 2 MB.\r\nफाइल का साइज़ 2 MB से अधिक नहीं होना चाहिए।", "warning");
+                    return false;
+                }
+                else {
+                    var data = new FormData();
+                    var files = $("#" + fileId).get(0).files;
+                    if (files.length > 0) {
+                        data.append("File", files[0]);
+                    }
+                    $("#divLoader").show();
+                    $.ajax({
+                        url: '@Url.Action("UploadExperienceFile", "Applicant")',
+                        type: "POST",
+                        processData: false,
+                        contentType: false,
+                        data: data,
+                        success: function (response) {
+                            $("#divLoader").hide();
+
+                            if (response != null) {
+                                if (response.result) {
+                                    $("#fileName" + fileId).text(filename);
+                                    $("#" + fileId + "Path").val(response.fpath);
+                                    var Url = response.fpath.replace('~/', '');
+                                    $("#" + fileId + "Anchor").empty();
+                                    $("#" + fileId + "Anchor").attr('href', Url);
+                                    //$("#" + fileId + "Anchor").show();
+                                    $("#" + fileId + "Anchor").append('<a href="' + '@Url.Content("~/")' + Url + '" target="_blank" class="btn btn-warning anchor"><i class="fa fa-download"></i></a>');
+                                    swal("", "File upload successfully. ", "success")
+                                }
+                                else {
+                                    swal("", response.mesg, "error")
+                                }
+                            }
+                            else {
+                                swal("", "Fail to Upload File", "error")
+                            }
+                            return false;
+
+                        },
+                        error: function (e) {
+
+                            $("#divLoader").hide();
+                            swal("", "An Error Occured while uploading file", "error");
+                        }
+                    });
+
+                }
+                break;
+            default:
+                swal("", 'File should be in PDF/JPG/JPEG format./फाइल PDF/JPG/JPEG प्रारूप में होनी चाहिए।', "warning");
+                this.value = '';
+                return false;
+        }
+
     }
 
 </script>

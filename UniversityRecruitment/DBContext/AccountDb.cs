@@ -156,35 +156,36 @@ namespace UniversityRecruitment.DBContext
         {
 
             Experience obj = new Experience();
-            int res = 0;
-            using (SqlConnection con = new SqlConnection(_dapper.GetDbConnection().ConnectionString))
+
+            var res = new Experience();
+            try
             {
-                try
+                var perm = new DynamicParameters();
+                if (model.Designationlist.Count() > 0)
                 {
-                    var perm = new DynamicParameters();
-                    if (model.Designationlist.Count() > 0)
+                    for (int i = 0; i < model.Designationlist.Count; i++)
                     {
-                        for (int i = 0; i < model.Designationlist.Count; i++)
-                        {
-                            perm.Add("@id", 1);
-                            perm.Add("@Designation", model.Designationlist[i].Designation);
-                            perm.Add("@NatureOfPost", model.Designationlist[i].NatureofPost);
-                            perm.Add("@Salary", model.Designationlist[i].GradeAgp);
-                            perm.Add("@Employer", model.Designationlist[i].NameAddress);
-                            perm.Add("@FromDate", model.Designationlist[i].DesignationPeriodFrom);
-                            perm.Add("@ToDate", model.Designationlist[i].DesignationPeriodTo);
-                            perm.Add("@DocumentPath", model.Designationlist[i].DesignationImage);
-                            perm.Add("@IpAddress", 2); 
-                            var reader = con.QueryMultiple("ManageApplicantWorkExperience", perm, commandType: CommandType.StoredProcedure);
-                        }
+                        perm.Add("@id", model.UserId);
+                        perm.Add("@Designation", model.Designationlist[i].Designation);
+                        perm.Add("@NatureOfPost", model.Designationlist[i].NatureofPost);
+                        perm.Add("@Salary", model.Designationlist[i].GradeAgp);
+                        perm.Add("@Employer", model.Designationlist[i].NameAddress);
+                        perm.Add("@FromDate", model.Designationlist[i].DesignationPeriodFrom);
+                        perm.Add("@ToDate", model.Designationlist[i].DesignationPeriodTo);
+                        perm.Add("@DocumentPath", model.Designationlist[i].DesignationImage);
+                        perm.Add("@IpAddress", model.Ipaddress);
+                        res = _dapper.ExecuteGet<Experience>("ManageApplicantWorkExperience", perm);
                     }
-                    return res;
                 }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                return res;
             }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+
         }
 
 
@@ -192,73 +193,35 @@ namespace UniversityRecruitment.DBContext
         {
 
             Experience obj = new Experience();
-            int res = 0;
-            using (SqlConnection con = new SqlConnection(_dapper.GetDbConnection().ConnectionString))
+            var res = new Experience();
+            try
             {
-                try
+                if (model.Agencylist.Count() > 0)
                 {
-                    if (model.Agencylist.Count() > 0)
+                    var perm = new DynamicParameters();
+                    for (int i = 0; i < model.Agencylist.Count; i++)
                     {
-                        var perm = new DynamicParameters();
-                        for (int i = 0; i < model.Agencylist.Count; i++)
-                        {
-                            perm.Add("@id", 1);
-                            perm.Add("@Agency", model.Agencylist[i].Agency);
-                            perm.Add("@HostInstitution", model.Agencylist[i].HostInstitution);
-                            perm.Add("@FromDate", model.Agencylist[i].AgencyPeriodFrom);
-                            perm.Add("@ToDate", model.Agencylist[i].AgencyPeriodTo);
-                            perm.Add("@DocumentPath", model.Agencylist[i].AgencyImage);
-                            perm.Add("@IpAddress", 2); 
-                            var reader = con.QueryMultiple("ManageApplicantPostDoctoral", model.Agencylist, commandType: CommandType.StoredProcedure);
-                        }
+                        perm.Add("@id", model.UserId);
+                        perm.Add("@Agency", model.Agencylist[i].Agency);
+                        perm.Add("@HostInstitution", model.Agencylist[i].HostInstitution);
+                        perm.Add("@FromDate", model.Agencylist[i].AgencyPeriodFrom);
+                        perm.Add("@ToDate", model.Agencylist[i].AgencyPeriodTo);
+                        perm.Add("@DocumentPath", model.Agencylist[i].AgencyImage);
+                        perm.Add("@IpAddress", model.Ipaddress);
+                        res = _dapper.ExecuteGet<Experience>("ManageApplicantPostDoctoral", perm);
                     }
-                    return res;
                 }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                return res;
             }
-           
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
         #endregion
 
 
-        //public dynamic saveQualification(academicsDetails model)
-        //{
 
-        //    academicsDetails obj = new academicsDetails();
-        //    int res = 0;
-        //    using (SqlConnection con = new SqlConnection(_dapper.GetDbConnection().ConnectionString))
-        //    {
-        //        try
-        //        {
-        //            var perm = new DynamicParameters();
-        //            if (model.lst.Count() > 0)
-        //            {
-        //                for (int i = 0; i < model.lst.Count; i++)
-        //                {
-        //                    perm.Add("@id", 1);
-        //                    perm.Add("@Qualification", model.lst[i].qualification);
-        //                    perm.Add("@CourseName", model.lst[i].nameOfCourse);
-        //                    perm.Add("@Specialization", model.lst[i].specialization);
-        //                    perm.Add("@BoardName", model.lst[i].nameofBoard);
-        //                    perm.Add("@YearPassed", Convert.ToInt32(model.lst[i].yearPassed));
-        //                    perm.Add("@CGPA", model.lst[i].cgpa);
-        //                    perm.Add("@Division", model.lst[i].divison);
-        //                    perm.Add("@PercentMarks", model.lst[i].perMarks);
-        //                    perm.Add("@SubjectStudied", model.lst[i].subjectStudied);
-        //                    perm.Add("@DocumentPath", model.lst[i].attachment);
-        //                    var reader = con.QueryMultiple("[ManageApplicantQualification]", perm, commandType: CommandType.StoredProcedure);
-        //                }
-        //            }
-        //            return res;
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            throw ex;
-        //        }
-        //    }
-        //}
     }
 }

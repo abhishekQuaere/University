@@ -21,6 +21,9 @@ namespace UniversityRecruitment.Models
         public string AgencyImage { get; set; }
         public List<Experience> Designationlist { get; set; }
         public List<Experience> Agencylist { get; set; }
-        public long id { get; set; }
+        public long UserId { get; set; }
+        public string Ipaddress { get; set; }
+        public string ResponseMessage { get; set; }
+        public string ResponseCode { get; set; }
     }
 }
