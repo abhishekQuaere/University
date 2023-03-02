@@ -1,0 +1,295 @@
+﻿
+@{
+    ViewBag.Title = "Acceptance";
+    Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
+}
+
+<style>
+    .mysheader {
+        background-color: #096499;
+    }
+
+    .form-group label {
+        font-size: 14px;
+        color: #000000;
+        width: 100%;
+    }
+</style>
+<div class="row page-titles">
+    <div class="col-md-7 align-self-center">
+        <h3 class="text-themecolor">
+            Acceptance
+        </h3>
+        <p>Give details of any other credential significant contributions, award received etc. not mentioned earlier.</p>
+    </div>
+    <div class="col-md-5 align-self-center">
+
+    </div>
+
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header mysheader">
+                    <h4 class="m-b-0 text-white">
+                        Acceptance
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <b>Give names designations, and addresses (Mobile, Phone/Fax No./ Email, if any) of two references not related to candidate. Reference should be of persons with or under whom candidate has worked, or who have intimate knowledge of his work.</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-sm-12">Name of the Referee</label>
+                                <div class="col-sm-12">
+                                    <input name=" " type="text" class="form-control">
+                                    @*<span id="body_reqRefereeName" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <label class="col-sm-12">Complete Postal Address</label>
+                                <div class="col-sm-12">
+                                    <input name=" " type="text" class="form-control">
+                                    @*<span id="body_reqRefereeAddress" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-sm-12">Email ID</label>
+                                <div class="col-sm-12">
+                                    <input name=" " type="text" class="form-control">
+                                    @*<span id="body_reqRefereeEmail" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">Mobile No.</label>
+                                <div class="col-sm-12">
+                                    <input name="ctl00$body$txtRefereeMobile" type="text" class="form-control">
+                                    @*<span id="body_reqRefereeMobile" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">Phone(Landline)</label>
+                                <div class="col-sm-12">
+                                    <input name=" " type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">Fax</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">&nbsp;</label>
+                                <div class="col-sm-12">
+                                    <a class="btn btn-alternate shadow" href="#">Add Referee</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr class="table-primary">
+                                        <th>Name</th>
+                                        <th>Address</th>
+                                        <th>
+                                            Email<br>
+                                            Mobile
+                                        </th>
+                                        <th>
+                                            Phone(landline)<br>
+                                            Fax
+                                        </th>
+                                        <th></th>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="col-sm-12 card mt-2">
+                <div class="card-header mysheader">
+                    <h4 class="m-b-0 text-white">
+                        Acceptance / Other Relevant Information
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row" style="background: #C3FFC3; border: solid 1px rgba(0, 0, 0, .5); border-radius: 5px;">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-12">Are you willing to accept the initial salary of the grade?</label>
+                                <div class="col-sm-6">
+                                    <select name=" " id=" " class="form-control">
+                                        <option value="-1">-- select --</option>
+                                        <option value="true">Yes</option>
+                                        <option value="false">No</option>
+
+                                    </select>
+                                    @*<span id="body_reqSalaryAcceptance" class="validator" style="display:none;">select value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-12">If no state what is the minimum salary acceptable with justification thereof:</label>
+                                <div class="col-sm-12">
+                                    <input name=" " type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row" style="background: #FFC3C3; border: solid 1px rgba(0, 0, 0, .5); border-radius: 5px;">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-12">Have there been any break in your academic / service career?</label>
+                                <div class="col-sm-6">
+                                    <select name=" " id=" " class="form-control">
+                                        <option value="-1">-- select --</option>
+                                        <option value="true">Yes</option>
+                                        <option value="false">No</option>
+
+                                    </select>
+                                    @*<span id="body_reqAcademicBreakAcceptance" class="validator" style="display:none;">select value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-12">If so, give details:</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row" style="background: #C3FFC3; border: solid 1px rgba(0, 0, 0, .5); border-radius: 5px;">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for=" " id=" " class="col-sm-12">Have you been punished during you services or convicted by a court of law?</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control">
+                                        <option value="-1">-- select --</option>
+                                        <option value="true">Yes</option>
+                                        <option value="false">No</option>
+
+                                    </select>
+                                    @*<span id="body_reqLawAcceptance" class="validator" style="display:none;">select value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for=" " id=" " class="col-sm-12">If so, give details:</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row" style="background: #FFC3C3; border: solid 1px rgba(0, 0, 0, .5); border-radius: 5px;">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-12">Do you have any case pending against you in any court of law?</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control">
+                                        <option value="-1">-- select --</option>
+                                        <option value="true">Yes</option>
+                                        <option value="false">No</option>
+
+                                    </select>
+                                    @*<span id="body_reqCaseAcceptance" class="validator" style="display:none;">select value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-12">If so, give details:</label>
+                                <div class="col-sm-12">
+                                    <input name="ctl00$body$txtCaseReason" type="text" autocomplete="off" id="body_txtCaseReason" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="col-sm-12">Any other relevant information, if not given above.</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+                                    @*<span id="body_reqOtherInfo" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-12">Upload NOC certificate from your present employer</label>
+                                <div class="col-sm-12">
+                                    <input type="file" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="card-shadow-primary col-sm-12 card bg-secondary">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a id="" class="btn btn-warning text-dark shadow" href=""><span class="fa fa-save"></span> Save</a>
+                        <a id="" class="btn btn-success text-dark shadow pull-right" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
