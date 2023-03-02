@@ -59,8 +59,14 @@ namespace UniversityRecruitment.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
-       
+       [HttpGet]
         public ActionResult PersonalDetails()
+        {
+            Personalinfo obj = new Personalinfo();
+            return View(obj);
+        }
+        [HttpPost]
+        public ActionResult PersonalDetails(Personalinfo obj)
         {
             return View();
         }
