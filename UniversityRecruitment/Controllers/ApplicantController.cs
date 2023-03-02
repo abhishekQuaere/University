@@ -58,14 +58,31 @@ namespace UniversityRecruitment.Controllers
         }
 
        [HttpGet]
-        public ActionResult PersonalDetails()
+        public ActionResult PersonalDetails( int ? ID)
         {
             Personalinfo obj = new Personalinfo();
+            obj.ID = Convert.ToInt32(ID);
+            ViewBag.ddlstate = apdb.BindState();
+            
             return View(obj);
+        }
+        [HttpPost]
+        public JsonResult CityList(int StateId)
+        {
+            List<SelectListItem> ObjList = new List<SelectListItem>();
+            ObjList = apdb.BindCity(StateId);
+            return Json(ObjList, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult PersonalDetails(Personalinfo obj)
         {
+            Personalinfo model = new Personalinfo();
+            model = apdb.SavePersonalInfo<Personalinfo>(obj);
+            if(model.ResponseCode == 0)
+            {
+                TempData["Message"] = "Updated Succesfuly" ;
+                return View(obj);
+            }
             return View();
         }
 

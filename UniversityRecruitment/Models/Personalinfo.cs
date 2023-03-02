@@ -28,10 +28,20 @@ namespace UniversityRecruitment.Models
         public int StateId { get; set; }
         public int CityId { get; set; }
         public string Pincode { get; set; }
+        public string MAddress1 { get; set; }
+        public string MAddress2 { get; set; }
+        public int MStateId { get; set; }
+        public int MCityId { get; set; }
+        public string MPincode { get; set; }
         public string Mobile { get; set; }
         public string AlternateMobile { get; set; }
         public string Email { get; set; }
-
+        public string otherState { get; set; }
+        public string otherCity { get; set; }
+        public string SotherState { get; set; }
+        public string SotherCity { get; set; }
+        public bool SameMailingAddress { get; set; }
+        public int ResponseCode { get; set; }
 
     }
 }

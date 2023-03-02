@@ -4,6 +4,8 @@
     Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
 }
 
+<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css"
+      rel="stylesheet">/>
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
         <h3 class="text-themecolor">
@@ -32,8 +34,8 @@
                             <div class="form-group">
                                 <label for="body_txtFname" class="col-sm-12 required">First Name <span class="text-danger">*</span></label>
                                 <div class="col-sm-12">
-                                    @*@Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "College Code", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })*@
+                                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "First Name", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
                                     @*<input type="text" class=" form-control" placeholder="Enter Your name">*@
                                 </div>
                             </div>
@@ -42,8 +44,8 @@
                             <div class="form-group">
                                 <label for="body_txtFname" class="col-sm-12 required">Middle Name </label>
                                 <div class="col-sm-12">
-                                    @*@Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control", @placeholder = "College Code", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.MiddleName, "", new { @class = "text-danger" })*@
+                                    @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control", @placeholder = "Middle Name", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(m => m.MiddleName, "", new { @class = "text-danger" })
                                     @*<input type="text" class=" form-control" placeholder="Enter Your Middle Name">*@
                                 </div>
                             </div>
@@ -52,8 +54,8 @@
                             <div class="form-group">
                                 <label for="body_txtFname" class="col-sm-12 required">Surname </label>
                                 <div class="col-sm-12">
-                                    @*@Html.TextBoxFor(m => m.SurName, new { @class = "form-control", @placeholder = "College Code", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.SurName, "", new { @class = "text-danger" })*@
+                                    @Html.TextBoxFor(m => m.SurName, new { @class = "form-control", @placeholder = "Sur Name", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(m => m.SurName, "", new { @class = "text-danger" })
                                     @*<input type="text" class=" form-control" placeholder="Enter Your Surname">*@
                                 </div>
                             </div>
@@ -63,16 +65,16 @@
                                 <label for="body_ddlGender" class="col-sm-12 required">Gender<span class="text-danger">*</span></label>
                                 <div class="col-sm-12">
                                     @*@Html.RadioButtonFor(model => model.Gender, "Female", new { @id = "female" })
-                                    Female
-                                    @Html.RadioButtonFor(model => model.Gender, "Male", new { @id = "male" })
-                                    Male*@
-                                    @*<select id="body_ddlGender" class=" form-control">
+                                        Female
+                                        @Html.RadioButtonFor(model => model.Gender, "Male", new { @id = "male" })
+                                        Male*@
+                                    <select id="Gender" class=" form-control">
                                         <option value="-1">-- select --</option>
                                         <option selected="selected" value="Male">Male</option>
                                         <option value="Female">Female</option>
                                         <option value="Transgender">Transgender</option>
 
-                                    </select>*@
+                                    </select>
 
                                 </div>
                             </div>
@@ -84,8 +86,8 @@
                             <div class="form-group">
                                 <label for="body_txtFname" class="col-sm-12 required">Father Name <span class="text-danger">*</span></label>
                                 <div class="col-sm-12">
-                                    @*@Html.TextBoxFor(m => m.FatherName, new { @class = "form-control", @placeholder = "College Code", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.FatherName, "", new { @class = "text-danger" })*@
+                                    @Html.TextBoxFor(m => m.FatherName, new { @class = "form-control", @placeholder = "Father Name", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(m => m.FatherName, "", new { @class = "text-danger" })
                                     @*<input type="text" class=" form-control" placeholder=" ">*@
                                 </div>
                             </div>
@@ -94,8 +96,8 @@
                             <div class="form-group">
                                 <label for="body_txtFname" class="col-sm-12 required">Mother's Name <span class="text-danger">*</span></label>
                                 <div class="col-sm-12">
-                                    @*@Html.TextBoxFor(m => m.MotherName, new { @class = "form-control", @placeholder = "College Code", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.MotherName, "", new { @class = "text-danger" })*@
+                                    @Html.TextBoxFor(m => m.MotherName, new { @class = "form-control", @placeholder = "Mother Name", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(m => m.MotherName, "", new { @class = "text-danger" })
                                     @*<input type="text" class=" form-control" placeholder=" ">*@
                                 </div>
                             </div>
@@ -107,7 +109,7 @@
                             <div class="form-group">
                                 <label for="body_txtDob" class="col-sm-12 required">Date of Birth<span class="text-danger">*</span></label>
                                 <div class="col-sm-12">
-                                    @*@Html.TextBoxFor(m => m.DOB, new { @class = "form-control datepicker", @placeholder = "dd-mm-yyyy" })*@
+                                    @Html.TextBoxFor(m => m.DOB, new { @class = "form-control datepicker", @placeholder = "dd-mm-yyyy" })
                                     @*<input type="text" class="form-control">*@
 
 
@@ -118,8 +120,8 @@
                             <div class="form-group">
                                 <label for="body_txtFname" class="col-sm-12 required">Birth City / District <span class="text-danger">*</span></label>
                                 <div class="col-sm-12">
-                                    @*@Html.TextBoxFor(m => m.City, new { @class = "form-control", @placeholder = "College Code", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })*@
+                                    @Html.TextBoxFor(m => m.City, new { @class = "form-control", @placeholder = "City", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
                                     @*<input type="text" class=" form-control" placeholder=" ">*@
                                 </div>
                             </div>
@@ -128,8 +130,8 @@
                             <div class="form-group">
                                 <label for="body_txtFname" class="col-sm-12 required">Birth State <span class="text-danger">*</span></label>
                                 <div class="col-sm-12">
-                                    @*@Html.TextBoxFor(m => m.State, new { @class = "form-control", @placeholder = "College Code", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.State, "", new { @class = "text-danger" })*@
+                                    @Html.TextBoxFor(m => m.State, new { @class = "form-control", @placeholder = "State", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(m => m.State, "", new { @class = "text-danger" })
                                     @*<input type="text" class=" form-control" placeholder=" ">*@
                                 </div>
                             </div>
@@ -138,8 +140,8 @@
                             <div class="form-group">
                                 <label for="body_txtFname" class="col-sm-12 required">Birth Country <span class="text-danger">*</span></label>
                                 <div class="col-sm-12">
-                                    @*@Html.TextBoxFor(m => m.Country, new { @class = "form-control", @placeholder = "College Code", @autocomplete = "off" })*@
-                                    @*@Html.ValidationMessageFor(m => m.Country, "", new { @class = "text-danger" })*@
+                                    @Html.TextBoxFor(m => m.Country, new { @class = "form-control", @placeholder = "Country", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(m => m.Country, "", new { @class = "text-danger" })
                                     @*<input type="text" class=" form-control" placeholder=" ">*@
                                 </div>
                             </div>
@@ -151,9 +153,9 @@
                             <label class="col-sm-12 required">Category<span class="text-danger">*</span></label>
                             <div class="col-sm-12">
                                 @*@Html.DropDownListFor(m => m.Category, new SelectList(ViewBag.ddlCourseType, "Value", "Text"), "-- Select --", new { @class = "form-control select" })
-                                @Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger" })*@
-                                <select class="form-control">
-                                    <option value="-1">-- select --</option>
+                                    @Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger" })*@
+                                <select id="Category" class="form-control">
+                                    <option value="">-- select --</option>
                                     <option selected="selected" value="General">General</option>
                                     <option value="OBC">OBC</option>
                                     <option value="SC">SC</option>
@@ -167,9 +169,9 @@
                             <div class="form-group">
                                 <label class="col-sm-12 required">Nationality <span class="text-danger">*</span></label>
                                 <div class="col-sm-12">
-                                    @*@Html.TextBoxFor(m => m.Nationality, new { @class = "form-control", @placeholder = "College Code", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.Nationality, "", new { @class = "text-danger" })*@
-                                    <input type="text" class="form-control" />
+                                    @Html.TextBoxFor(m => m.Nationality, new { @class = "form-control", @placeholder = "Nationality", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(m => m.Nationality, "", new { @class = "text-danger" })
+                                    @*<input type="text" class="form-control" />*@
                                 </div>
                             </div>
                         </div>
@@ -177,7 +179,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12 required">Marital Status <span class="text-danger">*</span></label>
                                 <div class="col-sm-12">
-                                    <select class="form-control">
+                                    <select id="MaritalStatus" class="form-control">
                                         <option value="">-- select --</option>
                                         <option value="Single">Single</option>
                                         <option selected="selected" value="Married">Married</option>
@@ -193,9 +195,9 @@
                             <div class="form-group">
                                 <label class="col-sm-12 required">AADHAR No. <span class="text-danger">*</span></label>
                                 <div class="col-sm-12">
-                                    @*@Html.TextBoxFor(m => m.Adhar, new { @class = "form-control", @placeholder = "College Code", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.Adhar, "", new { @class = "text-danger" })*@
-                                    <input type="text" class="form-control">
+                                    @Html.TextBoxFor(m => m.Adhar, new { @class = "form-control", @placeholder = "Adhar No.", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(m => m.Adhar, "", new { @class = "text-danger" })
+                                    @*<input type="text" class="form-control">*@
 
                                 </div>
                             </div>
@@ -204,31 +206,29 @@
 
                     <div class="row">
 
-                        <div class="col-sm-3">
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-sm-12 required">Upload AADHAR</label>
                                 <div class="col-sm-12">
-                                        <div class="col-md-6">
-                                            <input class="form-control" type="file" id="fileuploadAadhar" />
-                                            @*@Html.HiddenFor(m => m.AdharImage, new { @class = "form-control" })*@
-                                        </div>
-                                        <div class="col-md-6">
-                                            @*@if (!string.IsNullOrEmpty(Model.AdharImage))
-                                            {*@
-                                                <img src="@Model.AdharImage" height="50" width="50" id="imgAadharFront" />
-                                            @*}*@
-                                        </div>
+                                    <div class="col-md-6">
+                                        <input class="form-control" type="file" id="fileuploadAadhar" />
+                                        @Html.HiddenFor(m => m.AdharImage, new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-md-6">
+                                        @if (!string.IsNullOrEmpty(Model.AdharImage))
+                                        {
+                                            <img src="@Model.AdharImage" height="50" width="50" id="imgAadharFront" />
+                                        }
                                     </div>
                                 </div>
-                                    @*<input type="file" class="form-control">*@
-
-                                </div>
                             </div>
+                            @*<input type="file" class="form-control">*@
+
                         </div>
                     </div>
-
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -247,8 +247,8 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Address Line 1</label>
                                 <div class="col-sm-12">
-                                    @*@Html.TextBoxFor(m => m.Address1, new { @class = "form-control", @placeholder = "College Code", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.Address1, "", new { @class = "text-danger" })*@
+                                    @Html.TextBoxFor(m => m.Address1, new { @class = "form-control", @placeholder = "Address Line 1", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(m => m.Address1, "", new { @class = "text-danger" })
                                     @*<input type="text" class="form-control">*@
 
                                 </div>
@@ -256,8 +256,8 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Address Line 2</label>
                                 <div class="col-sm-12">
-                                    @*@Html.TextBoxFor(m => m.Address2, new { @class = "form-control", @placeholder = "College Code", @autocomplete = "off" })
-                                    @Html.ValidationMessageFor(m => m.Address2, "", new { @class = "text-danger" })*@
+                                    @Html.TextBoxFor(m => m.Address2, new { @class = "form-control", @placeholder = "Address Line 2", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(m => m.Address2, "", new { @class = "text-danger" })
                                     @*<input type="text" class="form-control">*@
 
                                 </div>
@@ -268,214 +268,23 @@
                                         <div class="col-sm-6">
                                             <label class="col-sm-12">State</label>
                                             <div class="col-sm-12">
-                                                @*@Html.DropDownListFor(m => m.StateId, new SelectList(ViewBag.ddlCourseType, "Value", "Text"), "-- Select --", new { @class = "form-control select" })
-                                                @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })*@
-                                                <select name=" " class="form-control">
-            <option value="-1">-- select --</option>
-            <option value="-99" style="color: red; font-weight: bold;">OTHER</option>
-            <option value="1">Andaman and Nicobar Islands</option>
-            <option value="2">Andhra Pradesh</option>
-            <option value="3">Arunachal Pradesh</option>
-            <option value="4">Assam</option>
-            <option value="5">Bihar</option>
-            <option value="6">Chhattisgarh</option>
-            <option value="7">Dadra &amp; Nagar Haveli</option>
-            <option value="8">Daman &amp; Diu</option>
-            <option value="9">Delhi / NCR</option>
-            <option value="10">Goa</option>
-            <option value="11">Gujarat</option>
-            <option value="12">Haryana</option>
-            <option value="13">Himachal Pradesh</option>
-            <option value="14">Jammu &amp; Kashmir</option>
-            <option value="15">Jharkhand</option>
-            <option value="16">Karnataka</option>
-            <option value="17">Kerala</option>
-            <option value="18">Lakshadweep</option>
-            <option value="19">Madhya Pradesh</option>
-            <option value="20">Maharashtra</option>
-            <option value="21">Manipur</option>
-            <option value="22">Meghalaya</option>
-            <option value="23">Mizoram</option>
-            <option value="24">Nagaland</option>
-            <option value="25">Orissa</option>
-            <option value="36">Other</option>
-            <option value="26">Pondicherry</option>
-            <option value="27">Punjab</option>
-            <option value="28">Rajastan</option>
-            <option value="29">Sikkim</option>
-            <option value="30">Tamil Nadu</option>
-            <option value="31">Tripura</option>
-            <option selected="selected" value="32">Uttar Pradesh</option>
-            <option value="33">Uttarakhand</option>
-            <option value="34">Uttaranchal</option>
-            <option value="35">West Bengal</option>
-
-        </select>
+                                                @Html.DropDownListFor(m => m.StateId, new SelectList(ViewBag.ddlstate, "Value", "Text"), "-- Select --", new { @class = "form-control select" })
+                                                @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
+                                                <input type="text" class="form-control" id="otherState" name="otherState" style="display:none;">
                                                 @*<span id="body_reqPermanentState" class="validator" style="display:none;">select value</span>
-        <input name="ctl00$body$txtPermanentStateOther" type="text" autocomplete="off" id="body_txtPermanentStateOther" class="form-control" style="display: none;">
-        <span id="body_CsValPermanentStateOther" class="validator" style="display:none;">enter value</span>*@
+                                                    <input name="ctl00$body$txtPermanentStateOther" type="text" autocomplete="off" id="body_txtPermanentStateOther" class="form-control" style="display: none;">
+                                                    <span id="body_CsValPermanentStateOther" class="validator" style="display:none;">enter value</span>*@
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <label class="col-sm-12">City</label>
                                             <div class="col-sm-12">
-                                                @*@Html.DropDownListFor(m => m.CityId, new SelectList(string.Empty, "CourseId", "CourseName"), "-- Select --", new { @class = "form-control select" })
-                                                @Html.ValidationMessageFor(m => m.CityId, "", new { @class = "text-danger" })*@
-                                                <select name=" " class="form-control">
-            <option value="-1">-- select --</option>
-            <option value="-99">OTHER</option>
-            <option value="10">Agra</option>
-            <option value="19">Aligarh</option>
-            <option value="21">Allahabad</option>
-            <option value="34">Amroha</option>
-            <option value="60">Azamgarh</option>
-            <option value="70">Bahraich</option>
-            <option value="80">Ballia</option>
-            <option value="83">Balrampur</option>
-            <option value="85">Banda</option>
-            <option value="100">Bareilly</option>
-            <option value="1491">Basti</option>
-            <option value="151">Bijnaur</option>
-            <option value="168">Bulandshahr</option>
-            <option value="1162">Bulandshahr</option>
-            <option value="185">Chandauli</option>
-            <option value="243">Deoria</option>
-            <option value="284">Etah</option>
-            <option value="285">Etawah</option>
-            <option value="286">Faizabad</option>
-            <option value="290">Farrukhabad</option>
-            <option value="293">Fatehabad</option>
-            <option value="294">Fatehgarh</option>
-            <option value="297">Fatehpur</option>
-            <option value="298">Fatehpur</option>
-            <option value="295">Fatehpur Sikri</option>
-            <option value="302">Firozabad</option>
-            <option value="314">Ghaziabad</option>
-            <option value="315">Ghazipur</option>
-            <option value="329">Gorakhpur</option>
-            <option value="330">Greater Noida</option>
-            <option value="355">Hamirpur</option>
-            <option value="358">Hardoi</option>
-            <option value="362">Hathras</option>
-            <option value="400">Jajmau</option>
-            <option value="418">Jaunpur</option>
-            <option value="424">Jhansi</option>
-            <option value="460">Kanpur</option>
-            <option value="522">Kota</option>
-            <option value="1495">Kushinagar</option>
-            <option value="539">Laharpur</option>
-            <option value="541">Lakhimpur</option>
-            <option value="544">Lal Gopalganj Nindaura</option>
-            <option value="548">Lalganj</option>
-            <option value="547">Lalitpur</option>
-            <option value="551">Lar</option>
-            <option value="563">Loni</option>
-            <option selected="selected" value="565">Lucknow</option>
-            <option value="1493">Maharajganj</option>
-            <option value="655">Mathura</option>
-            <option value="1496">Mau</option>
-            <option value="664">Meerut</option>
-            <option value="676">Mirzapur</option>
-            <option value="678">Modinagar</option>
-            <option value="685">Moradabad</option>
-            <option value="707">Muradnagar</option>
-            <option value="715">Muzaffarnagar</option>
-            <option value="731">Nagina</option>
-            <option value="740">Najibabad</option>
-            <option value="742">Nakur</option>
-            <option value="756">Nanpara</option>
-            <option value="759">Naraura</option>
-            <option value="774">Naugawan Sadat</option>
-            <option value="775">Nautanwa</option>
-            <option value="779">Nawabganj</option>
-            <option value="787">Nehtaur</option>
-            <option value="803">NOIDA</option>
-            <option value="807">Noorpur</option>
-            <option value="814">Obra</option>
-            <option value="816">Orai</option>
-            <option value="1487">Other</option>
-            <option value="826">Padrauna</option>
-            <option value="838">Palia Kalan</option>
-            <option value="863">Parasi</option>
-            <option value="911">Phulpur</option>
-            <option value="913">Pihani</option>
-            <option value="916">Pilibhit</option>
-            <option value="917">Pilkhuwa</option>
-            <option value="935">Powayan</option>
-            <option value="943">Pukhrayan</option>
-            <option value="951">Puranpur</option>
-            <option value="955">Purquazi</option>
-            <option value="957">Purwa</option>
-            <option value="965">Rae Bareli</option>
-            <option value="1008">Rampur</option>
-            <option value="1009">Rampur Maniharan</option>
-            <option value="1021">Rasra</option>
-            <option value="1023">Rath</option>
-            <option value="1039">Renukoot</option>
-            <option value="1040">Reoti</option>
-            <option value="1047">Robertsganj</option>
-            <option value="1053">Rudauli</option>
-            <option value="1055">Rudrapur</option>
-            <option value="1058">Sadabad</option>
-            <option value="1064">Safipur</option>
-            <option value="1068">Saharanpur</option>
-            <option value="1070">Sahaspur</option>
-            <option value="1071">Sahaswan</option>
-            <option value="1072">Sahawar</option>
-            <option value="1074">Sahjanwa</option>
-            <option value="1075">Saidpur, Ghazipur</option>
-            <option value="1089">Sambhal</option>
-            <option value="1091">Samdhan</option>
-            <option value="1092">Samthar</option>
-            <option value="1096">Sandi</option>
-            <option value="1097">Sandila</option>
-            <option value="1494">Sant Kabir Nagar</option>
-            <option value="1111">Sardhana</option>
-            <option value="1132">Seohara</option>
-            <option value="1136">Shahabad, Hardoi</option>
-            <option value="1137">Shahabad, Rampur</option>
-            <option value="1141">Shahganj</option>
-            <option value="1142">Shahjahanpur</option>
-            <option value="1148">Shamli</option>
-            <option value="1149">Shamsabad, Agra</option>
-            <option value="1150">Shamsabad, Farrukhabad</option>
-            <option value="1159">Sherkot</option>
-            <option value="1163">Shikohabad</option>
-            <option value="1170">Shishgarh</option>
-            <option value="1180">Siana</option>
-            <option value="1492">Siddharthanagar</option>
-            <option value="1188">Sikanderpur</option>
-            <option value="1189">Sikandra Rao</option>
-            <option value="1190">Sikandrabad</option>
-            <option value="1211">Sirsaganj</option>
-            <option value="1213">Sirsi</option>
-            <option value="1216">Sitapur</option>
-            <option value="1497">Sonbhadra</option>
-            <option value="1233">Soron</option>
-            <option value="1242">Suar</option>
-            <option value="1247">Sultanpur</option>
-            <option value="1249">Sumerpur</option>
-            <option value="1272">Tanda</option>
-            <option value="1273">Tanda</option>
-            <option value="1289">Tetri Bazar</option>
-            <option value="1291">Thakurdwara</option>
-            <option value="1293">Thana Bhawan</option>
-            <option value="1317">Tilhar</option>
-            <option value="1336">Tirwaganj</option>
-            <option value="1345">Tulsipur</option>
-            <option value="1348">Tundla</option>
-            <option value="1372">Unnao</option>
-            <option value="1381">Utraula</option>
-            <option value="1397">Varanasi</option>
-            <option value="1423">Vrindavan</option>
-            <option value="1435">Warhapur</option>
-            <option value="1451">Zaidpur</option>
-            <option value="1452">Zamania</option>
-
-        </select>
+                                                @Html.DropDownListFor(m => m.CityId, new SelectList(string.Empty, "CityId", "CityName"), "-- Select --", new { @class = "form-control select" })
+                                                @Html.ValidationMessageFor(m => m.CityId, "", new { @class = "text-danger" })
+                                                <input type="text" class="form-control" id="otherCity" name="otherCity" style="display:none;">
                                                 @*<span id="body_reqPermanentCity" class="validator" style="display:none;">select value</span>
-        <input name="ctl00$body$txtPermanentCityOther" type="text" autocomplete="off" id="body_txtPermanentCityOther" class="form-control" style="display: none;">
-        <span id="body_CsValPermanentCityOther" class="validator" style="display:none;">enter value</span>*@
+                                                    <input name="ctl00$body$txtPermanentCityOther" type="text" autocomplete="off" id="body_txtPermanentCityOther" class="form-control" style="display: none;">
+                                                    <span id="body_CsValPermanentCityOther" class="validator" style="display:none;">enter value</span>*@
                                             </div>
                                         </div>
                                     </div>
@@ -487,8 +296,8 @@
                                         <div class="col-sm-6">
                                             <label class="col-sm-12">Pin Code</label>
                                             <div class="col-sm-12">
-                                                @*@Html.TextBoxFor(m => m.Pincode, new { @class = "form-control", @placeholder = "College Code", @autocomplete = "off" })
-                                                @Html.ValidationMessageFor(m => m.Pincode, "", new { @class = "text-danger" })*@
+                                                @Html.TextBoxFor(m => m.Pincode, new { @class = "form-control", @placeholder = "Pincode", @autocomplete = "off" })
+                                                @Html.ValidationMessageFor(m => m.Pincode, "", new { @class = "text-danger" })
                                                 @*<input type="text" class="form-control">*@
 
                                             </div>
@@ -500,19 +309,23 @@
                         <div class="col-sm-6">
                             <div class="card-title">
                                 Mailing Address &nbsp; &nbsp;
-                                <span style="text-transform: initial; color: #000; font-weight: normal;"><input id="body_chkCopyAddress" type="checkbox" name="ctl00$body$chkCopyAddress" checked="checked"><label for="body_chkCopyAddress">Same as permanent address</label></span>
+                                <span style="text-transform: initial; color: #000; font-weight: normal;"><input id="SameMailingAddress" type="checkbox" name="SameMailingAddress"><label for="SameMailingAddress">Same as permanent address</label></span>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-12">Address Line 1</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control">
+                                    @Html.TextBoxFor(m => m.MAddress1, new { @class = "form-control", @placeholder = "Address Line 1", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(m => m.Address1, "", new { @class = "text-danger" })
+                                    @*<input type="text" class="form-control">*@
 
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-12">Address Line 2</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control">
+                                    @Html.TextBoxFor(m => m.MAddress2, new { @class = "form-control", @placeholder = "Address Line 2", @autocomplete = "off" })
+                                    @Html.ValidationMessageFor(m => m.Address2, "", new { @class = "text-danger" })
+                                    @*<input type="text" class="form-control">*@
 
                                 </div>
                             </div>
@@ -522,47 +335,9 @@
                                         <div class="col-sm-6">
                                             <label class="col-sm-12">State</label>
                                             <div class="col-sm-12">
-                                                <select class="form-control">
-                                                    <option value="-1">-- select --</option>
-                                                    <option value="-99" style="color: red; font-weight: bold;">OTHER</option>
-                                                    <option value="1">Andaman and Nicobar Islands</option>
-                                                    <option value="2">Andhra Pradesh</option>
-                                                    <option value="3">Arunachal Pradesh</option>
-                                                    <option value="4">Assam</option>
-                                                    <option value="5">Bihar</option>
-                                                    <option value="6">Chhattisgarh</option>
-                                                    <option value="7">Dadra &amp; Nagar Haveli</option>
-                                                    <option value="8">Daman &amp; Diu</option>
-                                                    <option value="9">Delhi / NCR</option>
-                                                    <option value="10">Goa</option>
-                                                    <option value="11">Gujarat</option>
-                                                    <option value="12">Haryana</option>
-                                                    <option value="13">Himachal Pradesh</option>
-                                                    <option value="14">Jammu &amp; Kashmir</option>
-                                                    <option value="15">Jharkhand</option>
-                                                    <option value="16">Karnataka</option>
-                                                    <option value="17">Kerala</option>
-                                                    <option value="18">Lakshadweep</option>
-                                                    <option value="19">Madhya Pradesh</option>
-                                                    <option value="20">Maharashtra</option>
-                                                    <option value="21">Manipur</option>
-                                                    <option value="22">Meghalaya</option>
-                                                    <option value="23">Mizoram</option>
-                                                    <option value="24">Nagaland</option>
-                                                    <option value="25">Orissa</option>
-                                                    <option value="36">Other</option>
-                                                    <option value="26">Pondicherry</option>
-                                                    <option value="27">Punjab</option>
-                                                    <option value="28">Rajastan</option>
-                                                    <option value="29">Sikkim</option>
-                                                    <option value="30">Tamil Nadu</option>
-                                                    <option value="31">Tripura</option>
-                                                    <option selected="selected" value="32">Uttar Pradesh</option>
-                                                    <option value="33">Uttarakhand</option>
-                                                    <option value="34">Uttaranchal</option>
-                                                    <option value="35">West Bengal</option>
-
-                                                </select>
+                                                @Html.DropDownListFor(m => m.MStateId, new SelectList(ViewBag.ddlstate, "Value", "Text"), "-- Select --", new { @class = "form-control select" })
+                                                @Html.ValidationMessageFor(m => m.StateId, "", new { @class = "text-danger" })
+                                                <input type="text" class="form-control" id="SotherState" name="SotherState" style="display:none;">
                                                 @*<span id="body_reqMailingState" class="validator" style="display:none;">select value</span>
                                                     <input name="ctl00$body$txtMailingStateOther" type="text" autocomplete="off" id="body_txtMailingStateOther" class="form-control" disabled="" style="display: none;">
                                                     <span id="body_CsValMailingStateOther" class="validator" style="display:none;">enter value</span>*@
@@ -571,10 +346,9 @@
                                         <div class="col-sm-6">
                                             <label class="col-sm-12">City</label>
                                             <div class="col-sm-12">
-                                                <select class="form-control">
-                                                    <option value="565">Lucknow</option>
-
-                                                </select>
+                                                @Html.DropDownListFor(m => m.MCityId, new SelectList(string.Empty, "CityId", "CityName"), "-- Select --", new { @class = "form-control select" })
+                                                @Html.ValidationMessageFor(m => m.CityId, "", new { @class = "text-danger" })
+                                                <input type="text" class="form-control" id="SotherCity" name="SotherCity" style="display:none;">
                                                 @*<span id="body_reqMailingCity" class="validator" style="display:none;">select value</span>
                                                     <input name="ctl00$body$txtMailingCityOther" type="text" autocomplete="off" id="body_txtMailingCityOther" class="form-control" disabled="" style="display: none;">
                                                     <span id="body_CsValMailingCityOther" class="validator" style="display:none;">enter value</span>*@
@@ -588,7 +362,9 @@
                                     <div class="form-group">
                                         <label class="col-sm-12">Pin Code</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control">
+                                            @Html.TextBoxFor(m => m.MPincode, new { @class = "form-control", @placeholder = "Pincode", @autocomplete = "off" })
+                                            @Html.ValidationMessageFor(m => m.Pincode, "", new { @class = "text-danger" })
+                                            @*<input type="text" class="form-control">*@
 
                                         </div>
                                     </div>
@@ -605,8 +381,8 @@
                                         <div class="form-group">
                                             <label class="col-sm-12 required">Mobile</label>
                                             <div class="col-sm-12">
-                                                @*@Html.TextBoxFor(m => m.Mobile, new { @class = "form-control", @placeholder = "College Code", @autocomplete = "off" })
-                                                @Html.ValidationMessageFor(m => m.Mobile, "", new { @class = "text-danger" })*@
+                                                @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control", @placeholder = "Mobile", @autocomplete = "off" })
+                                                @Html.ValidationMessageFor(m => m.Mobile, "", new { @class = "text-danger" })
                                                 @*<input type="text" class="form-control">*@
 
                                             </div>
@@ -616,9 +392,9 @@
                                         <div class="form-group">
                                             <label class="col-sm-12">Alternate Mobile</label>
                                             <div class="col-sm-12">
-                                                @*@Html.TextBoxFor(m => m.AlternateMobile, new { @class = "form-control", @placeholder = "College Code", @autocomplete = "off" })
-                                                @Html.ValidationMessageFor(m => m.AlternateMobile, "", new { @class = "text-danger" })*@
-                                                <input type="text" class="form-control">
+                                                @Html.TextBoxFor(m => m.AlternateMobile, new { @class = "form-control", @placeholder = "Alternate Mobile", @autocomplete = "off" })
+                                                @Html.ValidationMessageFor(m => m.AlternateMobile, "", new { @class = "text-danger" })
+                                                @*<input type="text" class="form-control">*@
                                             </div>
                                         </div>
                                     </div>
@@ -626,9 +402,9 @@
                                         <div class="form-group">
                                             <label class="col-sm-12">Email</label>
                                             <div class="col-sm-12">
-                                                @*@Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "College Code", @autocomplete = "off" })
-                                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })*@
-                                                <input type="text" class="form-control">
+                                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "College Code", @autocomplete = "off" })
+                                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                                @*<input type="text" class="form-control">*@
 
                                             </div>
                                         </div>
@@ -661,30 +437,84 @@
         </div>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+</script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js">
+</script>
 <script>
-      $(document).ready(function () {       
-        $(".datepicker").datepicker({
-            dateFormat: "dd-mm-yy",
-            changemonth: true,
-            changeyear: true
-        });
-       
+      $(document).ready(function () {
+
+          $( ".datepicker" ).datepicker({
+dateFormat : 'mm/dd/yy',
+changeMonth : true,
+changeYear : true,
+yearRange: '-100y:c+nn',
+maxDate: '-1d'
+});
+
+    if ('@TempData["Message"]' != '') {
+            swal("", "@TempData["Message"]", "success")
+        }
+
+
+    let checkBox = document.getElementById('SameMailingAddress');
+    checkBox.addEventListener('change', (event) => {
+    if(event.currentTarget.checked) {
+    // Respond to the result
+    var Address1 = $("#Address1").val();
+    var Address2 = $("#Address2").val();
+    var StateId = $("#StateId").val();
+    var CityId = $("#CityId").val();
+    var Pincode = $("#Pincode").val();
+       var otherS = $("#otherState").val();
+    var otjerC = $("#otherCity").val();
+    $("#MAddress1").Append(Address1);
+    $("#MAddress2").Append(Address2);
+    $("#MStateId").Append(StateId);
+     $("#MCityId").Append(CityId);
+    $("#MPincode").Append(Pincode);
+     $("#SotherState").Append(otherS);
+    $("#SotherCity").Append(otjerC);
+}
+})
 
       });
 
-            $("#CourseTypeId").on("change", function () {
-            debugger;
-            LoadCourse($("#CourseTypeId").val(), "@Model.StateId", "courseId");
+            $("#StateId").on("change", function () {
+                debugger;
+               var state =  $( "#StateId option:selected" ).text();
+                if (state == "other") {
+                    $("#otherState").css("display", "block");
+                    $("#otherCity").css("display", "block");
+                }
+                else {
+                     LoadCourse($("#StateId").val(), "@Model.CityId", "CityId");
+                }
+
             });
 
-     function LoadCourse(CourseTypeId, courseId, dropdownId) {
+
+     $("#MStateId").on("change", function () {
+         debugger;
+          var Mstate =  $( "#MStateId option:selected" ).text();
+                if (Mstate == "other") {
+                    $("#SotherState").css("display", "block");
+                    $("#SotherCity").css("display", "block");
+                }
+                else {
+                       LoadCourseM($("#MStateId").val(), "@Model.MCityId", "MCityId");
+                }
+
+            });
+
+     function LoadCourse(StateId, CityId, dropdownId) {
             debugger;
-            if (CourseTypeId != "") {
+            if (StateId != "") {
                 $.ajax({
                     type: "POST",
-                    url: '@Url.Action("CourseList", "College")',
-                    data: { CourseTypeId: CourseTypeId },
+                    url: '@Url.Action("CityList", "Applicant")',
+                    data: { StateId: StateId },
                     dataType: 'json',
                     success: function (data) {
                         if (data.length > 0) {
@@ -692,8 +522,8 @@
                             $.each(data, function (key, value) {
                                 $("#" + dropdownId).append($("<option></option>").val(value.Value).text(value.Text));
                             });
-                            if (courseId != "0") {
-                                $("#" + dropdownId).val(courseId);
+                            if (CityId != "0") {
+                                $("#" + dropdownId).val(CityId);
                             }
                         }
                         else {
@@ -707,9 +537,39 @@
             else {
                 $("#" + dropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
             }
+    }
+     function LoadCourseM(MStateId, MCityId, MdropdownId) {
+            debugger;
+            if (MStateId != "") {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("CityList", "Applicant")',
+                    data: { MStateId: MStateId },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.length > 0) {
+                            $("#" + MdropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
+                            $.each(data, function (key, value) {
+                                $("#" + MdropdownId).append($("<option></option>").val(value.Value).text(value.Text));
+                            });
+                            if (MCityId != "0") {
+                                $("#" + MdropdownId).val(MCityId);
+                            }
+                        }
+                        else {
+                            $("#" + MdropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
+                        }
+                    },
+                    error: function () {
+                    }
+                });
+            }
+            else {
+                $("#" + MdropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
+            }
         }
 
-     $(function () {
+    $(function () {
         $('#fileuploadAadhar').on('change', function () {
             debugger
             var uploadcontrol = document.getElementById('fileuploadAadhar');
@@ -759,6 +619,8 @@
                 }
             });
         });
-    })
+    });
+
+
 
 </script>
