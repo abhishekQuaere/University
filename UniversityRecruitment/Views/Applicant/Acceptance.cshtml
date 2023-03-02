@@ -50,7 +50,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Name of the Referee</label>
                                 <div class="col-sm-12">
-                                    <input name=" " type="text" class="form-control">
+                                    <input name=" " type="text" class="form-control" id="refereeName">
                                     @*<span id="body_reqRefereeName" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Complete Postal Address</label>
                                 <div class="col-sm-12">
-                                    <input name=" " type="text" class="form-control">
+                                    <input name=" " type="text" class="form-control" id="address">
                                     @*<span id="body_reqRefereeAddress" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Email ID</label>
                                 <div class="col-sm-12">
-                                    <input name=" " type="text" class="form-control">
+                                    <input name=" " type="text" class="form-control" id="emailId">
                                     @*<span id="body_reqRefereeEmail" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Mobile No.</label>
                                 <div class="col-sm-12">
-                                    <input name="ctl00$body$txtRefereeMobile" type="text" class="form-control">
+                                    <input type="text" class="form-control only-numeric" id="mobileNo">
                                     @*<span id="body_reqRefereeMobile" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Phone(Landline)</label>
                                 <div class="col-sm-12">
-                                    <input name=" " type="text" class="form-control">
+                                    <input type="text" class="form-control" id="landline">
                                 </div>
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Fax</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="fax">
                                 </div>
                             </div>
                         </div>
@@ -104,7 +104,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">&nbsp;</label>
                                 <div class="col-sm-12">
-                                    <a class="btn btn-alternate shadow" href="#">Add Referee</a>
+                                    <a class="btn btn-alternate shadow" href="#"id="addMore">Add Referee</a>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +114,7 @@
 
                             <div class="table-responsive">
                                 <table class="table table-bordered">
-                                    <tbody>
+                                    <thead>
                                         <tr class="table-primary">
                                             <th>Name</th>
                                             <th>Address</th>
@@ -128,6 +128,9 @@
                                             </th>
                                             <th></th>
                                         </tr>
+
+                                    </thead>
+                                    <tbody id="addMoreData">
 
                                     </tbody>
                                 </table>
@@ -155,7 +158,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Are you willing to accept the initial salary of the grade?</label>
                                 <div class="col-sm-6">
-                                    <select name=" " id=" " class="form-control">
+                                    <select id="salaryGrade" class="form-control">
                                         <option value="-1">-- select --</option>
                                         <option value="true">Yes</option>
                                         <option value="false">No</option>
@@ -169,7 +172,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">If no state what is the minimum salary acceptable with justification thereof:</label>
                                 <div class="col-sm-12">
-                                    <input name=" " type="text" class="form-control">
+                                    <input id="salaryGradeText" type="text" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -180,7 +183,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Have there been any break in your academic / service career?</label>
                                 <div class="col-sm-6">
-                                    <select name=" " id=" " class="form-control">
+                                    <select id="break" class="form-control">
                                         <option value="-1">-- select --</option>
                                         <option value="true">Yes</option>
                                         <option value="false">No</option>
@@ -194,7 +197,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">If so, give details:</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="breakText">
                                 </div>
                             </div>
                         </div>
@@ -205,7 +208,7 @@
                             <div class="form-group">
                                 <label for=" " id=" " class="col-sm-12">Have you been punished during you services or convicted by a court of law?</label>
                                 <div class="col-sm-6">
-                                    <select class="form-control">
+                                    <select class="form-control" id="punished">
                                         <option value="-1">-- select --</option>
                                         <option value="true">Yes</option>
                                         <option value="false">No</option>
@@ -219,7 +222,7 @@
                             <div class="form-group">
                                 <label for=" " id=" " class="col-sm-12">If so, give details:</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="punishedText">
                                 </div>
                             </div>
                         </div>
@@ -230,7 +233,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Do you have any case pending against you in any court of law?</label>
                                 <div class="col-sm-6">
-                                    <select class="form-control">
+                                    <select class="form-control" id="courtCase">
                                         <option value="-1">-- select --</option>
                                         <option value="true">Yes</option>
                                         <option value="false">No</option>
@@ -244,7 +247,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">If so, give details:</label>
                                 <div class="col-sm-12">
-                                    <input name="ctl00$body$txtCaseReason" type="text" autocomplete="off" id="body_txtCaseReason" class="form-control">
+                                    <input type="text" autocomplete="off" id="CaseText" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -255,7 +258,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Any other relevant information, if not given above.</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control"id="otherInfo">
                                     @*<span id="body_reqOtherInfo" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -269,8 +272,10 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Upload NOC certificate from your present employer</label>
                                 <div class="col-sm-12">
-                                    <input type="file" class="form-control">
+                                    <input type="file" class="form-control" id="noc">
+                                    <span id="nocAnchor" style="display: none;" class="input-group-text btn-download"></span>
                                 </div>
+                                <span class="smallpdf">(File Format:JPG/JPEG and PDF । Max File Size: 2 MB)</span>
                             </div>
                         </div>
 
@@ -286,12 +291,209 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-12">
-                        <a id="" class="btn btn-warning text-dark shadow" href=""><span class="fa fa-save"></span> Save</a>
-                        <a id="" class="btn btn-success text-dark shadow pull-right" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
+                        <a class="btn btn-warning text-dark shadow" href="#" onclick="finalSubmit()"><span class="fa fa-save"></span> Save</a>
+                        <a class="btn btn-success text-dark shadow pull-right btnSubmit" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+
+    $(document).ready(function () {
+
+        $('.btnSubmit').prop('disabled', true);
+
+    });
+
+    var ser = 1;
+    $('#addMore').click(function () {
+        debugger;
+        var refereeName = $('#refereeName').val();
+        var address = $("#address").val();
+        var emailId = $("#emailId").val();
+        var mobileNo = $("#mobileNo").val();
+        var landline = $('#landline').val();
+        var fax = $("#fax").val();
+
+        if (refereeName != "-1" && refereeName != null && refereeName != undefined || address != "" && address != null && address != undefined || emailId != "" && emailId != null && emailId != undefined || mobileNo != "-1" && mobileNo != null && mobileNo != undefined || landline != "-1" && landline != null && landline != undefined || fax != "-1" && fax != null && fax != undefined) {
+
+            var row = "<tr><td class='refereeName'>" + refereeName + "</td><td class='address'>" + address + "</td><td class='emailIdAndMobile'>" + emailId + "'/'" + mobileNo + "</td><td class='landlineAndFax'>" + landline + "'/'" + fax + "</td></tr>";
+
+            $('#addMoreData').append(row);
+
+            $('#refereeName').val('');
+            $("#address").val('');
+            $("#emailId").val('');
+            $("#mobileNo").val('');
+            $('#landline').val('');
+            $("#fax").val('');
+
+            //var $el = $('#attachment');
+            //$el.wrap('<form>').closest('form').get(0).reset();
+            //$el.unwrap();
+
+        }
+        else {
+            $('#addMoreData').html('');
+        }
+
+    })
+
+    function Fileupload(obj) {
+        debugger;
+        var filename = $(obj)[0].files[0].name;
+        var fileId = $(obj).attr("id");
+        var ext = obj.value.match(/\.(.+)$/)[1];
+
+        switch (ext) {
+            case 'pdf':
+            case 'jpg':
+            case 'jpeg':
+                var fileSize = ($("#" + fileId)[0].files[0].size / 1024 / 1024);
+                if (fileSize > 2) {
+                    swal("", "File size should not exceed 2 MB.\r\nफाइल का साइज़ 2 MB से अधिक नहीं होना चाहिए।", "warning");
+                    return false;
+                }
+                else {
+                    var data = new FormData();
+                    var files = $("#" + fileId).get(0).files;
+                    if (files.length > 0) {
+                        data.append("File", files[0]);
+                    }
+                    $("#divLoader").show();
+                    $.ajax({
+                        url: '@Url.Action("UploadFile", "Applicant")',
+                        type: "POST",
+                        processData: false,
+                        contentType: false,
+                        data: data,
+                        success: function (response) {
+                            $("#divLoader").hide();
+
+                            if (response != null) {
+                                if (response.result) {
+                                    $("#fileName" + fileId).text(filename);
+                                    $("#" + fileId + "Path").val(response.fpath);
+                                    var Url = response.fpath.replace('~/', '');
+                                    $("#" + fileId + "Anchor").empty();
+                                    $("#" + fileId + "Anchor").attr('href', Url);
+                                    //$("#" + fileId + "Anchor").show();
+                                    $("#" + fileId + "Anchor").append('<a href="' + '@Url.Content("~/")' + Url + '" target="_blank" class="btn btn-warning anchor"><i class="fa fa-download"></i></a>');
+                                    swal("", "File upload successfully. ", "success")
+                                }
+                                else {
+                                    swal("", response.mesg, "error")
+                                }
+                            }
+                            else {
+                                swal("", "Fail to Upload File", "error")
+                            }
+                            return false;
+
+                        },
+                        error: function (e) {
+
+                            $("#divLoader").hide();
+                            swal("", "An Error Occured while uploading file", "error");
+                        }
+                    });
+
+                }
+                break;
+            default:
+                swal("", 'File should be in PDF/JPG/JPEG format./फाइल PDF/JPG/JPEG प्रारूप में होनी चाहिए।', "warning");
+                this.value = '';
+                return false;
+        }
+
+    }
+
+    function finalSubmit() {
+
+        debugger;
+        var IsPass = false;
+        var model = {
+            researchGuidances: []
+        }
+        var researchGuidancesList = [];
+
+        $('#addMoreData tr').each(function (i, d) {
+
+            var researchGuidances = {};
+            researchGuidances.Degree = $(this).find('.DegreeText').text();
+            researchGuidances.Subject = $(this).find('.CourseAndSubject').text();
+            researchGuidances.NoOfStudents = $(this).find(".NoOfStudents").text();
+            researchGuidances.ThesisSubmitted = $(this).find(".ThesisText").text();
+            researchGuidances.DegreeAwarded = $(this).find(".AwardedText").text();
+            researchGuidances.DocumentPath = $(this).find('.dnldbtn').attr('href');
+
+            researchGuidancesList.push(researchGuidances);
+            IsPass = true;
+
+        });
+        if (researchGuidancesList.length != 0) {
+            if (IsPass != false) {
+                $.each(researchGuidancesList, function (key, value) {
+                    model.researchGuidances.push(value);
+                });
+                $.ajax({
+                    url: "@Url.Action("SaveResearchGuidances", "Applicant")",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(model),
+                    async: false,
+                    dataType: "json",
+                    success: function (a) {
+                        if (a.ResponseCode == 0) {
+                            $.confirm({
+                                title: '',
+                                content: a.ResponseMessage,
+                                buttons: {
+                                    Ok: function () {
+                                        $('#addMoreData').html('');
+                                    }
+                                }
+                            });
+                        }
+                        else {
+                            $.confirm({
+                                title: '',
+                                content: a.ResponseMessage,
+                                buttons: {
+                                    Ok: function () {
+
+                                    }
+                                }
+                            });
+                        }
+                    },
+                    error: function (e) {
+                        $('.btnSubmit').prop('disabled', false);
+                        swal("", "Somthing went wrong!", "warning");
+                    }
+                });
+            }
+            else {
+                swal("", 'Something went wrong !', "warning");
+                $('.btnSubmit').prop('disabled', false);
+            }
+        }
+        else {
+            $('.btnSubmit').prop('disabled', false);
+        }
+    }
+
+    $(".only-numeric").bind("keypress", function (e) {
+        var keyCode = e.which ? e.which : e.keyCode
+        if (!(keyCode >= 48 && keyCode <= 57)) {
+            //swal("", "Please enter numeric digit only", "warning");
+            return false;
+        }
+        return true;
+    });
+
+</script>
 
