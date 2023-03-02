@@ -881,6 +881,10 @@
     <Content Include="Views\Applicant\PersonalDetails.cshtml" />
     <Content Include="Views\Applicant\ResearchDegree.cshtml" />
     <Content Include="Views\Applicant\UploadPhoto.cshtml" />
+    <Content Include="Views\Applicant\Acceptance.cshtml" />
+    <Content Include="Views\Applicant\Information.cshtml" />
+    <Content Include="Views\Applicant\Lectures.cshtml" />
+    <Content Include="Views\Applicant\ResearchGuidance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
