@@ -556,6 +556,24 @@ namespace UniversityRecruitment.DBContext
             return res;
         }
 
+
+        #region Priyanshu
+        public List<SelectListItem> ActivitieList()
+        {
+            List<SelectListItem> _objlist = new List<SelectListItem>();
+            try
+            {
+                var param = new DynamicParameters();
+                _objlist = _dapper.GetAll<SelectListItem>("proc_ActivitieList", param);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return _objlist;
+        }
+        #endregion
     }
 
 }
