@@ -1,0 +1,275 @@
+﻿
+@{
+    ViewBag.Title = "ResearchPaper";
+    Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
+}
+
+<style>
+    .mysheader {
+        background: #096499;
+    }
+</style>
+
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor">
+            Category 1: Research Papers / Publications
+        </h3>
+        <p>Provide information about published research papers and publications.</p>
+    </div>
+    <div class="col-md-7 align-self-center">
+
+    </div>
+    <div class="">
+        <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+    </div>
+</div>
+
+<div class="container-fluid">
+
+
+    
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header mysheader">
+                    <h4 class="m-b-0 text-white">
+                        RESEARCH PAPERS (JOURNAL)
+                    </h4>
+                </div>
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Title with page nos.</label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text"  id="" class="form-control">
+                                    @*<span id="" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Date/Year of Publication</label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text"  id="" class="form-control">
+                                    @*<span id="" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Journal</label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text" id="" class="form-control">
+                                    @*<span id="" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label  id="" class="col-sm-12">ISSN/ISBN No.</label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text"  id="" class="form-control">
+                                    @*<span id="" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label  id="" class="col-sm-12">Whether peer reviewed</label>
+                                <div class="col-sm-12">
+                                    <select name="" id="" class="form-control">
+                                        <option value="-1">-- select --</option>
+                                        <option value="true">Yes</option>
+                                        <option value="false">No</option>
+
+                                    </select>
+                                    @*<span id="" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Impact Factor if any <b style="color: green">##</b></label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text" id="" class="form-control" >
+                                    @*<span id="" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">No. of co-authors</label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text" id="" class="form-control" >
+                                    @*<span id="r" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label  id="" class="col-sm-12">Whether main author</label>
+                                <div class="col-sm-12">
+                                    <select name="" id="" class="form-control">
+                                        <option value="-1">-- select --</option>
+                                        <option value="true">Yes</option>
+                                        <option value="false">No</option>
+
+                                    </select>
+                                    <span id="" class="validator" >enter value</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label for="" id="" class="col-sm-12" style="font-weight: bold;">
+                            <span style="color: green">##</span> Peer-Reviewed or UGC Listed Journals (Impact factor to be determined as per Thomson Reuters list.)</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Whether Refereed Journal?</label>
+                                <div class="col-sm-12">
+                                    <select name="" id="" class="form-control">
+                                        <option value="-1">-- select --</option>
+                                        <option value="true">Yes</option>
+                                        <option value="false">No</option>
+
+                                    </select>
+                                    @*<span id="" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Journal listed in UGC List or not?</label>
+                                <div class="col-sm-12">
+                                    <select name="" id="" class="form-control">
+                                        <option value="-1">-- select --</option>
+                                        <option value="true">Yes</option>
+                                        <option value="false">No</option>
+
+                                    </select>
+                                    @*<span id="" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Scopus Indexd Journals</label>
+                                <div class="col-sm-12">
+                                    <select name="" id="" class="form-control">
+                                        <option value="-1">-- select --</option>
+                                        <option value="true">Yes</option>
+                                        <option value="false">No</option>
+
+                                    </select>
+                                    @*<span id="body_reqScopusIndex" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div id="" class="col-sm-2" style="display: none;">
+                            <div class="form-group">
+                                <label for="body_txtUgcSerialNo" id="" class="col-sm-12">UGC S. No. (If Available)</label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text"  id="" class="form-control">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label  id="" class="col-sm-12">Upload Scanned Attachment</label>
+                                <div class="col-sm-12">
+                                    <input type="file" name="" id="" class="form-control">
+                                    @*<span id="" class="validator" style="display:none;">upload file</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">&nbsp;</label>
+                                <div class="col-sm-12">
+                                    <a id="body_btnResearchAdd" class="btn btn-primary btn-shadow" href=""><span class="fa fa-plus-circle"></span> Add</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+
+
+
+
+                    <div class="row mt-3">
+                        <div class="col-sm-12">
+
+                            <div class="table-responsive">
+                                <table class="table full-color-table full-info-table hover-table">
+                                    <thead>
+                                        <tr class="">
+                                            <th>Title with page nos.</th>
+                                            <th>Date of Publication</th>
+                                            <th>Journal</th>
+                                            <th>ISSN/ISBN No.</th>
+                                            <th>Whether peer reviewed?</th>
+                                            <th>Impact factor</th>
+                                            <th>No. of co-authors</th>
+                                            <th>Whether main author?</th>
+                                            <th>Whether refereed journal?</th>
+                                            <th>Journal listed in UGC list or not? UGC S. No.</th>
+                                            <th>Scopus Indexed Journals</th>
+                                            <th>API Score</th>
+                                            <th>Attachment</th>
+                                        </tr>
+                                    </thead>
+                                    @*<tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Nigam</td>
+                                <td>Eichmann</td>
+                                <td>@@Genelia</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Roshan</td>
+                                <td>Rogahn</td>
+                                <td>@@Hritik</td>
+                            </tr>
+                        </tbody>*@
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="card-shadow-primary col-sm-12 card bg-secondary">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a id="" class="btn btn-warning text-dark shadow" href=""><span class="fa fa-save"></span> Save</a>
+                        <a id="" class="btn btn-success text-dark shadow pull-right" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

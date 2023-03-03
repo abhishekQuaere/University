@@ -1,0 +1,211 @@
+﻿
+@{
+    ViewBag.Title = "BooksTranslationWork";
+    Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
+}
+
+<style>
+    .mysheader {
+        background: #096499;
+    }
+</style>
+
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor">
+            Category 2: Publications (other than Research Papers)
+        </h3>
+        <p>Translation works in Indian and Foreign Languages by qualified faculties</p>
+    </div>
+    <div class="col-md-7 align-self-center">
+
+    </div>
+    <div class="">
+        <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+    </div>
+</div>
+
+<div class="container-fluid">
+
+
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header mysheader">
+                    <h4 class="m-b-0 text-white">
+                        2. (B) (II) BOOKS TRANSLATION WORK IN INDIAN AND FOREIGN LANGUAGE
+                    </h4>
+                </div>
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Title with page Nos. (Name of Book & Editor)</label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text" id="" class="form-control">
+                                    @*<span id="body_reqBookTitle" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Date/Year of Publication</label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text" id="" class="form-control">
+                                    @*<span id="" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Publisher Type</label>
+                                <div class="col-sm-12">
+                                    <select name="" id="" class="form-control">
+                                        <option value="-1">-- select --</option>
+                                        <option value="National">National</option>
+                                        <option value="International">International</option>
+
+                                    </select>
+                                    @*<span id="" class="validator" style="display:none;">select an item</span>*@
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Name of the Publisher</label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text" id="" class="form-control">
+                                    @*<span id="" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">ISSN / ISBN No.</label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text" id="" class="form-control">
+                                    @*<span id="body_reqIsbn" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">No. of co-translator</label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text" id="" class="form-control">
+                                    @*<span id="body_reqNoOfCoAuthor" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Whether you are main translator</label>
+                                <div class="col-sm-12">
+                                    <select name="" id="" class="form-control">
+                                        <option value="-1">-- select --</option>
+                                        <option value="true">Yes</option>
+                                        <option value="false">No</option>
+
+                                    </select>
+                                    @*<span id="body_reqBookMainAuthor" class="validator" style="display:none;">select an item</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Upload Scanned Attachment</label>
+                                <div class="col-sm-12">
+                                    <input type="file" name="" id="" class="form-control">
+                                    @*<span id="body_reqBookUpload" class="validator" style="display:none;">upload file</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">&nbsp;</label>
+                                <div class="col-sm-12">
+                                    <a id="body_btnBookAdd" class="btn btn-primary btn-shadow" href=""><span class="fa fa-plus-circle"></span> Add</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                    <div class="row mt-3">
+                        <div class="col-sm-12">
+
+                            <div class="table-responsive">
+                                <table class="table full-color-table full-info-table hover-table">
+                                    <thead>
+                                        <tr class="">
+                                            <th>Title with page Nos. (Name of Book &amp; Editor)</th>
+                                            <th>Date of publication</th>
+                                            <th>Type of Translation</th>
+                                            <th>Publisher</th>
+                                            <th>ISSN / ISBN No.</th>
+
+                                            <th>No. of co-translator</th>
+                                            <th>Whether main Translator</th>
+                                            <th>API Score</th>
+                                            <th>Attachment</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    @*<tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Nigam</td>
+                                                <td>Eichmann</td>
+                                                <td>@@Genelia</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Roshan</td>
+                                                <td>Rogahn</td>
+                                                <td>@@Hritik</td>
+                                            </tr>
+                                        </tbody>*@
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="card-shadow-primary col-sm-12 card bg-secondary">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a id="" class="btn btn-warning text-dark shadow" href=""><span class="fa fa-save"></span> Save</a>
+                        <a id="" class="btn btn-success text-dark shadow pull-right" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

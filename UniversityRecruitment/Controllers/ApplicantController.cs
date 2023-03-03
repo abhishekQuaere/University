@@ -271,6 +271,75 @@ namespace UniversityRecruitment.Controllers
                 msg = status;
             }
             return Json(new { result = res, fpath = path, mesg = msg });
+        public ActionResult ProjectConsultancy()
+        {
+            return View();
+        }
+
+        public ActionResult PaymentReceipt()
+        {
+            return View();
+        }
+
+        public ActionResult ResearchPaper()
+        {
+            return View();
+        }
+
+        public ActionResult BookAuthored()
+        {
+            return View();
+        }
+
+
+        public ActionResult ChapterPublished()
+        {
+            return View();
+        }
+
+
+        public ActionResult EditedBooks()
+        {
+            return View();
+        }
+
+        public ActionResult ChapterTranslationWork()
+        {
+            return View();
+        }
+
+
+        public ActionResult BooksTranslationWork()
+        {
+            return View();
+        }
+
+
+
+        public ActionResult TeachingPedagogy()
+        {
+            return View();
+        }
+
+
+
+        public ActionResult DesignofNewCurricula()
+        {
+            return View();
+        }
+
+        public ActionResult MOOCS()
+        {
+            return View();
+        }
+
+
+        public ActionResult EContent()
+        {
+            return View();
+        }
+
+
 
 
 

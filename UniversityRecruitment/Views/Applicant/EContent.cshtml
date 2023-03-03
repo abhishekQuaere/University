@@ -1,0 +1,194 @@
+﻿
+@{
+    ViewBag.Title = "EContent";
+    Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
+}
+
+<style>
+    .mysheader {
+        background: #096499;
+    }
+</style>
+
+<div class="row page-titles">
+    <div class="col-md-12 align-self-center">
+        <h3 class="text-themecolor">
+            Category 3: Creation of ICT mediated Teaching Learning pedagogy and content and development of new and innovative courses and curricula
+        </h3>
+        <p>3. (d) E-Content</p>
+    </div>
+    <div class="col-md-7 align-self-center">
+
+    </div>
+    <div class="">
+        <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+    </div>
+</div>
+
+<div class="container-fluid">
+
+
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header mysheader">
+                    <h4 class="m-b-0 text-white">
+                        3. (D) E-CONTENT
+                    </h4>
+                </div>
+                <div class="card-body">
+
+                    <div class="row">
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">
+                                    Level of contribution 
+                                </label>
+                                <div class="col-sm-12">
+                                    <select name=""  id="" class="form-control">
+                                        <option selected="selected" value="-1">-- select --</option>
+                                        <option value="Development of e-Content in 4 quadrants for a complete course / e-book">Development of e-Content in 4 quadrants for a complete course / e-book</option>
+                                        <option value="e-Content (developed in 4 quadrants)">e-Content (developed in 4 quadrants)</option>
+                                        <option value="Contribution to development of e-content module in complete course/paper/e-book (at least one quadrant)">Contribution to development of e-content module in complete course/paper/e-book (at least one quadrant)</option>
+                                        <option value="Editor of e-content for complete course/paper/e-book">Editor of e-content for complete course/paper/e-book</option>
+
+                                    </select>
+                                    @*<span id="" class="validator" style="display:none;">select an item</span>*@
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Description of E-Content (Title/Course/Program etc.)n</label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text" autocomplete="off" id="body_txtDescription" class="form-control">
+                                    @*<span id="body_reqDescription" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">
+
+                                    Level of Course
+                                </label>
+                                <div class="col-sm-12">
+                                    <select name="" id="" class="form-control">
+                                        <option value="-1">-- select --</option>
+                                        <option value="1">UG</option>
+                                        <option value="2">PG</option>
+                                  
+
+                                    </select>
+                                    @*<span id="" class="validator" style="display:none;">select an item</span>*@
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+                    <div class="row">
+
+
+
+
+
+
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Upload Scanned Attachment</label>
+                                <div class="col-sm-12">
+                                    <input type="file" name="" id="" class="form-control">
+                                    @*<span id="body_reqBookUpload" class="validator" style="display:none;">upload file</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">&nbsp;</label>
+                                <div class="col-sm-12">
+                                    <a id="body_btnBookAdd" class="btn btn-primary btn-shadow" href=""><span class="fa fa-plus-circle"></span> Add</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                    <div class="row mt-3">
+                        <div class="col-sm-12">
+
+                            <div class="table-responsive">
+                                <table class="table full-color-table full-info-table hover-table">
+                                    <thead>
+                                        <tr class="">
+                                            <th>Level of Contribution</th>
+                                            <th>Description of E-Content</th>
+                                            <th>Level of Course</th>
+                                            <th>No. of Modules</th>
+                                            <th>API Score</th>
+                                            <th>Attachment</th>
+                                            <th></th>
+
+
+
+                                        </tr>
+                                    </thead>
+                                    @*<tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Nigam</td>
+                                                <td>Eichmann</td>
+                                                <td>@@Genelia</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Roshan</td>
+                                                <td>Rogahn</td>
+                                                <td>@@Hritik</td>
+                                            </tr>
+                                        </tbody>*@
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="card-shadow-primary col-sm-12 card bg-secondary">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a id="" class="btn btn-warning text-dark shadow" href=""><span class="fa fa-save"></span> Save</a>
+                        <a id="" class="btn btn-success text-dark shadow pull-right" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

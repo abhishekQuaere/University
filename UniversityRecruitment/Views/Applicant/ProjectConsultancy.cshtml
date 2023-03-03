@@ -1,0 +1,185 @@
+﻿
+@{
+    ViewBag.Title = "ProjectConsultancy";
+    Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
+}
+
+<style>
+    .mysheader {
+        background-color: #096499;
+    }
+</style>
+
+<div class="row page-titles">
+    <div class="col-md-7 align-self-center">
+        <h3 class="text-themecolor">
+            Research Guidance, Project and Consultancy
+        </h3>
+        <p> Ongoing and Completed Research Projects / Consultancy Projects</p>
+    </div>
+    <div class="col-md-5 align-self-center">
+
+    </div>
+
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header mysheader">
+                    <h4 class="m-b-0 text-white">
+                        ONGOING AND COMPLETED RESEARCH PROJECTS / CONSULTANCY PROJECTS
+                    </h4>
+                </div>
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-sm-12">Title of Research Project</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+                                    @*<span id="body_reqTitle" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-sm-12">Funding Agency</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+                                    @*<span id="body_reqFundingAgency" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">Date of Sanction</label>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control">
+                                    @*<span id="body_reqSanctionDate" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">Grant / Amount Mobilized</label>
+                                <div class="col-sm-12">
+                                    <select class="form-control">
+                                        <option value="-1">-- select --</option>
+                                        <option value="Less than 10 Lakh">Less than 10 Lakh</option>
+                                        <option value="More than 10 Lakh">More than 10 Lakh</option>
+
+                                    </select>
+                                    @*<span id="body_reqGrant" class="validator" style="display:none;">select an item</span>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">Project Type</label>
+                                <div class="col-sm-12">
+                                    <select id="body_ddlProjectType" class="form-control">
+                                        <option selected="selected" value="-1">-- select --</option>
+                                        <option value="Single">Single</option>
+                                        <option value="Joint">Joint</option>
+
+                                    </select>
+                                    @*<span id="body_reqProjectType" class="validator" style="display:none;">select an item</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-sm-12">Your Role in Project</label>
+                                <div class="col-sm-12">
+                                    <select class="form-control">
+                                        <option value="-1">-- select --</option>
+
+                                    </select>
+                                    @*<span id="body_reqRole" class="validator" style="display:none;">select an item</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">Status of Project</label>
+                                <div class="col-sm-12">
+                                    <select class="form-control">
+                                        <option value="-1">-- select --</option>
+                                        <option value="Completed">Completed</option>
+                                        <option value="Ongoing">Ongoing</option>
+
+                                    </select>
+                                    @*<span id="body_reqStatus" class="validator" style="display:none;">select an item</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="col-sm-12">Upload Scanned Attachment</label>
+                                <div class="col-sm-12">
+                                    <input type="file" class="form-control">
+                                    @*<span id="body_reqAwardUpload" class="validator" style="display:none;">upload file</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="col-sm-12">&nbsp;</label>
+                                <div class="col-sm-12">
+                                    <a class="btn btn-primary btn-shadow" href="#"><span class="fa fa-plus-circle"></span> Add</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr class="table-primary">
+                                            <th>Title of Research Project</th>
+                                            <th>Funding Agency</th>
+                                            <th>Date of Sanction</th>
+                                            <th>Grant/Amount Mobilized</th>
+                                            <th>Project Type</th>
+                                            <th>Role</th>
+                                            <th>Status</th>
+                                            <th>API Score</th>
+                                            <th>Attachment</th>
+                                            <th></th>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="card-shadow-primary col-sm-12 card bg-secondary">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a id="" class="btn btn-warning text-dark shadow" href=""><span class="fa fa-save"></span> Save</a>
+                        <a id="" class="btn btn-success text-dark shadow pull-right" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
