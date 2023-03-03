@@ -136,9 +136,14 @@
     </Compile>
     <Compile Include="Models\academicsDetails.cs" />
     <Compile Include="Models\Acceptance.cs" />
+    <Compile Include="Models\Activities.cs" />
     <Compile Include="Models\ApplicantModel.cs" />
     <Compile Include="Models\Award.cs" />
+    <Compile Include="Models\bookAuthoredModel.cs" />
+    <Compile Include="Models\BookPublication.cs" />
     <Compile Include="Models\Commons.cs" />
+    <Compile Include="Models\DesignofNewCurricula.cs" />
+    <Compile Include="Models\Editedbooks.cs" />
     <Compile Include="Models\Experience.cs" />
     <Compile Include="Models\Handler\AdharImageBack.ashx.cs">
       <DependentUpon>AdharImageBack.ashx</DependentUpon>
@@ -172,9 +177,13 @@
     </Compile>
     <Compile Include="Models\Information.cs" />
     <Compile Include="Models\LecturesModel.cs" />
+    <Compile Include="Models\Moocs.cs" />
     <Compile Include="Models\PersonalDoc.cs" />
     <Compile Include="Models\Personalinfo.cs" />
+    <Compile Include="Models\ProjectConsultancyModel.cs" />
     <Compile Include="Models\Registration.cs" />
+    <Compile Include="Models\ResearchDegree.cs" />
+    <Compile Include="Models\ResearchPaper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilitis\Common.cs" />
     <Compile Include="Utilitis\MessageStatus.cs" />
