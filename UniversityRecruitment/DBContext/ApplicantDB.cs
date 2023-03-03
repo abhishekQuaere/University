@@ -78,6 +78,22 @@ namespace UniversityRecruitment.DBContext
             }
 
         }
+        public List<T> ListOfPostFeeDetails<T>(long Id)
+        {
+            try
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("Id", Id, DbType.Int32);
+                var res = _dapper.GetAll<T>("GetPaymentReceiptForMVC", dynamicParameters);
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
 
         public List<SelectListItem> BindState()
         {

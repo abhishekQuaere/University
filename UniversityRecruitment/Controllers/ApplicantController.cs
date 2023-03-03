@@ -165,7 +165,9 @@ namespace UniversityRecruitment.Controllers
 
         public ActionResult FeeRecipt()
         {
-            return View();
+            FeeDetails fd = new FeeDetails();
+            fd.lst = apdb.ListOfPostFeeDetails<FeeDetails>(sm.userId);
+            return View(fd);
         }
 
         public ActionResult ResearchDegree()
