@@ -405,6 +405,86 @@ namespace UniversityRecruitment.DBContext
             }
 
         }
+
+
+
+        public ProjectConsultancyModel saveProjectConsultancy(ProjectConsultancyModel model)
+        {
+
+            LecturesModel obj = new LecturesModel();
+            var reader = new ProjectConsultancyModel();
+
+            try
+            {
+                DynamicParameters perm = new DynamicParameters();
+                if (model.lst.Count() > 0)
+                {
+                    for (int i = 0; i < model.lst.Count; i++)
+                    {
+                        perm.Add("@id", model.UserId);
+                        perm.Add("@Title", model.lst[i].titleOfPrfoject);
+                        perm.Add("@FundingAgency", model.lst[i].agencyFund);
+                        perm.Add("@SanctionDate", model.lst[i].dateOfSan);
+                        perm.Add("@GrantedAmount", model.lst[i].grant_Amount);
+                        perm.Add("@ProjectType", model.lst[i].project_Type);
+                        perm.Add("@Role", model.lst[i].roleInProject);
+                        perm.Add("@Status", model.lst[i].projectStatus);
+                        perm.Add("@DocumentPath", model.lst[i].attachment);
+
+                        perm.Add("@IpAddress", model.ip);
+                        reader = _dapper.ExecuteGet<ProjectConsultancyModel>("ManageApplicantProjectConsultancy", perm);
+                    }
+                }
+
+                return reader;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+        public bookAuthoredModel saveBookAuthor(bookAuthoredModel model)
+        {
+
+            bookAuthoredModel obj = new bookAuthoredModel();
+            var reader = new bookAuthoredModel();
+
+            try
+            {
+                DynamicParameters perm = new DynamicParameters();
+                if (model.lst.Count() > 0)
+                {
+                    for (int i = 0; i < model.lst.Count; i++)
+                    {
+                        perm.Add("@Id", model.userId);
+                        perm.Add("@Category", model.lst[i].category);
+                        perm.Add("@Title", model.lst[i].bookTitle);
+                        perm.Add("@PublicationDate", model.lst[i].Date);
+                        perm.Add("@Publisher", model.lst[i].nameOfPublisher);
+                        perm.Add("@PublisherType", model.lst[i].publisherType);
+                       
+                        perm.Add("@Isbn", model.lst[i].ISSN);
+                        perm.Add("@NoOfCoAuthors", Convert.ToInt32(model.lst[i].NoOfCoAuthor));
+                        perm.Add("@IsMainAuthor", model.lst[i].wheatherUMainAutor);
+              
+                        perm.Add("@DocumentPath", model.lst[i].attachment);
+
+                        perm.Add("@IpAddress", model.ip);
+                        reader = _dapper.ExecuteGet<bookAuthoredModel>("ManageApplicantBookPublication", perm);
+                    }
+                }
+
+                return reader;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
     }
 
 }

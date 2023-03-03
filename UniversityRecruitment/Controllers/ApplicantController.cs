@@ -99,6 +99,7 @@ namespace UniversityRecruitment.Controllers
         {
             return View();
         }
+        #region akash
         public ActionResult AcademicDetails()
         {
             return View();
@@ -125,18 +126,6 @@ namespace UniversityRecruitment.Controllers
 
             return Json(obj, JsonRequestBehavior.AllowGet);
         }
-
-
-        public ActionResult Experience()
-        {
-            return View();
-        }
-
-        public ActionResult Awards()
-        {
-            return View();
-        }
-
         public ActionResult Lectures()
         {
             return View();
@@ -155,6 +144,19 @@ namespace UniversityRecruitment.Controllers
             }
             return Json(obj, JsonRequestBehavior.AllowGet);
         }
+        #endregion
+
+        public ActionResult Experience()
+        {
+            return View();
+        }
+
+        public ActionResult Awards()
+        {
+            return View();
+        }
+
+       
 
         public ActionResult FeePayment()
         {
@@ -276,7 +278,19 @@ namespace UniversityRecruitment.Controllers
         {
             return View();
         }
-
+        [HttpPost]
+        public JsonResult ProjectConsultancy(ProjectConsultancyModel model)
+        {
+            ApplicantDB repo = new ApplicantDB();
+            ProjectConsultancyModel obj = new ProjectConsultancyModel();
+            model.ip = Common.GetIPAddress();
+            model.UserId = sm.userId;
+            if (model.lst!=null && model.lst.Count() > 0)
+            {
+                obj = repo.saveProjectConsultancy(model);
+            }
+            return Json(obj,JsonRequestBehavior.AllowGet);
+        }
         public ActionResult PaymentReceipt()
         {
             return View();
@@ -292,6 +306,20 @@ namespace UniversityRecruitment.Controllers
             return View();
         }
 
+
+        [HttpPost]
+        public JsonResult BookAuthored(bookAuthoredModel model)
+        {
+            ApplicantDB repo = new ApplicantDB();
+            bookAuthoredModel obj = new bookAuthoredModel();
+            model.ip = Common.GetIPAddress();
+            model.userId = sm.userId;
+            if (model.lst != null && model.lst.Count() > 0)
+            {
+                obj = repo.saveBookAuthor(model);
+            }
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult ChapterPublished()
         {
@@ -601,6 +629,80 @@ namespace UniversityRecruitment.Controllers
         public JsonResult UploadFileForLectures(HttpPostedFileBase File)
         {
             string Dirpath = "~/Content/writereaddata/Lectures/";
+            string path = "";
+            string filename = File.FileName;
+            bool res = false;
+            string msg = "";
+            if (!Directory.Exists(Server.MapPath(Dirpath)))
+            {
+                Directory.CreateDirectory(Server.MapPath(Dirpath));
+            }
+            string ext = Path.GetExtension(File.FileName);
+            var status = com.ValidateImagePDF_FileExtWithSize(File, 2048);
+            if (status == "Valid")
+            {
+
+                filename = DateTime.Now.ToString("yyyyMMddHHmmssffff") + "_" + filename;
+                string completepath = Path.Combine(Server.MapPath(Dirpath), filename);
+                if (System.IO.File.Exists(completepath))
+                {
+                    System.IO.File.Delete(completepath);
+                }
+
+                File.SaveAs(completepath);
+                path = Dirpath + filename;
+                res = true;
+            }
+            else
+            {
+                msg = status;
+            }
+            return Json(new { result = res, fpath = path, mesg = msg });
+
+
+
+        }
+
+        public JsonResult UploadFileForProjectConsultancy(HttpPostedFileBase File)
+        {
+            string Dirpath = "~/Content/writereaddata/ProjectConsultancy/";
+            string path = "";
+            string filename = File.FileName;
+            bool res = false;
+            string msg = "";
+            if (!Directory.Exists(Server.MapPath(Dirpath)))
+            {
+                Directory.CreateDirectory(Server.MapPath(Dirpath));
+            }
+            string ext = Path.GetExtension(File.FileName);
+            var status = com.ValidateImagePDF_FileExtWithSize(File, 2048);
+            if (status == "Valid")
+            {
+
+                filename = DateTime.Now.ToString("yyyyMMddHHmmssffff") + "_" + filename;
+                string completepath = Path.Combine(Server.MapPath(Dirpath), filename);
+                if (System.IO.File.Exists(completepath))
+                {
+                    System.IO.File.Delete(completepath);
+                }
+
+                File.SaveAs(completepath);
+                path = Dirpath + filename;
+                res = true;
+            }
+            else
+            {
+                msg = status;
+            }
+            return Json(new { result = res, fpath = path, mesg = msg });
+
+
+
+        }
+
+        public JsonResult UploadFileForBookAuthored(HttpPostedFileBase File)
+        {
+            string Dirpath = "~/Content/writereaddata/BookAuthored/";
             string path = "";
             string filename = File.FileName;
             bool res = false;

@@ -28,7 +28,7 @@
 <div class="container-fluid">
 
 
-    
+
 
     <div class="row">
         <div class="col-lg-12">
@@ -45,7 +45,7 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Title with page nos.</label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text"  id="" class="form-control">
+                                    <input name="" type="text" id="title" class="form-control">
                                     @*<span id="" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Date/Year of Publication</label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text"  id="" class="form-control">
+                                    <input name="" type="date" id="date" class="form-control">
                                     @*<span id="" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -63,16 +63,16 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Journal</label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text" id="" class="form-control">
+                                    <input name="" type="text" id="Journal" class="form-control">
                                     @*<span id="" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <label  id="" class="col-sm-12">ISSN/ISBN No.</label>
+                                <label id="" class="col-sm-12">ISSN/ISBN No.</label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text"  id="" class="form-control">
+                                    <input name="" type="text" id="ISSN" class="form-control">
                                     @*<span id="" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -82,9 +82,9 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label  id="" class="col-sm-12">Whether peer reviewed</label>
+                                <label id="" class="col-sm-12">Whether peer reviewed</label>
                                 <div class="col-sm-12">
-                                    <select name="" id="" class="form-control">
+                                    <select name="" id="Wpr" class="form-control">
                                         <option value="-1">-- select --</option>
                                         <option value="true">Yes</option>
                                         <option value="false">No</option>
@@ -98,7 +98,7 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Impact Factor if any <b style="color: green">##</b></label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text" id="" class="form-control" >
+                                    <input name="" type="text" id="ImpactFIA" class="form-control">
                                     @*<span id="" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -107,22 +107,22 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">No. of co-authors</label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text" id="" class="form-control" >
+                                    <input name="" type="text" id="noOf" class="form-control">
                                     @*<span id="r" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label  id="" class="col-sm-12">Whether main author</label>
+                                <label id="" class="col-sm-12">Whether main author</label>
                                 <div class="col-sm-12">
-                                    <select name="" id="" class="form-control">
+                                    <select name="" id="wMA" class="form-control">
                                         <option value="-1">-- select --</option>
                                         <option value="true">Yes</option>
                                         <option value="false">No</option>
 
                                     </select>
-                                    <span id="" class="validator" >enter value</span>
+                                    <span id="" class="validator">enter value</span>
                                 </div>
                             </div>
                         </div>
@@ -131,7 +131,8 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <label for="" id="" class="col-sm-12" style="font-weight: bold;">
-                            <span style="color: green">##</span> Peer-Reviewed or UGC Listed Journals (Impact factor to be determined as per Thomson Reuters list.)</label>
+                                <span style="color: green">##</span> Peer-Reviewed or UGC Listed Journals (Impact factor to be determined as per Thomson Reuters list.)
+                            </label>
                         </div>
                     </div>
                     <div class="row">
@@ -139,7 +140,7 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Whether Refereed Journal?</label>
                                 <div class="col-sm-12">
-                                    <select name="" id="" class="form-control">
+                                    <select name="" id="wRJ" class="form-control">
                                         <option value="-1">-- select --</option>
                                         <option value="true">Yes</option>
                                         <option value="false">No</option>
@@ -153,7 +154,7 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Journal listed in UGC List or not?</label>
                                 <div class="col-sm-12">
-                                    <select name="" id="" class="form-control">
+                                    <select name="" id="JLIULON" class="form-control">
                                         <option value="-1">-- select --</option>
                                         <option value="true">Yes</option>
                                         <option value="false">No</option>
@@ -167,7 +168,7 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Scopus Indexd Journals</label>
                                 <div class="col-sm-12">
-                                    <select name="" id="" class="form-control">
+                                    <select name="" id="sIJ" class="form-control">
                                         <option value="-1">-- select --</option>
                                         <option value="true">Yes</option>
                                         <option value="false">No</option>
@@ -181,16 +182,17 @@
                             <div class="form-group">
                                 <label for="body_txtUgcSerialNo" id="" class="col-sm-12">UGC S. No. (If Available)</label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text"  id="" class="form-control">
+                                    <input name="" type="text" id="uGCSN" class="form-control">
 
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label  id="" class="col-sm-12">Upload Scanned Attachment</label>
+                                <label id="" class="col-sm-12">Upload Scanned Attachment</label>
                                 <div class="col-sm-12">
-                                    <input type="file" name="" id="" class="form-control">
+                                    <input type="file" name="" id="Attachment" class="form-control" onchange="Fileuploads(this)">
+                                    <span id="AttachmentAnchor" hidden></span>
                                     @*<span id="" class="validator" style="display:none;">upload file</span>*@
                                 </div>
                             </div>
@@ -199,13 +201,13 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">&nbsp;</label>
                                 <div class="col-sm-12">
-                                    <a id="body_btnResearchAdd" class="btn btn-primary btn-shadow" href=""><span class="fa fa-plus-circle"></span> Add</a>
+                                    <a id="body_btnResearchAdd" class="btn btn-primary btn-shadow" href="#" onclick="add()"><span class="fa fa-plus-circle"></span> Add</a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                   
+
 
 
 
@@ -228,24 +230,11 @@
                                             <th>Whether refereed journal?</th>
                                             <th>Journal listed in UGC list or not? UGC S. No.</th>
                                             <th>Scopus Indexed Journals</th>
-                                            <th>API Score</th>
+                                            @*<th>API Score</th>*@
                                             <th>Attachment</th>
                                         </tr>
                                     </thead>
-                                    @*<tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Nigam</td>
-                                <td>Eichmann</td>
-                                <td>@@Genelia</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Roshan</td>
-                                <td>Rogahn</td>
-                                <td>@@Hritik</td>
-                            </tr>
-                        </tbody>*@
+                                  <tbody id="ResearchList"></tbody>
                                 </table>
                             </div>
 
@@ -273,3 +262,155 @@
 </div>
 
 
+<script>
+
+
+
+    function add() {
+
+
+
+                debugger;
+        var title = $('#title').val();
+        var date = $('#date').val();
+        var Journal = $('#Journal').val();
+        var ISSN = $('#ISSN').val();
+        var Wpr = $('#Wpr').val();
+        var noOf = $('#noOf').val();
+        var wMA = $('#wMA').val();
+        var wRJ = $('#wRJ').val();
+        var JLIULON = $('#JLIULON').val();
+        var sIJ = $('#sIJ').val();
+        var uGCSN = $('#uGCSN').val();
+        var Attachment = $('#Attachment').val();
+        var href = $('.anchor').attr('href');
+        //if ($('#projectTitle').val() == -1 || $('#projectTitle').val() == "" || $('#projectTitle').val() == null || $('#projectTitle').val() == undefined) {
+        //    swal("", "please enter Title of Research Project", "warning")
+        //    return false;
+        //}
+        //if ($('#fundingagency').val() == "" || $('#fundingagency').val() == null || $('#fundingagency').sIJ() == undefined) {
+        //    swal("", "Please enter Funding Agency  ", "warning")
+        //    return false;
+        //}
+        //if ($('#dateOfSan').val() == "" || $('#dateOfSan').val() == null || $('#dateOfSan').val() == undefined) {
+        //    swal("", "please enter Date of Sanction", "warning")
+        //    return false;
+        //}
+        //if ($('#grant_Amount').val() == -1 || $('#grant_Amount').val() == "" || $('#grant_Amount').val() == null || $('#grant_Amount').val() == undefined) {
+        //    swal("", "please select Grant / Amount Mobilized", "warning")
+        //    return false;
+        //}
+        //if ($('#pType').val() == -1 || $('#pType').val() == "" || $('#pType').val() == null || $('#pType').val() == undefined) {
+        //    swal("", "please select Project Type ", "warning")
+        //    return false;
+        //}
+        //if ($('#roleInProject').val() == -1 || $('#roleInProject').val() == "" || $('#roleInProject').val() == null || $('#roleInProject').val() == undefined) {
+        //    swal("", "please  select Your Role in Project ", "warning")
+        //    return false;
+        //}
+        //if ($('#pStatus').val() == -1 || $('#pStatus').val() == "" || $('#pStatus').val() == null || $('#pStatus').val() == undefined) {
+        //    swal("", "please  select Status of Project ", "warning")
+        //    return false;
+        //}
+        //if ($('#pStatus').val() == -1 || $('#pStatus').val() == "" || $('#pStatus').val() == null || $('#pStatus').val() == undefined) {
+        //    swal("", "please  select Status of Project ", "warning")
+        //    return false;
+        //} if ($('#attachment').val() == -1 || $('#attachment').val() == "" || $('#attachment').val() == null || $('#attachment').val() == undefined) {
+        //    swal("", "please Upload Scanned Attachment  ", "warning")
+        //    return false;
+        //}
+
+
+        var row = "<tr><td class='pTitle'>" + title + "</td><td class='fundAgency'>" + date + "</td><td class='date'>" + Journal + "</td><td class='amount'>" + ISSN + "</td><td class='pType'>" + Wpr + "</td><td class='roleInPro'>" + noOf + "</td><td class='pStatus'>" + wMA + "</td><td class='pStatus'>" + wRJ + "</td><td class='pStatus'>" + JLIULON + "</td><td class='pStatus'>" + sIJ + "</td><td class='pStatus'>" + uGCSN + "</td><td class='lattachment'><span class='input-group-text btn-download' href=" + href + "><a href=" + href + " target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td></tr>";
+
+
+        $('#ResearchList').append(row);
+
+        $('#title').val();
+        $('#date').val();
+        $('#Journal').val();
+        $('#ISSN').val();
+        $('#Wpr').val(-1);
+        ('#noOf').val();
+        $('#wMA').val(-1);
+        $('#wRJ').val(-1);
+        $('#JLIULON').val(-1);
+        $('#sIJ').val(-1);
+        $('#uGCSN').val('');
+        $('#Attachment').val('');
+
+        }
+
+
+
+
+     function Fileuploads(obj) {
+        debugger;
+        var filename = $(obj)[0].files[0].name;
+        var fileId = $(obj).attr("id");ResearchListvar ext = obj.value.match(/\.(.+)$/)[1];
+       
+
+        switch (ext) {
+            case 'pdf':
+            case 'jpg':
+            case 'jpeg':
+                var fileSize = ($("#" + fileId)[0].files[0].size / 1024 / 1024);
+                if (fileSize > 2) {
+                    swal("", "File size should not exceed 2 MB.\r\nफाइल का साइज़ 2 MB से अधिक नहीं होना चाहिए।", "warning");
+                    return false;
+                }
+                else {
+                    var data = new FormData();
+                    var files = $("#" + fileId).get(0).files;
+                    if (files.length > 0) {
+                        data.append("File", files[0]);
+                          
+                    }
+                    $("#divLoader").show();
+                    $.ajax({
+                        url: '@Url.Action("UploadFileForResearchPaper", "Applicant")',
+                        type: "POST",
+                        processData: false,
+                        contentType: false,
+                        data: data,
+                        success: function (response) {
+                            $("#divLoader").hide();
+
+                            if (response != null) {
+                                if (response.result) {
+                                    $("#fileName" + fileId).text(filename);
+                                    $("#" + fileId + "Path").val(response.fpath);
+                                    var Url = response.fpath.replace('~/', '');
+                                    $("#" + fileId + "Anchor").empty();
+                                    $("#" + fileId + "Anchor").attr('href', Url);
+                                    //$("#" + fileId + "Anchor").show();
+                                    $("#" + fileId + "Anchor").append('<a href="' + '@Url.Content("~/")' + Url + '" target="_blank" class="btn btn-warning anchor"><i class="fa fa-download"></i></a>');
+                                    swal("", "File upload successfully. ", "success")
+                                }
+                                else {
+                                    swal("", response.mesg, "error")
+                                }
+                            }
+                            else {
+                                swal("", "Fail to Upload File", "error")
+                            }
+                            return false;
+
+                        },
+                        error: function (e) {
+
+                            $("#divLoader").hide();
+                            swal("", "An Error Occured while uploading file", "error");
+                        }
+                    });
+
+                }
+                break;
+            default:
+                swal("", 'File should be in PDF/JPG/JPEG format./फाइल PDF/JPG/JPEG प्रारूप में होनी चाहिए।', "warning");
+                this.value = '';
+                return false;
+        }
+
+        }
+</script>
