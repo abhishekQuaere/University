@@ -16,7 +16,7 @@ namespace UniversityRecruitment.Controllers
         ApplicantDB apdb = new ApplicantDB();
         SessionManager sm = new SessionManager();
 
-        public ActionResult Index(string  PostTypeId)
+        public ActionResult Index(string PostTypeId)
         {
             ApplicantModel model = new ApplicantModel();
             ViewBag.PostList = apdb.PostList();
@@ -40,7 +40,7 @@ namespace UniversityRecruitment.Controllers
             }
             else
             {
-                res = apdb.ListOfPostForApplying("PROF",sm.userId);
+                res = apdb.ListOfPostForApplying("PROF", sm.userId);
             }
             return PartialView("_PostList", res);
         }
@@ -55,11 +55,11 @@ namespace UniversityRecruitment.Controllers
                 var result = apdb.saveAppliedForm<saveAppliedForm>(model);
                 model.ResponseCode = result.ResponseCode;
                 model.ResponseMessage = result.ResponseMessage;
-            }           
+            }
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
-       
+
         public ActionResult PersonalDetails()
         {
             return View();
@@ -96,10 +96,12 @@ namespace UniversityRecruitment.Controllers
 
         public ActionResult FeeRecipt()
         {
-            return View();
+            FeeDetails fd = new FeeDetails();
+            fd.lst = apdb.ListOfPostFeeDetails<FeeDetails>(sm.userId);
+            return View(fd);
         }
 
-        
+
 
         public ActionResult ResearchDegree()
         {

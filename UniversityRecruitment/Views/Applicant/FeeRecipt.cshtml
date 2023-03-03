@@ -1,4 +1,4 @@
-﻿
+﻿@model UniversityRecruitment.Models.FeeDetails
 @{
     ViewBag.Title = "FeeRecipt";
     Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
@@ -47,17 +47,26 @@
                             
                                     </thead>
                             <tbody>
-                                <tr class="">
-                                    <td>23000013001</td>
-                                    <td>1</td>
-                                    <td>1500</td>
-                                    <td>TEST01032023021751PM</td>
-                                    <td>01/03/2023 02:17 PM</td>
-                                    <td>Online</td>
-                                    <td>
-                                        <a id="body_repPostAppliedPending_LnkPreview_0" class="badge badge-warning text-dark shadow" href=""><span class="fa fa-print"></span> Print</a>
-                                    </td>
-                                </tr>
+                                @if (Model.lst != null)
+                                {
+                                    if (Model.lst.Count() > 0)
+                                    {
+
+                                        foreach (var itm in Model.lst)
+                                        {
+                                            <tr class=''>
+                                                <td>@itm.RefNo</td>
+                                                <td>@itm.FormCount</td>
+                                                <td>@itm.TransactionAmount</td>
+                                                <td>@itm.TransactionId</td>
+                                                <td>@itm.TransactionDate</td>
+                                                <td>@itm.Mode</td>
+                                            </tr>
+                                        }
+
+                                    }
+                                }
+
                             </tbody>
                         </table>
                     </div>
