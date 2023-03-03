@@ -219,6 +219,77 @@ namespace UniversityRecruitment.DBContext
             }
 
         }
+
+
+        public dynamic SaveAwardDetails(Award model)
+        {
+
+            Award obj = new Award();
+
+            var res = new Award();
+            try
+            {
+                var perm = new DynamicParameters();
+                if (model.AwardList.Count() > 0)
+                {
+                    for (int i = 0; i < model.AwardList.Count; i++)
+                    {
+                        perm.Add("@id", model.UserId);
+                        perm.Add("@AwardName", model.AwardList[i].Name);
+                        perm.Add("@AwardDate", model.AwardList[i].DateOfAward);
+                        perm.Add("@Organization", model.AwardList[i].Organization);
+                        perm.Add("@AwardLevel", model.AwardList[i].Level);
+                        perm.Add("@DocumentPath", model.AwardList[i].UploadAward); 
+                        perm.Add("@IpAddress", model.Ipaddress);
+                        res = _dapper.ExecuteGet<Award>("[ManageApplicantAwardFellowship]", perm);
+                    }
+                }
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+
+        }
+
+
+
+        public dynamic SaveInformationDetails(Information model)
+        {
+
+            Information obj = new Information();
+
+            var res = new Information();
+            try
+            {
+                var perm = new DynamicParameters();
+                if (model.InformationList.Count() > 0)
+                {
+                    for (int i = 0; i < model.InformationList.Count; i++)
+                    {
+                        perm.Add("@id", model.UserId);
+                        perm.Add("@Detail", model.InformationList[i].Detail);
+                        perm.Add("@DocumentPath", model.InformationList[i].UploadInformation); 
+                        perm.Add("@IpAddress", model.Ipaddress);
+                        res = _dapper.ExecuteGet<Information>("[ManageApplicantOtherInformation]", perm);
+                    }
+                }
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+
+        }
+
+
+
         #endregion
 
 

@@ -1,4 +1,4 @@
-﻿
+﻿@model UniversityRecruitment.Models.Information
 @{
     ViewBag.Title = "Information";
     Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
@@ -28,7 +28,7 @@
             <div class="card">
                 <div class="card-header mysheader">
                     <h4 class="m-b-0 text-white">
-                       OTHER RELEVANT INFORMATION
+                        OTHER RELEVANT INFORMATION
                     </h4>
                 </div>
                 <div class="card-body">
@@ -37,7 +37,7 @@
                             <div class="form-group">
                                 <label for=" " id=" " class="col-sm-12">Detail (Mention Year, Value etc. where relevant)</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control">
+                                    @Html.TextBoxFor(m => m.Detail, new { @class = "form-control", @Id = "Detail", @name = "Detail" })
                                     @*<span id="body_reqDetail" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -48,16 +48,18 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Upload Scanned Attachment</label>
                                 <div class="col-sm-12">
-                                    <input type="file" id="body_fuDetailUpload" class="form-control">
+                                    <input type="file" class="form-control" id="UploadInformation" onchange="Fileupload(this)">
+                                    <span id="UploadInformationAnchor" style="display: none;" class="input-group-text btn-download"></span>
                                     @*<span id="body_reqDetailUpload" class="validator" style="display:none;">upload file</span>*@
                                 </div>
+                                <span class="smallpdf">(File Format:JPG/JPEG and PDF । Max File Size: 2 MB)</span>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <label class="col-sm-12">&nbsp;</label>
                                 <div class="col-sm-12">
-                                    <a class="btn btn-primary btn-shadow" href="#"><span class="fa fa-plus-circle"></span> Add</a>
+                                    <a class="btn btn-primary btn-shadow" href="#" onclick="AddInformation()"><span class="fa fa-plus-circle"></span> Add</a>
                                 </div>
                             </div>
                         </div>
@@ -67,8 +69,8 @@
                         <div class="col-sm-12">
 
                             <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <tbody>
+                                <table class="table table-bordered" id="tab">
+                                    <thead>
                                         <tr class="table-primary">
                                             <th>Serial</th>
                                             <th>Detail</th>
@@ -76,7 +78,8 @@
                                             <th></th>
                                         </tr>
 
-                                    </tbody>
+                                    </thead>
+                                    <tbody id="TblInformation"></tbody>
                                 </table>
                             </div>
 
@@ -93,8 +96,8 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-12">
-                        <a id="" class="btn btn-warning text-dark shadow" href=""><span class="fa fa-save"></span> Save</a>
-                        <a id="" class="btn btn-success text-dark shadow pull-right" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
+                        <a id="" class="btn btn-warning text-dark shadow" href="#" onclick="Savedata()"><span class="fa fa-save"></span> Save</a>
+                        <a id="body_BtnSaveNext" class="btn btn-success text-dark shadow pull-right" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
                     </div>
                 </div>
             </div>
@@ -102,3 +105,166 @@
     </div>
 </div>
 
+<script>
+
+    $(document).ready(function () {
+        $('#body_BtnSaveNext').hide();
+    })
+
+     var Sno = 1;
+    function AddInformation() {
+        debugger;
+        var Detail = $('#Detail').val(); 
+        var href = $('.anchor').attr('href');
+
+           if ($('#Detail').val() == "" || $('#Detail').val() == null || $('#Detail').val() == undefined) {
+                swal("", "please Enter Detail", "warning")
+                return false;
+            }
+            if ($('#UploadInformation').val() == "" || $('#UploadInformation').val() == null || $('#UploadInformation').val() == undefined) {
+                swal("", "Please Upload   Image  ", "warning")
+                return false;
+            }
+             
+
+        var row = '<tr><td>' + Sno++ + '</td><td class="InformationDetail">' + Detail + '</td><td><span class="input-group-text btn-download" href=' + href +'><a href=' + href +' target="_blank" class="btn btn-warning dldbtn"><i class="fa fa-download"></i></a></span></td></tr>';
+
+        $('#TblInformation').append(row);
+        $('#Detail').val('');
+        
+        $('#UploadInformation').val('');
+        
+
+
+        }
+
+    function Savedata() {
+        debugger;
+
+        var model = {
+            InformationList: [],
+
+
+        }
+
+        var entrylist = [];
+
+        $('#tab #TblInformation tr').each(function (i, d) {
+            var InformationEntry = {};
+            InformationEntry.Detail = $(this).find('.InformationDetail').text();
+            InformationEntry.UploadInformation = $(this).find('.dldbtn').attr('href');
+            entrylist.push(InformationEntry)
+
+        });
+        if (entrylist == 0) {
+            swal("", "please fill all field", "warning")
+            return false;
+        }
+        else {
+
+        }
+        if (entrylist != 0) {
+            $.each(entrylist, function (key, value) {
+
+                model.InformationList.push(value);
+            })
+
+            $.ajax({
+                type: 'post',
+                url: '/Applicant/SaveInformationDetails',
+                data: JSON.stringify(model),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    debugger;
+                    if (data.ResponseCode == 0) {
+                        swal("", data.ResponseMessage, "success")
+                        $('#body_BtnSaveNext').show();
+                        $('#TblInformation').empty();
+                    }
+
+                    else {
+                        swal("", data.ResponseMessage, "warning")
+
+                    }
+
+                },
+                error: function (e) {
+                    debugger;
+                }
+
+
+            })
+        }
+    }
+
+
+    function Fileupload(obj) {
+        debugger;
+        var filename = $(obj)[0].files[0].name;
+        var fileId = $(obj).attr("id");
+        var ext = obj.value.match(/\.(.+)$/)[1];
+
+        switch (ext) {
+            case 'pdf':
+            case 'jpg':
+            case 'jpeg':
+                var fileSize = ($("#" + fileId)[0].files[0].size / 1024 / 1024);
+                if (fileSize > 2) {
+                    swal("", "File size should not exceed 2 MB.\r\nफाइल का साइज़ 2 MB से अधिक नहीं होना चाहिए।", "warning");
+                    return false;
+                }
+                else {
+                    var data = new FormData();
+                    var files = $("#" + fileId).get(0).files;
+                    if (files.length > 0) {
+                        data.append("File", files[0]);
+                    }
+                    $("#divLoader").show();
+                    $.ajax({
+                        url: '@Url.Action("UploadInformationFile", "Applicant")',
+                        type: "POST",
+                        processData: false,
+                        contentType: false,
+                        data: data,
+                        success: function (response) {
+                            $("#divLoader").hide();
+
+                            if (response != null) {
+                                if (response.result) {
+                                    $("#fileName" + fileId).text(filename);
+                                    $("#" + fileId + "Path").val(response.fpath);
+                                    var Url = response.fpath.replace('~/', '');
+                                    $("#" + fileId + "Anchor").empty();
+                                    $("#" + fileId + "Anchor").attr('href', Url);
+                                    //$("#" + fileId + "Anchor").show();
+                                    $("#" + fileId + "Anchor").append('<a href="' + '@Url.Content("~/")' + Url + '" target="_blank" class="btn btn-warning anchor"><i class="fa fa-download"></i></a>');
+                                    swal("", "File upload successfully. ", "success")
+                                }
+                                else {
+                                    swal("", response.mesg, "error")
+                                }
+                            }
+                            else {
+                                swal("", "Fail to Upload File", "error")
+                            }
+                            return false;
+
+                        },
+                        error: function (e) {
+
+                            $("#divLoader").hide();
+                            swal("", "An Error Occured while uploading file", "error");
+                        }
+                    });
+
+                }
+                break;
+            default:
+                swal("", 'File should be in PDF/JPG/JPEG format./फाइल PDF/JPG/JPEG प्रारूप में होनी चाहिए।', "warning");
+                this.value = '';
+                return false;
+        }
+
+    }
+</script>

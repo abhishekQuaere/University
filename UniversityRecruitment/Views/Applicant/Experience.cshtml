@@ -217,7 +217,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Upload Scanned Attachment</label>
                                 <div class="col-sm-12">
-                                    <input type="file" class="form-control" id="AgencyImage" onchange="Fileupload(this)">
+                                    <input type="file" class="form-control" id="AgencyImage" onchange="UploadFile(this)">
                                     <span id="AgencyImageAnchor" style="display: none;" class="input-group-text btn-download"></span>
                                 </div>
                                 <span class="smallpdf">(File Format:JPG/JPEG and PDF । Max File Size: 2 MB)</span>
@@ -273,7 +273,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <a id="body_BtnSave" class="btn btn-warning text-dark shadow" href="#" onclick="Savedata()"><span class="fa fa-save"></span> Save</a>
-                        <a id="body_BtnSaveNext" class="btn btn-success text-dark shadow pull-right" href="#"><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
+                        <a id="body_BtnSaveNext" class="btn btn-success text-dark shadow pull-right d-none" href="#"  ><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
                     </div>
                 </div>
             </div>
@@ -293,6 +293,35 @@
         var DesignationPeriodTo = $('#DesignationPeriodTo').val();
         var href = $('.anchor').attr('href');
 
+        if ($('#Designation').val() == "" || $('#Designation').val() == null || $('#Designation').val() == undefined) {
+                swal("", "please enter Designation", "warning")
+                return false;
+            }
+            if ($('#NatureofPost').val() == "" || $('#NatureofPost').val() == null || $('#NatureofPost').val() == undefined) {
+                swal("", "Please select  Nature of Post  ", "warning")
+                return false;
+            }
+            if ($('#GradeAgp').val() == "" || $('#GradeAgp').val() == null || $('#GradeAgp').val() == undefined) {
+                swal("", "please enter Salary with Grade ", "warning")
+                return false;
+            }
+            if ($('#NameAddress').val() == "" || $('#AgencyPeriodTo').val() == null || $('#AgencyPeriodTo').val() == undefined) {
+                swal("", "please enter Employer Name  Address", "warning")
+                return false;
+            }
+            if ($('#DesignationPeriodFrom').val() == "" || $('#DesignationPeriodFrom').val() == null || $('#DesignationPeriodFrom').val() == undefined) {
+                swal("", "please enter Period From ", "warning")
+                return false;
+        }
+
+        if ($('#DesignationPeriodTo').val() == "" || $('#DesignationPeriodTo').val() == null || $('#DesignationPeriodTo').val() == undefined) {
+                swal("", "please enter Period To ", "warning")
+                return false;
+        }
+         if ($('#DesignationImage').val() == "" || $('#DesignationImage').val() == null || $('#DesignationImage').val() == undefined) {
+                swal("", "please Upload Image ", "warning")
+                return false;
+            }
 
         var row = '<tr><td class="Desig">' + Designation + '</td><td class="NaturePost">' + NatureofPost + '</td><td class="GradeandAgp" >' + GradeAgp + '</td><td  class="NameAdd">' + NameAddress + '</td><td  class="DPeriodFrom">' + DesignationPeriodFrom + '</td><td  class="DPeriodTo">' + DesignationPeriodTo + '</td><td ></td><td><span class="input-group-text btn-download" href=' + href +'><a href=' + href +' target="_blank" class="btn btn-warning dldbtn"><i class="fa fa-download"></i></a></span></td></tr>';
 
@@ -316,8 +345,29 @@
         var HostInstitution = $('#HostInstitution').val();
         var AgencyPeriodFrom = $('#AgencyPeriodFrom').val();
         var AgencyPeriodTo = $('#AgencyPeriodTo').val();
-        var href = $('.anchor').attr('href');
+        var href = $('.anchor1').attr('href');
 
+
+           if ($('#Agency').val() == "" || $('#Agency').val() == null || $('#Agency').val() == undefined) {
+                swal("", "please enter Agency", "warning")
+                return false;
+            }
+            if ($('#HostInstitution').val() == "" || $('#HostInstitution').val() == null || $('#HostInstitution').val() == undefined) {
+                swal("", "Please enter   Host   Institution  ", "warning")
+                return false;
+            }
+            if ($('#AgencyPeriodFrom').val() == "" || $('#AgencyPeriodFrom').val() == null || $('#AgencyPeriodFrom').val() == undefined) {
+                swal("", "please enter   Period from ", "warning")
+                return false;
+            }
+            if ($('#AgencyPeriodTo').val() == "" || $('#AgencyPeriodTo').val() == null || $('#AgencyPeriodTo').val() == undefined) {
+                swal("", "please enter Period To", "warning")
+                return false;
+            }
+            if ($('#AgencyImage').val() == "" || $('#AgencyImage').val() == null || $('#AgencyImage').val() == undefined) {
+                swal("", "please upload   Image ", "warning")
+                return false;
+        }
 
         var row = '<tr><td class="Agen">' + Agency + '</td><td class="HostInsti">' + HostInstitution + '</td><td  class="AgPeriodFrom">' + AgencyPeriodFrom + '</td><td class="AgPeriodTo" >' + AgencyPeriodTo + '</td><td></td><td><span class="input-group-text btn-download" href=' + href +'><a href=' + href +' target="_blank" class="btn btn-warning dnldbtn"><i class="fa fa-download"></i></a></span></td></tr>';
 
@@ -328,14 +378,13 @@
         $('#AgencyPeriodTo').val('');
         $('#AgencyImage').val('');
 
-
-
     }
 
 
 
     function Savedata() {
         debugger;
+         
         var model = {
             Designationlist: [],
             Agencylist: []
@@ -369,6 +418,15 @@
 
 
         });
+
+         if (entrylist == 0) {
+            swal("", "please fill all field", "warning")
+            return false;
+        }
+        else if (Agencyentrylist == 0) {
+            swal("", "please fill all field", "warning")
+            return false;
+        }
         if (entrylist != 0 && Agencyentrylist != 0) {
             $.each(entrylist, function (key, value) {
 
@@ -385,17 +443,30 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-                    if (data != null) {
+                    
+                    if (data.ResponseCode == 0) {
+                        swal("", data.ResponseMessage, "success")
+                         $('#body_BtnSaveNext').removeClass('d-none')
+                        $('#TblDesignation').empty();
+                        $('#TblAgency').empty();
+                          
+                    }
 
+                    else {
+                        swal("", data.ResponseMessage, "warning")
+                         
                     }
                 }
 
-
+                
             })
         }
 
          
-        }
+    }
+
+     
+
 
 
     function Fileupload(obj) {
@@ -438,6 +509,75 @@
                                     $("#" + fileId + "Anchor").attr('href', Url);
                                     //$("#" + fileId + "Anchor").show();
                                     $("#" + fileId + "Anchor").append('<a href="' + '@Url.Content("~/")' + Url + '" target="_blank" class="btn btn-warning anchor"><i class="fa fa-download"></i></a>');
+                                    swal("", "File upload successfully. ", "success")
+                                }
+                                else {
+                                    swal("", response.mesg, "error")
+                                }
+                            }
+                            else {
+                                swal("", "Fail to Upload File", "error")
+                            }
+                            return false;
+
+                        },
+                        error: function (e) {
+
+                            $("#divLoader").hide();
+                            swal("", "An Error Occured while uploading file", "error");
+                        }
+                    });
+
+                }
+                break;
+            default:
+                swal("", 'File should be in PDF/JPG/JPEG format./फाइल PDF/JPG/JPEG प्रारूप में होनी चाहिए।', "warning");
+                this.value = '';
+                return false;
+        }
+
+        }
+
+     function UploadFile(obj) {
+        debugger;
+        var filename = $(obj)[0].files[0].name;
+        var fileId = $(obj).attr("id");
+        var ext = obj.value.match(/\.(.+)$/)[1];
+
+        switch (ext) {
+            case 'pdf':
+            case 'jpg':
+            case 'jpeg':
+                var fileSize = ($("#" + fileId)[0].files[0].size / 1024 / 1024);
+                if (fileSize > 2) {
+                    swal("", "File size should not exceed 2 MB.\r\nफाइल का साइज़ 2 MB से अधिक नहीं होना चाहिए।", "warning");
+                    return false;
+                }
+                else {
+                    var data = new FormData();
+                    var files = $("#" + fileId).get(0).files;
+                    if (files.length > 0) {
+                        data.append("File", files[0]);
+                    }
+                    $("#divLoader").show();
+                    $.ajax({
+                        url: '@Url.Action("UploadAgencyFile", "Applicant")',
+                        type: "POST",
+                        processData: false,
+                        contentType: false,
+                        data: data,
+                        success: function (response) {
+                            $("#divLoader").hide();
+
+                            if (response != null) {
+                                if (response.result) {
+                                    $("#fileName" + fileId).text(filename);
+                                    $("#" + fileId + "Path").val(response.fpath);
+                                    var Url = response.fpath.replace('~/', '');
+                                    $("#" + fileId + "Anchor").empty();
+                                    $("#" + fileId + "Anchor").attr('href', Url);
+                                    //$("#" + fileId + "Anchor").show();
+                                    $("#" + fileId + "Anchor").append('<a href="' + '@Url.Content("~/")' + Url + '" target="_blank" class="btn btn-warning anchor1"><i class="fa fa-download"></i></a>');
                                     swal("", "File upload successfully. ", "success")
                                 }
                                 else {
