@@ -1,4 +1,4 @@
-﻿
+﻿@model UniversityRecruitment.Models.ResearchPaper
 @{
     ViewBag.Title = "ResearchPaper";
     Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
@@ -27,9 +27,6 @@
 
 <div class="container-fluid">
 
-
-    
-
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -45,7 +42,8 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Title with page nos.</label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text"  id="" class="form-control">
+                                    @Html.TextBoxFor(m => m.PublicationTitle, new { @class = "form-control", @Id = "PublicationTitle", @name = "PublicationTitle" })
+                                    @*<input name="" type="text" id="" class="form-control">*@
                                     @*<span id="" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -54,7 +52,8 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Date/Year of Publication</label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text"  id="" class="form-control">
+                                    @Html.TextBoxFor(m => m.PublicationDate, new { @class = "form-control", @Id = "PublicationDate", @name = "PublicationDate" })
+                                    @*<input name="" type="text" id="" class="form-control">*@
                                     @*<span id="" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -63,16 +62,18 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Journal</label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text" id="" class="form-control">
+                                    @Html.TextBoxFor(m => m.Journal, new { @class = "form-control", @Id = "Journal", @name = "Journal" })
+                                    @*<input name="" type="text" id="" class="form-control">*@
                                     @*<span id="" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <label  id="" class="col-sm-12">ISSN/ISBN No.</label>
+                                <label id="" class="col-sm-12">ISSN/ISBN No.</label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text"  id="" class="form-control">
+                                    @Html.TextBoxFor(m => m.ISBN, new { @class = "form-control", @Id = "ISBN", @name = "ISBN" })
+                                    @*<input name="" type="text" id="" class="form-control">*@
                                     @*<span id="" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -82,9 +83,9 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label  id="" class="col-sm-12">Whether peer reviewed</label>
+                                <label id="" class="col-sm-12">Whether peer reviewed</label>
                                 <div class="col-sm-12">
-                                    <select name="" id="" class="form-control">
+                                    <select name="" id="PeerReviewed" class="form-control">
                                         <option value="-1">-- select --</option>
                                         <option value="true">Yes</option>
                                         <option value="false">No</option>
@@ -98,7 +99,8 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Impact Factor if any <b style="color: green">##</b></label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text" id="" class="form-control" >
+                                    @Html.TextBoxFor(m => m.ImpactFactor, new { @class = "form-control", @Id = "ImpactFactor", @name = "ImpactFactor" })
+                                    @*<input name="" type="text" id="" class="form-control">*@
                                     @*<span id="" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -107,22 +109,22 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">No. of co-authors</label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text" id="" class="form-control" >
+                                    @Html.TextBoxFor(m => m.NoOfAuther, new { @class = "form-control", @Id = "NoOfAuther", @name = "NoOfAuther" })
+                                    @*<input name="" type="text" id="" class="form-control" >*@
                                     @*<span id="r" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label  id="" class="col-sm-12">Whether main author</label>
+                                <label id="" class="col-sm-12">Whether main author</label>
                                 <div class="col-sm-12">
-                                    <select name="" id="" class="form-control">
+                                    <select name="" id="IsMainAuthor" class="form-control">
                                         <option value="-1">-- select --</option>
                                         <option value="true">Yes</option>
                                         <option value="false">No</option>
-
                                     </select>
-                                    <span id="" class="validator" >enter value</span>
+                                    @*<span id="" class="validator">enter value</span>*@
                                 </div>
                             </div>
                         </div>
@@ -131,7 +133,8 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <label for="" id="" class="col-sm-12" style="font-weight: bold;">
-                            <span style="color: green">##</span> Peer-Reviewed or UGC Listed Journals (Impact factor to be determined as per Thomson Reuters list.)</label>
+                                <span style="color: green">##</span> Peer-Reviewed or UGC Listed Journals (Impact factor to be determined as per Thomson Reuters list.)
+                            </label>
                         </div>
                     </div>
                     <div class="row">
@@ -139,7 +142,7 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Whether Refereed Journal?</label>
                                 <div class="col-sm-12">
-                                    <select name="" id="" class="form-control">
+                                    <select name="" id="ReferredJournal" class="form-control">
                                         <option value="-1">-- select --</option>
                                         <option value="true">Yes</option>
                                         <option value="false">No</option>
@@ -153,7 +156,7 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Journal listed in UGC List or not?</label>
                                 <div class="col-sm-12">
-                                    <select name="" id="" class="form-control">
+                                    <select name="" id="IsUGClist" class="form-control" onchange="showdiv();">
                                         <option value="-1">-- select --</option>
                                         <option value="true">Yes</option>
                                         <option value="false">No</option>
@@ -167,7 +170,7 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Scopus Indexd Journals</label>
                                 <div class="col-sm-12">
-                                    <select name="" id="" class="form-control">
+                                    <select name="" id="JournalIndex" class="form-control">
                                         <option value="-1">-- select --</option>
                                         <option value="true">Yes</option>
                                         <option value="false">No</option>
@@ -177,95 +180,86 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="" class="col-sm-2" style="display: none;">
+                        <div id="UGSNo" class="col-sm-2" style="display: none;">
                             <div class="form-group">
-                                <label for="body_txtUgcSerialNo" id="" class="col-sm-12">UGC S. No. (If Available)</label>
+                                <label for="" id="" class="col-sm-12">UGC S. No. (If Available)</label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text"  id="" class="form-control">
+                                    @Html.TextBoxFor(m => m.UGCSerialNo, new { @class = "form-control", @Id = "UGCSerialNo", @name = "UGCSerialNo" })
+                                    @*<input name="" type="text" id="" class="form-control">*@
 
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label  id="" class="col-sm-12">Upload Scanned Attachment</label>
+                                <label id="" class="col-sm-12">Upload Scanned Attachment</label>
                                 <div class="col-sm-12">
-                                    <input type="file" name="" id="" class="form-control">
-                                    @*<span id="" class="validator" style="display:none;">upload file</span>*@
+                                    <input type="file" class="form-control" id="UploadAttachment" onchange="Fileupload(this)">
+                                    <span id="UploadAttachmentAnchor" style="display: none;" class="input-group-text btn-download"></span>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label for="" id="" class="col-sm-12">&nbsp;</label>
-                                <div class="col-sm-12">
-                                    <a id="body_btnResearchAdd" class="btn btn-primary btn-shadow" href=""><span class="fa fa-plus-circle"></span> Add</a>
-                                </div>
+                                <span class="smallpdf">(File Format:JPG/JPEG and PDF । Max File Size: 2 MB)</span>
                             </div>
                         </div>
                     </div>
-
-                   
-
-
-
-
-                    <div class="row mt-3">
-                        <div class="col-sm-12">
-
-                            <div class="table-responsive">
-                                <table class="table full-color-table full-info-table hover-table">
-                                    <thead>
-                                        <tr class="">
-                                            <th>Title with page nos.</th>
-                                            <th>Date of Publication</th>
-                                            <th>Journal</th>
-                                            <th>ISSN/ISBN No.</th>
-                                            <th>Whether peer reviewed?</th>
-                                            <th>Impact factor</th>
-                                            <th>No. of co-authors</th>
-                                            <th>Whether main author?</th>
-                                            <th>Whether refereed journal?</th>
-                                            <th>Journal listed in UGC list or not? UGC S. No.</th>
-                                            <th>Scopus Indexed Journals</th>
-                                            <th>API Score</th>
-                                            <th>Attachment</th>
-                                        </tr>
-                                    </thead>
-                                    @*<tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Nigam</td>
-                                <td>Eichmann</td>
-                                <td>@@Genelia</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Roshan</td>
-                                <td>Rogahn</td>
-                                <td>@@Hritik</td>
-                            </tr>
-                        </tbody>*@
-                                </table>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="" id="" class="col-sm-12">&nbsp;</label>
+                            <div class="col-sm-12">
+                                <a id="body_btnResearchAdd" class="btn btn-primary btn-shadow" href="#" onclick="AddResearchpaper();"><span class="fa fa-plus-circle"></span> Add</a>
                             </div>
-
                         </div>
                     </div>
-
                 </div>
+
+
+
+
+
+
+                <div class="row mt-3">
+                    <div class="col-sm-12">
+
+                        <div class="table-responsive">
+                            <table class="table full-color-table full-info-table hover-table" id="tab">
+                                <thead>
+                                    <tr class="">
+                                        <th>Title with page nos.</th>
+                                        <th>Date of Publication</th>
+                                        <th>Journal</th>
+                                        <th>ISSN/ISBN No.</th>
+                                        <th>Whether peer reviewed?</th>
+                                        <th>Impact factor</th>
+                                        <th>No. of co-authors</th>
+                                        <th>Whether main author?</th>
+                                        <th>Whether refereed journal?</th>
+                                        <th>Journal listed in UGC list or not? UGC S. No.</th>
+                                        <th>Scopus Indexed Journals</th>
+                                        @*<th>API Score</th>*@
+                                        <th>Attachment</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ResearchPaper">
+                                       
+                                    </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </div>
-
     </div>
 
-    <div class="row">
-        <div class="card-shadow-primary col-sm-12 card bg-secondary">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <a id="" class="btn btn-warning text-dark shadow" href=""><span class="fa fa-save"></span> Save</a>
-                        <a id="" class="btn btn-success text-dark shadow pull-right" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
-                    </div>
+</div>
+
+<div class="row">
+    <div class="card-shadow-primary col-sm-12 card bg-secondary">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <a id="" class="btn btn-warning text-dark shadow" href="" onclick="Savedata()" ><span class="fa fa-save"></span> Save</a>
+                    <a id="body_BtnSaveNext" class="btn btn-success text-dark shadow pull-right d-none" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
                 </div>
             </div>
         </div>
@@ -273,3 +267,240 @@
 </div>
 
 
+<script>
+    function showdiv() {
+        debugger;
+        if ($('#IsUGClist option:selected').text() == 'Yes') {       
+            $("#UGSNo").css("display", "block");
+             }
+    }
+     function Fileupload(obj) {
+        debugger;
+        var filename = $(obj)[0].files[0].name;
+        var fileId = $(obj).attr("id");
+        var ext = obj.value.match(/\.(.+)$/)[1];
+
+        switch (ext) {
+            case 'pdf':
+            case 'jpg':
+            case 'jpeg':
+                var fileSize = ($("#" + fileId)[0].files[0].size / 1024 / 1024);
+                if (fileSize > 2) {
+                    swal("", "File size should not exceed 2 MB.\r\nफाइल का साइज़ 2 MB से अधिक नहीं होना चाहिए।", "warning");
+                    return false;
+                }
+                else {
+                    var data = new FormData();
+                    var files = $("#" + fileId).get(0).files;
+                    if (files.length > 0) {
+                        data.append("File", files[0]);
+                    }
+                    $("#divLoader").show();
+                    $.ajax({
+                        url: '@Url.Action("UploadResearchPaperFile", "Applicant")',
+                        type: "POST",
+                        processData: false,
+                        contentType: false,
+                        data: data,
+                        success: function (response) {
+                            $("#divLoader").hide();
+
+                            if (response != null) {
+                                if (response.result) {
+                                    $("#fileName" + fileId).text(filename);
+                                    $("#" + fileId + "Path").val(response.fpath);
+                                    var Url = response.fpath.replace('~/', '');
+                                    $("#" + fileId + "Anchor").empty();
+                                    $("#" + fileId + "Anchor").attr('href', Url);
+                                    //$("#" + fileId + "Anchor").show();
+                                    $("#" + fileId + "Anchor").append('<a href="' + '@Url.Content("~/")' + Url + '" target="_blank" class="btn btn-warning anchor"><i class="fa fa-download"></i></a>');
+                                    swal("", "File upload successfully. ", "success")
+                                }
+                                else {
+                                    swal("", response.mesg, "error")
+                                }
+                            }
+                            else {
+                                swal("", "Fail to Upload File", "error")
+                            }
+                            return false;
+
+                        },
+                        error: function (e) {
+
+                            $("#divLoader").hide();
+                            swal("", "An Error Occured while uploading file", "error");
+                        }
+                    });
+
+                }
+                break;
+            default:
+                swal("", 'File should be in PDF/JPG/JPEG format./फाइल PDF/JPG/JPEG प्रारूप में होनी चाहिए।', "warning");
+                this.value = '';
+                return false;
+        }
+
+        }
+
+     function AddResearchpaper() {
+        debugger;
+        var PublicationTitle = $('#PublicationTitle').val();
+        var PublicationDate = $('#PublicationDate').val();
+        var Journal = $('#Journal').val();
+        var ISBN = $('#ISBN').val();
+         var PeerReviewedval = $('#PeerReviewed').val();
+         var PeerReviewed = $('#PeerReviewed option:selected').text();
+        var ImpactFactor = $('#ImpactFactor').val();
+        var NoOfAuther = $('#NoOfAuther').val();
+        var IsMainAuthorval = $('#IsMainAuthor').val();
+        var ReferredJournalval = $('#ReferredJournal').val();
+        var IsUGClistval = $('#IsUGClist').val();
+         var JournalIndexval = $('#JournalIndex').val();
+          var IsMainAuthor = $('#IsMainAuthor option:selected').text();
+        var ReferredJournal = $('#ReferredJournal option:selected').text();
+        var IsUGClist = $('#IsUGClist option:selected').text();
+        var JournalIndex = $('#JournalIndex option:selected').text();
+        var UGCSerialNo = $('#UGCSerialNo').val();
+       // var UploadAttachment = $('#UploadAttachment').val();
+         
+        var href = $('.anchor').attr('href');
+         if ($('#PublicationTitle').val() == "" || $('#PublicationTitle').val() == null || $('#PublicationTitle').val() == undefined) {
+                swal("", "please Enter Publication Title", "warning")
+                return false;
+            }
+            if ($('#PublicationDate').val() == "" || $('#PublicationDate').val() == null || $('#PublicationDate').val() == undefined) {
+                swal("", "Please enter Publication Date  ", "warning")
+                return false;
+            }
+            if ($('#Journal').val() == "" || $('#Journal').val() == null || $('#Journal').val() == undefined) {
+                swal("", "please enter Journal ", "warning")
+                return false;
+         }
+          if ($('#ISBN').val() == "" || $('#ISBN').val() == null || $('#ISBN').val() == undefined) {
+                swal("", "please enter ISBN ", "warning")
+                return false;
+         }
+         if ($('#PeerReviewed').val() == "" || $('#PeerReviewed').val() == null || $('#PeerReviewed').val() == undefined) {
+                swal("", "please select PeerReviewed ", "warning")
+                return false;
+         }
+            if ($('#ImpactFactor').val() == "" || $('#ImpactFactor').val() == null || $('#ImpactFactor').val() == undefined) {
+                swal("", "please Enter ImpactFactor", "warning")
+                return false;
+            }
+            if ($('#NoOfAuther').val() == "" || $('#NoOfAuther').val() == null || $('#NoOfAuther').val() == undefined) {
+                swal("", "Please enter NoOfAuther  ", "warning")
+                return false;
+            }
+            if ($('#IsMainAuthor').val() == "" || $('#IsMainAuthor').val() == null || $('#IsMainAuthor').val() == undefined) {
+                swal("", "please select MainAuthor ", "warning")
+                return false;
+         }
+          if ($('#ReferredJournal').val() == "" || $('#ReferredJournal').val() == null || $('#ReferredJournal').val() == undefined) {
+                swal("", "please select ReferredJournal ", "warning")
+                return false;
+         }
+         if ($('#IsUGClist').val() == "" || $('#IsUGClist').val() == null || $('#IsUGClist').val() == undefined) {
+                swal("", "please Upload   IsUGClist ", "warning")
+                return false;
+         }
+         if ($('#JournalIndex').val() == "" || $('#JournalIndex').val() == null || $('#JournalIndex').val() == undefined) {
+                swal("", "please select JournalIndex ", "warning")
+                return false;
+         }
+         //if ($('#UGCSerialNo').val() == "" || $('#UGCSerialNo').val() == null || $('#UGCSerialNo').val() == undefined) {
+         //       swal("", "please enter UGCSerialNo ", "warning")
+         //       return false;
+         //}
+         if ($('#UploadAttachment').val() == "" || $('#UploadAttachment').val() == null || $('#UploadAttachment').val() == undefined) {
+                swal("", "please Upload Attachment ", "warning")
+                return false;
+            }            
+             
+
+        var row = '<tr><td class="PublicationTitle">' + PublicationTitle + '</td><td class="PublicationDate">' + PublicationDate + '</td><td class="Journal">' + Journal + '</td><td class="ISBN">' + ISBN + '</td><td class="PeerReviewed">' + PeerReviewed +  '</td><td class="PeerReviewedval d-none">' + PeerReviewedval +  '</td><td class="IsMainAuthorval d-none">' + IsMainAuthorval +  '</td><td class="ReferredJournalval d-none">' + ReferredJournalval +  '</td><td class="IsUGClistval d-none">' + IsUGClistval +  '</td><td class="JournalIndexval d-none">' + JournalIndexval +  '</td><td class="ImpactFactor">' + ImpactFactor + '</td><td class="NoOfAuther">' + NoOfAuther + '</td><td class="IsMainAuthor">' + IsMainAuthor + '</td><td class="ReferredJournal">' + ReferredJournal + '</td><td class="IsUGClist">' + IsUGClist + '</td><td class="UGCSerialNo d-none">' + UGCSerialNo + '</td><td class="JournalIndex">' + JournalIndex + '</td><td><span class="input-group-text btn-download" href=' + href +'><a href=' + href +' target="_blank" class="btn btn-warning dldbtn"><i class="fa fa-download"></i></a></span></td></tr>';
+
+        $('#ResearchPaper').append(row);
+        $('#PublicationTitle').val('');
+        $('#PublicationDate').val('');
+        $('#Journal').val('');
+        $('#ISBN').val('');
+         $('#PeerReviewed').val('');
+          $('#ImpactFactor').val('');
+        $('#NoOfAuther').val('');
+        $('#IsMainAuthor').val('');
+        $('#ReferredJournal').val('');
+         $('#IsUGClist').val('');
+          $('#JournalIndex').val('');
+        $('#UGCSerialNo').val('');
+        $('#UploadAttachment').val('');      
+        }
+
+
+    function Savedata() {
+        debugger;        
+       
+        var model = {
+            ResearchPaperList: [],   
+        }
+        var entrylist = [];        
+        $('#tab #ResearchPaper tr').each(function (i, d) { 
+            var ResearchPaperEntry = {}; 
+            ResearchPaperEntry.PublicationTitle = $(this).find('.PublicationTitle').text();
+            ResearchPaperEntry.PublicationDate = $(this).find('.PublicationDate').text();
+            ResearchPaperEntry.Journal = $(this).find('.Journal').text();
+            ResearchPaperEntry.ISBN = $(this).find('.ISBN').text();
+            ResearchPaperEntry.PeerReviewed = $(this).find('.PeerReviewedval').text();
+            ResearchPaperEntry.ImpactFactor = $(this).find('.ImpactFactor').text();
+            ResearchPaperEntry.NoOfAuther = $(this).find('.NoOfAuther').text();
+            ResearchPaperEntry.IsMainAuthor = $(this).find('.IsMainAuthorval').text();
+            ResearchPaperEntry.ReferredJournal =$(this).find('.ReferredJournalval').text();
+            ResearchPaperEntry.IsUGClist =  $(this).find('.IsUGClistval').text();
+            ResearchPaperEntry.JournalIndex = $(this).find('.JournalIndexval').text();
+            ResearchPaperEntry.UGCSerialNo = $(this).find('.UGCSerialNo').text();       
+            ResearchPaperEntry.UploadAttachment = $(this).find('.dldbtn').attr('href');
+            entrylist.push(ResearchPaperEntry)
+        });
+         if (entrylist == 0) {
+             swal("", "please fill all field", "warning")
+             return false;
+         }
+         else {
+
+         }
+        
+        if (entrylist != 0 ) {
+            $.each(entrylist, function (key, value) {
+
+                model.ResearchPaperList.push(value);
+            })
+            
+            $.ajax({
+                type: 'post',
+                url: '/Applicant/SaveResearchPaper',
+                data: JSON.stringify(model),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                     
+                        if (data.ResponseCode == 0) {
+                            swal("", data.ResponseMessage, "success")
+
+                            $('#body_BtnSaveNext').removeClass('d-none')
+                        $('#ResearchPaper').empty();
+                        }
+
+                        else {
+                           swal("", data.ResponseMessage, "warning")
+                       
+                    }
+                }
+
+
+            })
+        }
+
+         
+        }
+</script>

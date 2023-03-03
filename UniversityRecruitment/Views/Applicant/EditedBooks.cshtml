@@ -1,4 +1,4 @@
-﻿
+﻿@model UniversityRecruitment.Models.Editedbooks
 @{
     ViewBag.Title = "EditedBooks";
     Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
@@ -41,38 +41,51 @@
                 <div class="card-body">
 
                     <div class="row">
-                        <div class="col-sm-5">
+                        <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="" id="" class="col-sm-12">Title with page nos.</label>
+                                <label for="" id="" class="col-sm-12">Category</label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text" id="" class="form-control">
+                                    @Html.TextBoxFor(m => m.Category, new { @class = "form-control", @Id = "Category", @name = "Category" })
+                                    @*<input name="" type="text" id="" class="form-control">*@
                                     @*<span id="body_reqBookTitle" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Title with page nos.</label>
+                                <div class="col-sm-12">
+                                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @Id = "Title", @name = "Title" })
+                                    @*<input name="" type="text" id="" class="form-control">*@
+                                    @*<span id="body_reqBookTitle" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Date/Year of Publication</label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text" id="" class="form-control">
+                                    @Html.TextBoxFor(m => m.PublicationDate, new { @class = "form-control", @Id = "PublicationDate", @name = "PublicationDate" })
+                                    @*<input name="" type="text" id="" class="form-control">*@
                                     @*<span id="" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Name of the Publisher</label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text" id="" class="form-control">
+                                    @Html.TextBoxFor(m => m.PublisherName, new { @class = "form-control", @Id = "PublisherName", @name = "PublisherName" })
+                                    @*<input name="" type="text" id="" class="form-control">*@
                                     @*<span id="" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Publisher Type</label>
                                 <div class="col-sm-12">
-                                    <select name="" id="" class="form-control">
+                                    <select name="" id="publisherType" class="form-control">
                                         <option value="-1">-- select --</option>
                                         <option value="National">National</option>
                                         <option value="International">International</option>
@@ -89,7 +102,8 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">ISSN / ISBN No.</label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text" id="" class="form-control">
+                                    @Html.TextBoxFor(m => m.ISBNNo, new { @class = "form-control", @Id = "ISBNNo", @name = "ISBNNo" })
+                                    @*<input name="" type="text" id="" class="form-control">*@
                                     @*<span id="body_reqIsbn" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -98,7 +112,8 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">No. of co-authors</label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text" id="" class="form-control">
+                                    @Html.TextBoxFor(m => m.NoOfCoAuther, new { @class = "form-control", @Id = "NoOfCoAuther", @name = "NoOfCoAuther" })
+                                    @*<input name="" type="text" id="" class="form-control">*@
                                     @*<span id="body_reqNoOfCoAuthor" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -107,7 +122,7 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Whether you are main author</label>
                                 <div class="col-sm-12">
-                                    <select name="" id="" class="form-control">
+                                    <select name="" id="IsMainAuther" class="form-control">
                                         <option value="-1">-- select --</option>
                                         <option value="true">Yes</option>
                                         <option value="false">No</option>
@@ -121,7 +136,12 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Upload Scanned Attachment</label>
                                 <div class="col-sm-12">
-                                    <input type="file" name="" id="" class="form-control">
+                                    @*<input type="file" name="" id="" class="form-control">*@
+                                    <div class="col-sm-12">
+                                        <input type="file" class="form-control" id="UploadAttachment" onchange="Fileupload(this)">
+                                        <span id="UploadAttachmentAnchor" style="display: none;" class="input-group-text btn-download"></span>
+                                    </div>
+                                    <span class="smallpdf">(File Format:JPG/JPEG and PDF । Max File Size: 2 MB)</span>
                                     @*<span id="body_reqBookUpload" class="validator" style="display:none;">upload file</span>*@
                                 </div>
                             </div>
@@ -130,7 +150,7 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">&nbsp;</label>
                                 <div class="col-sm-12">
-                                    <a id="body_btnBookAdd" class="btn btn-primary btn-shadow" href=""><span class="fa fa-plus-circle"></span> Add</a>
+                                    <a id="body_btnBookAdd" class="btn btn-primary btn-shadow" href="#" onclick="AddEditedBook();"><span class="fa fa-plus-circle"></span> Add</a>
                                 </div>
                             </div>
                         </div>
@@ -147,9 +167,10 @@
                         <div class="col-sm-12">
 
                             <div class="table-responsive">
-                                <table class="table full-color-table full-info-table hover-table">
+                                <table class="table full-color-table full-info-table hover-table" id="tab">
                                     <thead>
                                         <tr class="">
+                                            <th>Category</th>
                                             <th>Title with page nos.</th>
                                             <th>Date of publication</th>
                                             <th>Name of the Publisher</th>
@@ -157,25 +178,14 @@
                                             <th>ISSN / ISBN No.</th>
                                             <th>No. of co-authors</th>
                                             <th>Whether main Author</th>
-                                            <th>API Score</th>
+                                            @*<th>API Score</th>*@
                                             <th>Attachment</th>
-                                            <th></th>
+                                            @*<th></th>*@
                                         </tr>
                                     </thead>
-                                    @*<tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Nigam</td>
-                                                <td>Eichmann</td>
-                                                <td>@@Genelia</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Roshan</td>
-                                                <td>Rogahn</td>
-                                                <td>@@Hritik</td>
-                                            </tr>
-                                        </tbody>*@
+                                    <tbody id="BookTable">
+                                           
+                                        </tbody>
                                 </table>
                             </div>
 
@@ -193,8 +203,8 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-12">
-                        <a id="" class="btn btn-warning text-dark shadow" href=""><span class="fa fa-save"></span> Save</a>
-                        <a id="" class="btn btn-success text-dark shadow pull-right" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
+                        <a id="" class="btn btn-warning text-dark shadow" href="" onclick="Savedata()"><span class="fa fa-save"></span> Save</a>
+                        <a id="body_BtnSaveNext" class="btn btn-success text-dark shadow pull-right d-none" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
                     </div>
                 </div>
             </div>
@@ -202,3 +212,205 @@
     </div>
 </div>
 
+<script>
+      function Fileupload(obj) {
+        debugger;
+        var filename = $(obj)[0].files[0].name;
+        var fileId = $(obj).attr("id");
+        var ext = obj.value.match(/\.(.+)$/)[1];
+
+        switch (ext) {
+            case 'pdf':
+            case 'jpg':
+            case 'jpeg':
+                var fileSize = ($("#" + fileId)[0].files[0].size / 1024 / 1024);
+                if (fileSize > 2) {
+                    swal("", "File size should not exceed 2 MB.\r\nफाइल का साइज़ 2 MB से अधिक नहीं होना चाहिए।", "warning");
+                    return false;
+                }
+                else {
+                    var data = new FormData();
+                    var files = $("#" + fileId).get(0).files;
+                    if (files.length > 0) {
+                        data.append("File", files[0]);
+                    }
+                    $("#divLoader").show();
+                    $.ajax({
+                        url: '@Url.Action("UploadResearchPaperFile", "Applicant")',
+                        type: "POST",
+                        processData: false,
+                        contentType: false,
+                        data: data,
+                        success: function (response) {
+                            $("#divLoader").hide();
+
+                            if (response != null) {
+                                if (response.result) {
+                                    $("#fileName" + fileId).text(filename);
+                                    $("#" + fileId + "Path").val(response.fpath);
+                                    var Url = response.fpath.replace('~/', '');
+                                    $("#" + fileId + "Anchor").empty();
+                                    $("#" + fileId + "Anchor").attr('href', Url);
+                                    //$("#" + fileId + "Anchor").show();
+                                    $("#" + fileId + "Anchor").append('<a href="' + '@Url.Content("~/")' + Url + '" target="_blank" class="btn btn-warning anchor"><i class="fa fa-download"></i></a>');
+                                    swal("", "File upload successfully. ", "success")
+                                }
+                                else {
+                                    swal("", response.mesg, "error")
+                                }
+                            }
+                            else {
+                                swal("", "Fail to Upload File", "error")
+                            }
+                            return false;
+
+                        },
+                        error: function (e) {
+
+                            $("#divLoader").hide();
+                            swal("", "An Error Occured while uploading file", "error");
+                        }
+                    });
+
+                }
+                break;
+            default:
+                swal("", 'File should be in PDF/JPG/JPEG format./फाइल PDF/JPG/JPEG प्रारूप में होनी चाहिए।', "warning");
+                this.value = '';
+                return false;
+        }
+
+        }
+
+
+     function AddEditedBook() {
+        debugger;
+        var Title = $('#Title').val();
+        var PublicationDate = $('#PublicationDate').val();
+        var PublisherName = $('#PublisherName').val();
+        var publisherType = $('#publisherType').val();
+         var ISBNNo = $('#ISBNNo').val();
+         var IsMainAuthertext = $('#IsMainAuther option:selected').text();
+        var NoOfCoAuther = $('#NoOfCoAuther').val();
+         var IsMainAuther = $('#IsMainAuther').val();
+         var Category = $('#Category').val();
+        var UploadAttachment = $('#UploadAttachment').val();
+       
+         
+        var href = $('.anchor').attr('href');
+         if ($('#Title').val() == "" || $('#Title').val() == null || $('#Title').val() == undefined) {
+                swal("", "please Enter Title", "warning")
+                return false;
+            }
+            if ($('#PublicationDate').val() == "" || $('#PublicationDate').val() == null || $('#PublicationDate').val() == undefined) {
+                swal("", "Please enter Publication Date  ", "warning")
+                return false;
+            }
+            if ($('#PublisherName').val() == "" || $('#PublisherName').val() == null || $('#PublisherName').val() == undefined) {
+                swal("", "please enter PublisherName ", "warning")
+                return false;
+         }
+          if ($('#publisherType').val() == "" || $('#publisherType').val() == null || $('#publisherType').val() == undefined) {
+                swal("", "please select publisher Type ", "warning")
+                return false;
+         }
+         if ($('#ISBNNo').val() == "" || $('#ISBNNo').val() == null || $('#ISBNNo').val() == undefined) {
+                swal("", "please enter ISBNNo ", "warning")
+                return false;
+         }
+            if ($('#NoOfCoAuther').val() == "" || $('#NoOfCoAuther').val() == null || $('#NoOfCoAuther').val() == undefined) {
+                swal("", "please Enter NoOfCoAuther", "warning")
+                return false;
+            }
+            if ($('#IsMainAuther').val() == "" || $('#IsMainAuther').val() == null || $('#IsMainAuther').val() == undefined) {
+                swal("", "Please select IsMainAuther  ", "warning")
+                return false;
+            }
+            if ($('#UploadAttachment').val() == "" || $('#UploadAttachment').val() == null || $('#UploadAttachment').val() == undefined) {
+                swal("", "please upload Attachment ", "warning")
+                return false;
+         }                         
+              if ($('#Category').val() == "" || $('#Category').val() == null || $('#Category').val() == undefined) {
+                swal("", "please enter Category ", "warning")
+                return false;
+         }                         
+             
+
+        var row = '<tr><td class="Category">' + Category + '</td><td class="Title">' + Title + '</td><td class="PublicationDate">' + PublicationDate + '</td><td class="PublisherName">' + PublisherName + '</td><td class="publisherType">' + publisherType + '</td><td class="ISBNNo">' + ISBNNo +  '</td><td class="NoOfCoAuther">' + NoOfCoAuther + '</td><td class="IsMainAuther d-none">' + IsMainAuther + '</td><td class="IsMainAuthertext">' + IsMainAuthertext + '</td><td><span class="input-group-text btn-download" href=' + href +'><a href=' + href +' target="_blank" class="btn btn-warning dldbtn"><i class="fa fa-download"></i></a></span></td></tr>';
+
+        $('#BookTable').append(row);
+         $('#Title').val('');
+          $('#Category').val('');
+        $('#PublicationDate').val('');
+        $('#PublisherName').val('');
+        $('#publisherType').val('');
+         $('#ISBNNo').val('');
+          $('#NoOfCoAuther').val('');
+        $('#IsMainAuther').val('');
+        $('#UploadAttachment').val('');
+              
+        }
+
+     function Savedata() {
+        debugger;        
+       
+        var model = {
+            EditedBookList: [],   
+        }
+        var entrylist = [];        
+        $('#tab #BookTable tr').each(function (i, d) { 
+            var EditedBookEntry = {}; 
+            EditedBookEntry.Title = $(this).find('.Title').text();
+            EditedBookEntry.PublicationDate = $(this).find('.PublicationDate').text();
+            EditedBookEntry.PublisherName = $(this).find('.PublisherName').text();
+            EditedBookEntry.publisherType = $(this).find('.publisherType').text();
+            EditedBookEntry.ISBNNo = $(this).find('.ISBNNo').text();
+            EditedBookEntry.NoOfCoAuther = $(this).find('.NoOfCoAuther').text();
+            EditedBookEntry.IsMainAuther = $(this).find('.IsMainAuther').text();   
+             EditedBookEntry.Category = $(this).find('.Category').text();   
+           
+            EditedBookEntry.UploadAttachment = $(this).find('.dldbtn').attr('href');
+            entrylist.push(EditedBookEntry)
+        });
+         if (entrylist == 0) {
+             swal("", "please fill all field", "warning")
+             return false;
+         }
+         else {
+
+         }
+        
+        if (entrylist != 0 ) {
+            $.each(entrylist, function (key, value) {
+
+                model.EditedBookList.push(value);
+            })
+            
+            $.ajax({
+                type: 'post',
+                url: '/Applicant/SaveEditedBook',
+                data: JSON.stringify(model),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                     
+                        if (data.ResponseCode == 0) {
+                            swal("", data.ResponseMessage, "success")
+
+                            $('#body_BtnSaveNext').removeClass('d-none')
+                        $('#BookTable').empty();
+                        }
+
+                        else {
+                           swal("", data.ResponseMessage, "warning")
+                       
+                    }
+                }
+
+
+            })
+        }
+
+         
+        }
+</script>

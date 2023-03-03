@@ -300,6 +300,28 @@ namespace UniversityRecruitment.Controllers
         {
             return View();
         }
+        public JsonResult SaveResearchPaper(ResearchPaper model)
+        {
+
+            AccountDb repo = new AccountDb();
+            ResearchPaper obj = new ResearchPaper();
+            model.ID = Convert.ToInt32(sm.userId);
+            model.Ipaddress = Common.GetIPAddress();
+            obj = repo.SaveResearchPaper(model);
+            return Json(obj, JsonRequestBehavior.AllowGet);
+
+        }
+        public JsonResult SaveEditedBook(Editedbooks model)
+        {
+
+            AccountDb repo = new AccountDb();
+            Editedbooks obj = new Editedbooks();
+            model.Id = Convert.ToInt32(sm.userId);
+            model.Ipaddress = Common.GetIPAddress();
+            obj = repo.SaveEditBook(model);
+            return Json(obj, JsonRequestBehavior.AllowGet);
+
+        }
 
         public ActionResult BookAuthored()
         {
@@ -472,6 +494,72 @@ namespace UniversityRecruitment.Controllers
         public JsonResult UploadAwardFile(HttpPostedFileBase File)
         {
             string Dirpath = "~/Content/writereaddata/Award/";
+            string path = "";
+            string filename = File.FileName;
+            bool res = false;
+            string msg = "";
+            if (!Directory.Exists(Server.MapPath(Dirpath)))
+            {
+                Directory.CreateDirectory(Server.MapPath(Dirpath));
+            }
+            string ext = Path.GetExtension(File.FileName);
+            var status = com.ValidateImagePDF_FileExtWithSize(File, 2048);
+            if (status == "Valid")
+            {
+
+                filename = DateTime.Now.ToString("yyyyMMddHHmmssffff") + "_" + filename;
+                string completepath = Path.Combine(Server.MapPath(Dirpath), filename);
+                if (System.IO.File.Exists(completepath))
+                {
+                    System.IO.File.Delete(completepath);
+                }
+
+                File.SaveAs(completepath);
+                path = Dirpath + filename;
+                res = true;
+            }
+            else
+            {
+                msg = status;
+            }
+            return Json(new { result = res, fpath = path, mesg = msg });
+        }
+        public JsonResult UploadResearchPaperFile(HttpPostedFileBase File)
+        {
+            string Dirpath = "~/Content/writereaddata/Researchpaper/";
+            string path = "";
+            string filename = File.FileName;
+            bool res = false;
+            string msg = "";
+            if (!Directory.Exists(Server.MapPath(Dirpath)))
+            {
+                Directory.CreateDirectory(Server.MapPath(Dirpath));
+            }
+            string ext = Path.GetExtension(File.FileName);
+            var status = com.ValidateImagePDF_FileExtWithSize(File, 2048);
+            if (status == "Valid")
+            {
+
+                filename = DateTime.Now.ToString("yyyyMMddHHmmssffff") + "_" + filename;
+                string completepath = Path.Combine(Server.MapPath(Dirpath), filename);
+                if (System.IO.File.Exists(completepath))
+                {
+                    System.IO.File.Delete(completepath);
+                }
+
+                File.SaveAs(completepath);
+                path = Dirpath + filename;
+                res = true;
+            }
+            else
+            {
+                msg = status;
+            }
+            return Json(new { result = res, fpath = path, mesg = msg });
+        }
+        public JsonResult UploadEditedBookFile(HttpPostedFileBase File)
+        {
+            string Dirpath = "~/Content/writereaddata/EditedBook/";
             string path = "";
             string filename = File.FileName;
             bool res = false;
