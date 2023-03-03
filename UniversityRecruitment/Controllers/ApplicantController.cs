@@ -1035,5 +1035,20 @@ namespace UniversityRecruitment.Controllers
             }
             return Json(new { result = res, fpath = path, mesg = msg });
         }
+
+
+        [HttpPost]
+        public JsonResult BookAuthored(bookAuthoredModel model)
+        {
+            ApplicantDB repo = new ApplicantDB();
+            bookAuthoredModel obj = new bookAuthoredModel();
+            model.ip = Common.GetIPAddress();
+            model.userId = sm.userId;
+            if (model.lst != null && model.lst.Count() > 0)
+            {
+                obj = repo.saveBookAuthor(model);
+            }
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -566,6 +566,13 @@ namespace UniversityRecruitment.DBContext
                 var param = new DynamicParameters();
                 _objlist = _dapper.GetAll<SelectListItem>("proc_ActivitieList", param);
 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return _objlist;
+        }
 
 
         public ProjectConsultancyModel saveProjectConsultancy(ProjectConsultancyModel model)
@@ -645,6 +652,9 @@ namespace UniversityRecruitment.DBContext
             }
 
         }
+
+        #endregion
     }
 
 }
+
