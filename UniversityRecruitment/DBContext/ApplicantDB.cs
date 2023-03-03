@@ -127,7 +127,7 @@ namespace UniversityRecruitment.DBContext
                 dynamicParameters.Add("MailingCityId", model.MCityId);
                 dynamicParameters.Add("MailingCityOther", model.SotherCity);
                 dynamicParameters.Add("MailingPinCode", model.MPincode);
-                dynamicParameters.Add("HasBlindness") ;
+                dynamicParameters.Add("HasBlindness");
                 dynamicParameters.Add("BlindnessPercent");
                 dynamicParameters.Add("BlindnessDocumentPath");
                 dynamicParameters.Add("HasHearing");
@@ -136,8 +136,8 @@ namespace UniversityRecruitment.DBContext
                 dynamicParameters.Add("HasLocomotor");
                 dynamicParameters.Add("LocomotorPercentage");
                 dynamicParameters.Add("LocomotorDocumentPath");
-                dynamicParameters.Add("CategoryDocumentPath" ,"");
-                dynamicParameters.Add("AadharDocumentPath", model.AdharImage);              
+                dynamicParameters.Add("CategoryDocumentPath", "");
+                dynamicParameters.Add("AadharDocumentPath", model.AdharImage);
 
                 var res = _dapper.ExecuteGet<T>("ManageApplicantPersonal", dynamicParameters);
                 return res;
@@ -210,7 +210,7 @@ namespace UniversityRecruitment.DBContext
                         dynamicParameters.Add("DocumentPath", itm.DocumentPath, DbType.String);
                         dynamicParameters.Add("AwardDate", itm.AwardDate, DbType.String);
                         res = _dapper.ExecuteGet<ResearchGuidance>("ManageApplicantResearchGuidance", dynamicParameters);
-                       
+
                     }
                     catch (Exception ex)
                     {
@@ -219,6 +219,63 @@ namespace UniversityRecruitment.DBContext
                 }
             }
             return res;
+        }
+
+        public Referee SaveReferee(Referee model)
+        {
+            var res = new Referee();
+            if (model.referee.Count() > 0)
+            {
+                foreach (var itm in model.referee)
+                {
+                    try
+                    {
+                        DynamicParameters dynamicParameters = new DynamicParameters();
+                        dynamicParameters.Add("Id", model.Id, DbType.Int64);
+                        dynamicParameters.Add("Name", itm.refereeName, DbType.String);
+                        dynamicParameters.Add("Address", itm.address, DbType.String);
+                        dynamicParameters.Add("Email", itm.emailId, DbType.String);
+                        dynamicParameters.Add("Mobile", itm.Mobile, DbType.String);
+                        dynamicParameters.Add("Phone", itm.landline, DbType.String);
+                        dynamicParameters.Add("Fax", itm.Fax, DbType.String);
+                        dynamicParameters.Add("IpAddress", model.IpAddress, DbType.String);
+                        res = _dapper.ExecuteGet<Referee>("ManageApplicantReferee", dynamicParameters);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        throw;
+                    }
+                }
+            }
+            return res;
+        }
+
+        public Acceptance SaveAcceptance(Acceptance model)
+        {
+            try
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("Id", model.Id, DbType.Int64);
+                dynamicParameters.Add("Salary", model.Salary, DbType.Boolean);
+                dynamicParameters.Add("SalaryDetail", model.SalaryDetail, DbType.String);
+                dynamicParameters.Add("AcademicBreak", model.AcademicBreak, DbType.Boolean);
+                dynamicParameters.Add("AcademicBreakDetail", model.AcademicBreakDetail, DbType.String);
+                dynamicParameters.Add("Law", model.Law, DbType.Boolean);
+                dynamicParameters.Add("LawDetail", model.LawDetail, DbType.String);
+                dynamicParameters.Add("CaseFiled", model.CaseFiled, DbType.Boolean);
+                dynamicParameters.Add("CaseDetail", model.CaseDetail, DbType.String);
+                dynamicParameters.Add("OtherInformation", model.OtherInformation, DbType.String);
+                dynamicParameters.Add("NocDocumentPath", model.NocDocumentPath, DbType.String);
+                dynamicParameters.Add("EwsDocumentPath", model.EwsDocumentPath, DbType.String);
+                dynamicParameters.Add("IpAddress", model.IpAddress, DbType.String);
+                var res = _dapper.ExecuteGet<Acceptance>("ManageApplicantAcceptance", dynamicParameters);
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
     }

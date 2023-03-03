@@ -150,11 +150,42 @@ namespace UniversityRecruitment.Controllers
         {
             return View();
         }
+        
+        public JsonResult saveAcceptance(Referee model)
+        {
+            Acceptance obj = new Acceptance();
+            model.Id = sm.userId;
+            model.IpAddress = Common.GetIPAddress();
+            obj.Salary = model.Salary;
+            obj.SalaryDetail = model.SalaryDetail;
+            obj.AcademicBreak = model.AcademicBreak;
+            obj.AcademicBreakDetail = model.AcademicBreakDetail;
+            obj.Law = model.Law;
+            obj.LawDetail = model.LawDetail;
+            obj.CaseFiled = model.CaseFiled;
+            obj.CaseDetail = model.CaseDetail;
+            obj.OtherInformation = model.OtherInformation;
+            obj.NocDocumentPath = model.NocDocumentPath;
+            obj.EwsDocumentPath = model.EwsDocumentPath;
+
+            if (model.referee.Count() > 0 && model.referee != null)
+            {
+                model = apdb.SaveReferee(model);
+                obj = apdb.SaveAcceptance(obj);
+            }
+            else
+            {
+                model.ResponseMessage = "Something went wrong !";
+            }
+
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult ResearchGuidance()
         {
             return View();
         }
+
         public JsonResult SaveResearchGuidances(ResearchGuidance model)
         {
             if (model.researchGuidances.Count() > 0 && model.researchGuidances != null)
@@ -172,6 +203,40 @@ namespace UniversityRecruitment.Controllers
         public JsonResult UploadFile(HttpPostedFileBase File)
         {
             string Dirpath = "~/Content/writereaddata/ResearchGuidance/";
+            string path = "";
+            string filename = File.FileName;
+            bool res = false;
+            string msg = "";
+            if (!Directory.Exists(Server.MapPath(Dirpath)))
+            {
+                Directory.CreateDirectory(Server.MapPath(Dirpath));
+            }
+            string ext = Path.GetExtension(File.FileName);
+            var status = com.ValidateImagePDF_FileExtWithSize(File, 2048);
+            if (status == "Valid")
+            {
+
+                filename = DateTime.Now.ToString("yyyyMMddHHmmssffff") + "_" + filename;
+                string completepath = Path.Combine(Server.MapPath(Dirpath), filename);
+                if (System.IO.File.Exists(completepath))
+                {
+                    System.IO.File.Delete(completepath);
+                }
+
+                File.SaveAs(completepath);
+                path = Dirpath + filename;
+                res = true;
+            }
+            else
+            {
+                msg = status;
+            }
+            return Json(new { result = res, fpath = path, mesg = msg });
+        }
+
+        public JsonResult UploadFileAcceptance(HttpPostedFileBase File)
+        {
+            string Dirpath = "~/Content/writereaddata/Acceptance/";
             string path = "";
             string filename = File.FileName;
             bool res = false;
@@ -222,7 +287,6 @@ namespace UniversityRecruitment.Controllers
             return Json( JsonRequestBehavior.AllowGet);
 
         }
-
 
         public JsonResult UploadExperienceFile(HttpPostedFileBase File)
         {

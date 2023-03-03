@@ -272,7 +272,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Upload NOC certificate from your present employer</label>
                                 <div class="col-sm-12">
-                                    <input type="file" class="form-control" id="noc">
+                                    <input type="file" class="form-control" id="noc" onchange="Fileupload(this)">
                                     <span id="nocAnchor" style="display: none;" class="input-group-text btn-download"></span>
                                 </div>
                                 <span class="smallpdf">(File Format:JPG/JPEG and PDF । Max File Size: 2 MB)</span>
@@ -292,7 +292,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <a class="btn btn-warning text-dark shadow" href="#" onclick="finalSubmit()"><span class="fa fa-save"></span> Save</a>
-                        <a class="btn btn-success text-dark shadow pull-right btnSubmit" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
+                        <a id="btnSaveNext" class="btn btn-success text-dark shadow pull-right" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
                     </div>
                 </div>
             </div>
@@ -304,7 +304,7 @@
 
     $(document).ready(function () {
 
-        $('.btnSubmit').prop('disabled', true);
+        $('#btnSaveNext').hide();
 
     });
 
@@ -318,9 +318,9 @@
         var landline = $('#landline').val();
         var fax = $("#fax").val();
 
-        if (refereeName != "-1" && refereeName != null && refereeName != undefined || address != "" && address != null && address != undefined || emailId != "" && emailId != null && emailId != undefined || mobileNo != "-1" && mobileNo != null && mobileNo != undefined || landline != "-1" && landline != null && landline != undefined || fax != "-1" && fax != null && fax != undefined) {
+        if (refereeName != "" && refereeName != null && refereeName != undefined || address != "" && address != null && address != undefined || emailId != "" && emailId != null && emailId != undefined || mobileNo != "" && mobileNo != null && mobileNo != undefined || landline != "" && landline != null && landline != undefined || fax != "" && fax != null && fax != undefined) {
 
-            var row = "<tr><td class='refereeName'>" + refereeName + "</td><td class='address'>" + address + "</td><td class='emailIdAndMobile'>" + emailId + "'/'" + mobileNo + "</td><td class='landlineAndFax'>" + landline + "'/'" + fax + "</td></tr>";
+            var row = "<tr><td class='refereeName'>" + refereeName + "</td><td class='address'>" + address + "</td><td class='emailIdAndMobile'>" + emailId + "/" + mobileNo + "<input type='hidden' value=" + emailId + " class='emailId'/><input type='hidden' value=" + mobileNo + " class='mobileNo'/></td><td class='landlineAndFax'>" + landline + "/" + fax + "<input type='hidden' value=" + landline + " class='landline'/><input type='hidden' value=" + fax + " class='fax'/></td></tr>";
 
             $('#addMoreData').append(row);
 
@@ -365,7 +365,7 @@
                     }
                     $("#divLoader").show();
                     $.ajax({
-                        url: '@Url.Action("UploadFile", "Applicant")',
+                        url: '@Url.Action("UploadFileAcceptance", "Applicant")',
                         type: "POST",
                         processData: false,
                         contentType: false,
@@ -416,31 +416,45 @@
         debugger;
         var IsPass = false;
         var model = {
-            researchGuidances: []
+            referee: []
         }
-        var researchGuidancesList = [];
+        var refereeList = [];
 
         $('#addMoreData tr').each(function (i, d) {
 
-            var researchGuidances = {};
-            researchGuidances.Degree = $(this).find('.DegreeText').text();
-            researchGuidances.Subject = $(this).find('.CourseAndSubject').text();
-            researchGuidances.NoOfStudents = $(this).find(".NoOfStudents").text();
-            researchGuidances.ThesisSubmitted = $(this).find(".ThesisText").text();
-            researchGuidances.DegreeAwarded = $(this).find(".AwardedText").text();
-            researchGuidances.DocumentPath = $(this).find('.dnldbtn').attr('href');
+            var referee = {};
 
-            researchGuidancesList.push(researchGuidances);
+            referee.refereeName = $(this).find('.refereeName').text();
+            referee.address = $(this).find('.address').text();
+            referee.emailId = $(this).find(".emailId").val();
+            referee.Mobile = $(this).find(".mobileNo").val();
+            referee.landline = $(this).find(".landline").val();
+            referee.Fax = $(this).find(".fax").val();
+            /*referee.NocDocumentPath = $('.anchor').attr('href');*/
+
+
+            model.Salary = $("#salaryGrade").val();
+            model.SalaryDetail = $('#salaryGradeText').val();
+            model.AcademicBreak = $('#break').val();
+            model.AcademicBreakDetail = $('#breakText').val();
+            model.Law = $('#punished').val();
+            model.LawDetail = $('#punishedText').val();
+            model.CaseFiled = $('#courtCase').val();
+            model.CaseDetail = $('#CaseText').val();
+            model.OtherInformation = $('#otherInfo').val();
+            model.NocDocumentPath = $('.anchor').attr('href');
+
+            refereeList.push(referee);
             IsPass = true;
 
         });
-        if (researchGuidancesList.length != 0) {
+        if (refereeList.length != 0) {
             if (IsPass != false) {
-                $.each(researchGuidancesList, function (key, value) {
-                    model.researchGuidances.push(value);
+                $.each(refereeList, function (key, value) {
+                    model.referee.push(value);
                 });
                 $.ajax({
-                    url: "@Url.Action("SaveResearchGuidances", "Applicant")",
+                    url: "@Url.Action("saveAcceptance", "Applicant")",
                     type: "POST",
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(model),
@@ -454,6 +468,21 @@
                                 buttons: {
                                     Ok: function () {
                                         $('#addMoreData').html('');
+                                        $("#salaryGrade").val('-1');
+                                        $('#salaryGradeText').val('');
+                                        $('#break').val('-1');
+                                        $('#breakText').val('');
+                                        $('#punished').val('-1');
+                                        $('#punishedText').val('');
+                                        $('#courtCase').val('-1');
+                                        $('#CaseText').val('');
+                                        $('#otherInfo').val('');
+                                        $('.anchor').attr('');
+                                        var $el = $('#noc');
+                                        $el.wrap('<form>').closest('form').get(0).reset();
+                                        $el.unwrap();
+
+                                        $('#btnSaveNext').show();
                                     }
                                 }
                             });
@@ -478,11 +507,10 @@
             }
             else {
                 swal("", 'Something went wrong !', "warning");
-                $('.btnSubmit').prop('disabled', false);
             }
         }
         else {
-            $('.btnSubmit').prop('disabled', false);
+            swal("", 'Add altleast one record .', "info");
         }
     }
 
