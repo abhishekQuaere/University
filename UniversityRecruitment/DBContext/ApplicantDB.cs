@@ -171,7 +171,7 @@ namespace UniversityRecruitment.DBContext
                 DynamicParameters dynamicParameters = new DynamicParameters();
                 dynamicParameters.Add("@ID", model.ID);
                 dynamicParameters.Add("@Photo", model.Photo);
-                dynamicParameters.Add("@Signature", model.Signature);  
+                dynamicParameters.Add("@Signature", model.Signature);
 
                 var res = _dapper.ExecuteGet<T>("Proc_UpdataImage_Signature", dynamicParameters);
                 return res;
@@ -385,7 +385,6 @@ namespace UniversityRecruitment.DBContext
 
         }
 
-
         public LecturesModel saveLectures(LecturesModel model)
         {
 
@@ -405,11 +404,11 @@ namespace UniversityRecruitment.DBContext
                         perm.Add("@Agency", model.lst[i].organizingBody);
                         perm.Add("@LectureLevel", model.lst[i].level);
                         perm.Add("@AcademicSession", model.lst[i].programDate);
-                       
-               
-                       
+
+
+
                         perm.Add("@DocumentPath", model.lst[i].attachment);
-                       
+
                         perm.Add("@IpAddress", model.ip);
                         reader = _dapper.ExecuteGet<LecturesModel>("[ManageApplicantInvitedLecture]", perm);
                     }
@@ -423,6 +422,140 @@ namespace UniversityRecruitment.DBContext
             }
 
         }
+
+        public dynamic PaymentReciept(string RefNo, long Id)
+        {
+            paymentRecieptListPara req = new paymentRecieptListPara();
+            PersontalDetails model = new PersontalDetails();
+
+            using (SqlConnection objConnection = new SqlConnection(DapperDbContext.connect()))
+            {
+                try
+                {
+                    req.Id = Id;
+                    req.RefNo = RefNo;
+
+                    var reader = objConnection.QueryMultiple("GetPaymentReceipt", req, commandType: System.Data.CommandType.StoredProcedure);
+                    var list = reader.Read<PersontalDetails>().FirstOrDefault();
+                    var list1 = reader.Read<FeeDetails>().FirstOrDefault();
+                    var list2 = reader.Read<AppliedForm>().ToList();
+
+                    model = list;
+                    model.feeDetails = list1;
+                    model.appliedForm = list2;
+
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                return model;
+            }
+
+        }
+
+        public ResearchDegree saveResearchDegree(ResearchDegree model)
+        {
+            var res = new ResearchDegree();
+            if (model.researchDegree.Count() > 0)
+            {
+                foreach (var itm in model.researchDegree)
+                {
+                    try
+                    {
+                        DynamicParameters dynamicParameters = new DynamicParameters();
+                        dynamicParameters.Add("Id", model.Id, DbType.Int64);
+                        dynamicParameters.Add("Degree", itm.Degree, DbType.String);
+                        dynamicParameters.Add("Title", itm.Title, DbType.String);
+                        dynamicParameters.Add("Subject", itm.Subject, DbType.String);
+                        dynamicParameters.Add("Marks", itm.Marks, DbType.Decimal);
+                        dynamicParameters.Add("YearOfAward", itm.YearOfAward, DbType.Int32);
+                        dynamicParameters.Add("University", itm.University, DbType.String);
+                        dynamicParameters.Add("DocumentPath", itm.DocumentPath, DbType.String);
+                        dynamicParameters.Add("PhdAwarded", itm.PhdAwarded, DbType.String);
+                        dynamicParameters.Add("PhdCertificatePath", itm.PhdCertificatePath == null ? itm.PhdCertificatePath = String.Empty : itm.PhdCertificatePath, DbType.String);
+                        dynamicParameters.Add("IpAddress", model.IpAddress, DbType.String);
+                        res = _dapper.ExecuteGet<ResearchDegree>("ManageApplicantResearchDegree", dynamicParameters);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        throw;
+                    }
+                }
+            }
+            return res;
+
+        }
+
+        public BookPublication SaveChapterPublished(BookPublication model)
+        {
+            var res = new BookPublication();
+            if (model.bookPublications.Count() > 0)
+            {
+                foreach (var itm in model.bookPublications)
+                {
+                    try
+                    {
+                        DynamicParameters dynamicParameters = new DynamicParameters();
+                        dynamicParameters.Add("Id", model.Id, DbType.Int64);
+                        dynamicParameters.Add("Category", itm.Category, DbType.String);
+                        dynamicParameters.Add("Title", itm.Title, DbType.String);
+                        dynamicParameters.Add("PublicationDate", itm.PublicationDate, DbType.String);
+                        dynamicParameters.Add("Publisher", itm.Publisher, DbType.String);
+                        dynamicParameters.Add("PublisherType", itm.PublisherType, DbType.String);
+                        dynamicParameters.Add("Isbn", itm.Isbn, DbType.String);
+                        dynamicParameters.Add("NoOfCoAuthors", itm.NoOfCoAuthors, DbType.String);
+                        dynamicParameters.Add("IsMainAuthor", itm.IsMainAuthor, DbType.String);
+                        dynamicParameters.Add("DocumentPath", itm.DocumentPath, DbType.String);
+                        dynamicParameters.Add("IpAddress", model.IpAddress, DbType.String);
+                        res = _dapper.ExecuteGet<BookPublication>("ManageApplicantBookPublication", dynamicParameters);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        throw;
+                    }
+                }
+            }
+            return res;
+        }
+        
+        public BookPublication SaveChapterTranslationWork(BookPublication model)
+        {
+            var res = new BookPublication();
+            if (model.bookPublications.Count() > 0)
+            {
+                foreach (var itm in model.bookPublications)
+                {
+                    try
+                    {
+                        DynamicParameters dynamicParameters = new DynamicParameters();
+                        dynamicParameters.Add("Id", model.Id, DbType.Int64);
+                        dynamicParameters.Add("Category", itm.Category, DbType.String);
+                        dynamicParameters.Add("Title", itm.Title, DbType.String);
+                        dynamicParameters.Add("PublicationDate", itm.PublicationDate, DbType.String);
+                        dynamicParameters.Add("Publisher", itm.Publisher, DbType.String);
+                        dynamicParameters.Add("PublisherType", itm.PublisherType, DbType.String);
+                        dynamicParameters.Add("Isbn", itm.Isbn, DbType.String);
+                        dynamicParameters.Add("NoOfCoAuthors", itm.NoOfCoAuthors, DbType.String);
+                        dynamicParameters.Add("IsMainAuthor", itm.IsMainAuthor, DbType.String);
+                        dynamicParameters.Add("DocumentPath", itm.DocumentPath, DbType.String);
+                        dynamicParameters.Add("NameofBookEditor", itm.NameofBookEditor, DbType.String);
+                        dynamicParameters.Add("Noofcotranslator", itm.NoOfCoTranslator, DbType.String);
+                        dynamicParameters.Add("IpAddress", model.IpAddress, DbType.String);
+                        res = _dapper.ExecuteGet<BookPublication>("ManageApplicantBookPublication_New", dynamicParameters);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        throw;
+                    }
+                }
+            }
+            return res;
+        }
+
     }
 
 }

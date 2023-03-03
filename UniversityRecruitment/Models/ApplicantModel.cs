@@ -51,7 +51,8 @@ namespace UniversityRecruitment.Models
         public string TransactionDate { get; set; }
         public string Specialization { get; set; }
         public string ApplyingSubCategory { get; set; }
-        public string FeeAmount { get; set; }
+        public string ReferenceNo { get; set; }
+        public long FeeAmount { get; set; }
         public int AllowPayment { get; set; }
         public IEnumerable<AppliedForm> list { get; set; }
         public IEnumerable<FessPaid> list1 { get; set; }
@@ -83,6 +84,12 @@ namespace UniversityRecruitment.Models
         public long Id { get; set; }
     }
 
+    public class paymentRecieptListPara
+    {
+        public string RefNo { get; set; }
+        public long Id { get; set; }
+    }
+
     public class FessPaid
     {
         public int Id { get; set; }
@@ -101,7 +108,7 @@ namespace UniversityRecruitment.Models
 
     public class ResearchGuidance
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Degree { get; set; }
         public string DegreeAwarded { get; set; }
         public string AwardDate { get; set; }
@@ -123,12 +130,82 @@ namespace UniversityRecruitment.Models
     {
         public long Id { get; set; }
         public string RefNo { get; set; }
+        public string ReferenceNo { get; set; }
         public string FormCount { get; set; }
         public string TransactionAmount { get; set; }
         public string TransactionId { get; set; }
         public string TransactionDate { get; set; }
         public string Mode { get; set; }
         public IEnumerable<FeeDetails> lst { get; set; }
+    }
+
+    public class PersontalDetails
+    {
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
+        public string Gender { get; set; }
+        public string Category { get; set; }
+        public string Email { get; set; }
+        public string Mobile { get; set; }
+        public string AlternateMobile { get; set; }
+        public string Password { get; set; }
+        public string Dob { get; set; }
+        public string BirthCity { get; set; }
+        public string BirthState { get; set; }
+        public string BirthCountry { get; set; }
+        public string FatherName { get; set; }
+        public string MotherName { get; set; }
+        public string Nationality { get; set; }
+        public string MaritalStatus { get; set; }
+        public string Aadhar { get; set; }
+        public string PermanentAddress1 { get; set; }
+        public string PermanentAddress2 { get; set; }
+        public string PermanentStateId { get; set; }
+        public string PermanentState { get; set; }
+        public string PermanentCityId { get; set; }
+        public string PermanentCity { get; set; }
+        public string PermanentCityOther { get; set; }
+        public string PermanentPinCode { get; set; }
+        public bool SameMailingAddress { get; set; }
+        public string MailingAddress1 { get; set; }
+        public string MailingAddress2 { get; set; }
+        public int MailingStateId { get; set; }
+        public string MailingState { get; set; }
+        public int MailingCityId { get; set; }
+        public string MailingCity { get; set; }
+        public string MailingPinCode { get; set; }
+        public bool AppliedForPwd { get; set; }
+        public bool AppliedForEws { get; set; }
+        public bool HasBlindness { get; set; }
+        public decimal BlindnessPercent { get; set; }
+        public string BlindnessDocumentPath { get; set; }
+        public bool HasHearing { get; set; }
+        public decimal HearingPercentage { get; set; }
+        public string HearingDocumentPath { get; set; }
+        public bool HasLocomotor { get; set; }
+        public decimal LocomotorPercentage { get; set; }
+        public string LocomotorDocumentPath { get; set; }
+        public string MobileOtp { get; set; }
+        public string EmailOtp { get; set; }
+        public bool MobileVerified { get; set; }
+        public bool EmailVerified { get; set; }
+        public string SystemDate { get; set; }
+        public string IpAddress { get; set; }
+        public string LastUpdatedAt { get; set; }
+        public string PhotoPath { get; set; }
+        public string SignPath { get; set; }
+        public string AadharDocumentPath { get; set; }
+        public string CategoryDocumentPath { get; set; }
+        public bool HasPostApplied { get; set; }
+        public bool HasFeePaid { get; set; }
+        public bool HasPersonalFilled { get; set; }
+        public bool HasProfessorPost { get; set; }
+        public string EwsDocumentPath { get; set; }
+        public bool FinalSubmitted { get; set; }
+        public FeeDetails feeDetails { get; set; }
+        public IEnumerable<AppliedForm> appliedForm { get; set; }
     }
 
 }
