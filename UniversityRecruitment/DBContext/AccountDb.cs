@@ -288,6 +288,111 @@ namespace UniversityRecruitment.DBContext
 
         }
 
+        public dynamic SaveActivityDetails(Activities model)
+        {
+
+            Activities obj = new Activities();
+
+            var res = new Activities();
+            try
+            {
+                var perm = new DynamicParameters();
+                if (model.AList.Count() > 0)
+                {
+                    for (int i = 0; i < model.AList.Count; i++)
+                    {
+                        perm.Add("@id", model.UserId);
+                        perm.Add("@NatureofActivity", model.AList[i].ActivityId);
+                        perm.Add("@Description", model.AList[i].Description);
+                        perm.Add("@Institution", model.AList[i].Institution);
+                        perm.Add("@AcademicYear", model.AList[i].AcademicYear);
+                        perm.Add("@DocumentPath", model.AList[i].UploadActivity);
+                        perm.Add("@IpAddress", model.Ipaddress);
+                        res = _dapper.ExecuteGet<Activities>("[ManageApplicantActivity]", perm);
+                    }
+                }
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+
+        }
+
+
+        public dynamic SaveMoocsDetails(Moocs model)
+        {
+
+            Moocs obj = new Moocs();
+
+            var res = new Moocs();
+            try
+            {
+                var perm = new DynamicParameters();
+                if (model.MoocsList.Count() > 0)
+                {
+                    for (int i = 0; i < model.MoocsList.Count; i++)
+                    {
+                        perm.Add("@id", model.UserId);
+                        perm.Add("@Mooc", model.MoocsList[i].LevelofMoocs);
+                        perm.Add("@ShortDescription", model.MoocsList[i].Description);
+                        perm.Add("@NoOfCreditCourse", model.MoocsList[i].NoOfCredit);
+                        perm.Add("@NoOfModules", model.MoocsList[i].NoOfModule);
+                        perm.Add("@NoOfQuadrant", 0);
+                        perm.Add("@DocumentPath", model.MoocsList[i].UploadMoocs);
+                        perm.Add("@IpAddress", model.Ipaddress);
+                        res = _dapper.ExecuteGet<Moocs>("[ManageApplicantMooc]", perm);
+                    }
+                }
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+
+        }
+
+
+        public dynamic SaveCurriculaDetails(DesignofNewCurricula model)
+        {
+
+            DesignofNewCurricula obj = new DesignofNewCurricula();
+
+            var res = new DesignofNewCurricula();
+            try
+            {
+                var perm = new DynamicParameters();
+                if (model.DesignCurriculaList.Count() > 0)
+                {
+                    for (int i = 0; i < model.DesignCurriculaList.Count; i++)
+                    {
+                        perm.Add("@id", model.UserId);
+                        perm.Add("@Title", model.DesignCurriculaList[i].Title);
+                        perm.Add("@Level", model.DesignCurriculaList[i].Level);
+                        perm.Add("@NoOfUnit", model.DesignCurriculaList[i].Courses);
+                        perm.Add("@ApprovalOfAuthority", model.DesignCurriculaList[i].Authority); 
+                        perm.Add("@DocumentPath", model.DesignCurriculaList[i].UploadDesignofCurricula);
+                        perm.Add("@IpAddress", model.Ipaddress);
+                        res = _dapper.ExecuteGet<DesignofNewCurricula>("[ManageApplicantCurricula]", perm);
+                    }
+                }
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+
+        }
+
 
 
         #endregion

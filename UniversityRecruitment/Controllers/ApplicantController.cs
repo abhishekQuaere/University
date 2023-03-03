@@ -177,7 +177,9 @@ namespace UniversityRecruitment.Controllers
 
         public ActionResult Activities()
         {
-            return View();
+            Activities model = new Activities();
+           // ViewBag.ActivitiesList = apdb.ActivitieList();
+            return View(model);
         }
 
         public ActionResult Information()
@@ -331,7 +333,8 @@ namespace UniversityRecruitment.Controllers
 
         public ActionResult MOOCS()
         {
-            return View();
+            Moocs model = new Moocs();
+            return View(model);
         }
 
 
@@ -420,6 +423,42 @@ namespace UniversityRecruitment.Controllers
 
         }
 
+        public JsonResult SaveActivityDetails(Activities model)
+        {
+
+            AccountDb repo = new AccountDb();
+            Activities obj = new Activities();
+            model.UserId = sm.userId;
+            model.Ipaddress = Common.GetIPAddress();
+            obj = repo.SaveActivityDetails(model);
+            return Json(obj, JsonRequestBehavior.AllowGet);
+
+        }
+
+
+        public JsonResult SaveMoocsDetails(Moocs model)
+        {
+
+            AccountDb repo = new AccountDb();
+            Moocs obj = new Moocs();
+            model.UserId = sm.userId;
+            model.Ipaddress = Common.GetIPAddress();
+            obj = repo.SaveMoocsDetails(model);
+            return Json(obj, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult SaveCurriculaDetails(DesignofNewCurricula model)
+        {
+
+            AccountDb repo = new AccountDb();
+            DesignofNewCurricula obj = new DesignofNewCurricula();
+            model.UserId = sm.userId;
+            model.Ipaddress = Common.GetIPAddress();
+            obj = repo.SaveCurriculaDetails(model);
+            return Json(obj, JsonRequestBehavior.AllowGet);
+
+        }
         public JsonResult UploadExperienceFile(HttpPostedFileBase File)
         {
             string Dirpath = "~/Content/writereaddata/Experience/";
@@ -458,6 +497,41 @@ namespace UniversityRecruitment.Controllers
         public JsonResult UploadAwardFile(HttpPostedFileBase File)
         {
             string Dirpath = "~/Content/writereaddata/Award/";
+            string path = "";
+            string filename = File.FileName;
+            bool res = false;
+            string msg = "";
+            if (!Directory.Exists(Server.MapPath(Dirpath)))
+            {
+                Directory.CreateDirectory(Server.MapPath(Dirpath));
+            }
+            string ext = Path.GetExtension(File.FileName);
+            var status = com.ValidateImagePDF_FileExtWithSize(File, 2048);
+            if (status == "Valid")
+            {
+
+                filename = DateTime.Now.ToString("yyyyMMddHHmmssffff") + "_" + filename;
+                string completepath = Path.Combine(Server.MapPath(Dirpath), filename);
+                if (System.IO.File.Exists(completepath))
+                {
+                    System.IO.File.Delete(completepath);
+                }
+
+                File.SaveAs(completepath);
+                path = Dirpath + filename;
+                res = true;
+            }
+            else
+            {
+                msg = status;
+            }
+            return Json(new { result = res, fpath = path, mesg = msg });
+        }
+
+
+        public JsonResult UploadMoocsFile(HttpPostedFileBase File)
+        {
+            string Dirpath = "~/Content/writereaddata/MOOCs/";
             string path = "";
             string filename = File.FileName;
             bool res = false;
@@ -557,7 +631,42 @@ namespace UniversityRecruitment.Controllers
             }
             return Json(new { result = res, fpath = path, mesg = msg });
         }
+        public JsonResult UploadActivityFile(HttpPostedFileBase File)
+        {
+            string Dirpath = "~/Content/writereaddata/Activity/";
+            string path = "";
+            string filename = File.FileName;
+            bool res = false;
+            string msg = "";
+            if (!Directory.Exists(Server.MapPath(Dirpath)))
+            {
+                Directory.CreateDirectory(Server.MapPath(Dirpath));
+            }
+            string ext = Path.GetExtension(File.FileName);
+            var status = com.ValidateImagePDF_FileExtWithSize(File, 2048);
+            if (status == "Valid")
+            {
 
+                filename = DateTime.Now.ToString("yyyyMMddHHmmssffff") + "_" + filename;
+                string completepath = Path.Combine(Server.MapPath(Dirpath), filename);
+                if (System.IO.File.Exists(completepath))
+                {
+                    System.IO.File.Delete(completepath);
+                }
+
+                File.SaveAs(completepath);
+                path = Dirpath + filename;
+                res = true;
+            }
+            else
+            {
+                msg = status;
+            }
+            return Json(new { result = res, fpath = path, mesg = msg });
+
+
+
+        }
         #endregion
 
 
@@ -634,5 +743,46 @@ namespace UniversityRecruitment.Controllers
 
 
         }
+
+
+        public JsonResult UploadCurriculFile(HttpPostedFileBase File)
+        {
+            string Dirpath = "~/Content/writereaddata/Curricula/";
+            string path = "";
+            string filename = File.FileName;
+            bool res = false;
+            string msg = "";
+            if (!Directory.Exists(Server.MapPath(Dirpath)))
+            {
+                Directory.CreateDirectory(Server.MapPath(Dirpath));
+            }
+            string ext = Path.GetExtension(File.FileName);
+            var status = com.ValidateImagePDF_FileExtWithSize(File, 2048);
+            if (status == "Valid")
+            {
+
+                filename = DateTime.Now.ToString("yyyyMMddHHmmssffff") + "_" + filename;
+                string completepath = Path.Combine(Server.MapPath(Dirpath), filename);
+                if (System.IO.File.Exists(completepath))
+                {
+                    System.IO.File.Delete(completepath);
+                }
+
+                File.SaveAs(completepath);
+                path = Dirpath + filename;
+                res = true;
+            }
+            else
+            {
+                msg = status;
+            }
+            return Json(new { result = res, fpath = path, mesg = msg });
+
+
+
+        }
+
+
+
     }
 }
