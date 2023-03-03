@@ -90,14 +90,28 @@ namespace UniversityRecruitment.Controllers
             if(model.ResponseCode == 0)
             {
                 TempData["Message"] = "Updated Succesfuly" ;
-                return View();
+                return View(obj);
             }
-            return View();
+            return View(obj);
         }
 
-        public ActionResult UploadPhoto()
+        public ActionResult UploadPhoto(int? ID)
         {
-            return View();
+            PersonalDoc obj = new PersonalDoc();
+            obj.ID = Convert.ToInt32(ID);
+            return View(obj);
+        }
+        [HttpPost]
+        public ActionResult UploadPhoto(PersonalDoc obj)
+        {
+            PersonalDoc model = new PersonalDoc();
+            model = apdb.SavePersonalDoc<PersonalDoc>(obj);
+            if (model.ResponseCode == 0)
+            {
+                TempData["Message"] = model.message;
+                return View(obj);
+            }
+            return View(obj);
         }
         public ActionResult AcademicDetails()
         {

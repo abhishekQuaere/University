@@ -148,6 +148,24 @@ namespace UniversityRecruitment.DBContext
             }
         }
 
+        public T SavePersonalDoc<T>(PersonalDoc model)
+        {
+            try
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("@ID", model.ID);
+                dynamicParameters.Add("@Photo", model.Photo);
+                dynamicParameters.Add("@Signature", model.Signature);  
+
+                var res = _dapper.ExecuteGet<T>("Proc_UpdataImage_Signature", dynamicParameters);
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public T GetApplicantPersonalinfo<T>(int ID)
         {
             try

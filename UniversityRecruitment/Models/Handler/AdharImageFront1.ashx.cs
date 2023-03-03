@@ -39,7 +39,7 @@ namespace AyushastraShopping.Models.Handlers
                         file.SaveAs(fname);
                         context.Response.ContentType = "text/plain";
                         string path = Obj.getImagePath();
-                        context.Response.Write(path + "AdharImageFront/" + flname);
+                        context.Response.Write(path + "/Content/images/users/UploadImage/" + flname);
 
                     }
                 }
