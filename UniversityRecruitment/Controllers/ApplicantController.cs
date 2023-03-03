@@ -64,14 +64,14 @@ namespace UniversityRecruitment.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
-       [HttpGet]
-        public ActionResult PersonalDetails( int ? ID)
+        [HttpGet]
+        public ActionResult PersonalDetails(int? ID)
         {
             Personalinfo obj = new Personalinfo();
             obj.ID = Convert.ToInt32(ID);
             obj = apdb.GetApplicantPersonalinfo<Personalinfo>(Convert.ToInt32(ID));
             ViewBag.ddlstate = apdb.BindState();
-            
+
             return View(obj);
         }
         [HttpPost]
@@ -87,9 +87,9 @@ namespace UniversityRecruitment.Controllers
             Personalinfo model = new Personalinfo();
             ViewBag.ddlstate = apdb.BindState();
             model = apdb.SavePersonalInfo<Personalinfo>(obj);
-            if(model.ResponseCode == 0)
+            if (model.ResponseCode == 0)
             {
-                TempData["Message"] = "Updated Succesfuly" ;
+                TempData["Message"] = "Updated Succesfuly";
                 return View();
             }
             return View();
@@ -189,7 +189,7 @@ namespace UniversityRecruitment.Controllers
         {
             return View();
         }
-        
+
         public JsonResult saveAcceptance(Referee model)
         {
             Acceptance obj = new Acceptance();
@@ -271,6 +271,7 @@ namespace UniversityRecruitment.Controllers
                 msg = status;
             }
             return Json(new { result = res, fpath = path, mesg = msg });
+        }
         public ActionResult ProjectConsultancy()
         {
             return View();
@@ -340,11 +341,6 @@ namespace UniversityRecruitment.Controllers
         }
 
 
-
-
-
-        }
-
         public JsonResult UploadFileAcceptance(HttpPostedFileBase File)
         {
             string Dirpath = "~/Content/writereaddata/Acceptance/";
@@ -395,7 +391,7 @@ namespace UniversityRecruitment.Controllers
             {
                 obj = repo.saveAgencyDetails(model);
             }
-            return Json(obj,JsonRequestBehavior.AllowGet);
+            return Json(obj, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -406,9 +402,9 @@ namespace UniversityRecruitment.Controllers
             AccountDb repo = new AccountDb();
             Award obj = new Award();
             model.UserId = sm.userId;
-            model.Ipaddress = Common.GetIPAddress(); 
-               obj = repo.SaveAwardDetails(model);  
-            return Json(obj,JsonRequestBehavior.AllowGet);
+            model.Ipaddress = Common.GetIPAddress();
+            obj = repo.SaveAwardDetails(model);
+            return Json(obj, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -420,7 +416,7 @@ namespace UniversityRecruitment.Controllers
             model.UserId = sm.userId;
             model.Ipaddress = Common.GetIPAddress();
             obj = repo.SaveInformationDetails(model);
-            return Json(obj,JsonRequestBehavior.AllowGet);
+            return Json(obj, JsonRequestBehavior.AllowGet);
 
         }
 

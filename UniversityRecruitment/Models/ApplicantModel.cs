@@ -119,4 +119,16 @@ namespace UniversityRecruitment.Models
         public IEnumerable<ResearchGuidance> researchGuidances { get; set; }
     }
 
+    public class FeeDetails
+    {
+        public long Id { get; set; }
+        public string RefNo { get; set; }
+        public string FormCount { get; set; }
+        public string TransactionAmount { get; set; }
+        public string TransactionId { get; set; }
+        public string TransactionDate { get; set; }
+        public string Mode { get; set; }
+        public IEnumerable<FeeDetails> lst { get; set; }
+    }
+
 }
