@@ -39,7 +39,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Title of Research Project</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="projectTitle">
                                     @*<span id="body_reqTitle" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Funding Agency</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="fundingagency">
                                     @*<span id="body_reqFundingAgency" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Date of Sanction</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control">
+                                    <input type="date" class="form-control" id="dateOfSan">
                                     @*<span id="body_reqSanctionDate" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Grant / Amount Mobilized</label>
                                 <div class="col-sm-12">
-                                    <select class="form-control">
+                                    <select class="form-control" id="grant_Amount">
                                         <option value="-1">-- select --</option>
                                         <option value="Less than 10 Lakh">Less than 10 Lakh</option>
                                         <option value="More than 10 Lakh">More than 10 Lakh</option>
@@ -82,7 +82,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Project Type</label>
                                 <div class="col-sm-12">
-                                    <select id="body_ddlProjectType" class="form-control">
+                                    <select id="pType" class="form-control">
                                         <option selected="selected" value="-1">-- select --</option>
                                         <option value="Single">Single</option>
                                         <option value="Joint">Joint</option>
@@ -96,8 +96,10 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Your Role in Project</label>
                                 <div class="col-sm-12">
-                                    <select class="form-control">
+                                    <select class="form-control" id="roleInProject">
                                         <option value="-1">-- select --</option>
+                                        <option value="Manager">Manager</option>
+                                        <option value="Coordinator">Coordinator</option>
 
                                     </select>
                                     @*<span id="body_reqRole" class="validator" style="display:none;">select an item</span>*@
@@ -108,7 +110,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Status of Project</label>
                                 <div class="col-sm-12">
-                                    <select class="form-control">
+                                    <select class="form-control" id="pStatus">
                                         <option value="-1">-- select --</option>
                                         <option value="Completed">Completed</option>
                                         <option value="Ongoing">Ongoing</option>
@@ -122,16 +124,18 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Upload Scanned Attachment</label>
                                 <div class="col-sm-12">
-                                    <input type="file" class="form-control">
-                                    @*<span id="body_reqAwardUpload" class="validator" style="display:none;">upload file</span>*@
+                                    <input type="file" class="form-control" id="attachment" onchange="Fileuploads(this)">
+                                    <span id="attachmentAnchor" style="display: none;" class="input-group-text btn-download"></span>
                                 </div>
+
                             </div>
                         </div>
+
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <label class="col-sm-12">&nbsp;</label>
                                 <div class="col-sm-12">
-                                    <a class="btn btn-primary btn-shadow" href="#"><span class="fa fa-plus-circle"></span> Add</a>
+                                    <a class="btn btn-primary btn-shadow" href="#" onclick="add()"><span class="fa fa-plus-circle"></span> Add</a>
                                 </div>
                             </div>
                         </div>
@@ -141,8 +145,8 @@
                         <div class="col-sm-12">
 
                             <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <tbody>
+                                <table class="table table-bordered" id="tables">
+                                    <thead>
                                         <tr class="table-primary">
                                             <th>Title of Research Project</th>
                                             <th>Funding Agency</th>
@@ -156,7 +160,8 @@
                                             <th></th>
                                         </tr>
 
-                                    </tbody>
+                                    </thead>
+                                    <tbody id="projectDetails"></tbody>
                                 </table>
                             </div>
 
@@ -174,12 +179,210 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-12">
-                        <a id="" class="btn btn-warning text-dark shadow" href=""><span class="fa fa-save"></span> Save</a>
-                        <a id="" class="btn btn-success text-dark shadow pull-right" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
+                        <a id="" class="btn btn-warning text-dark shadow" href="#" onclick="finalSubmit()" ><span class="fa fa-save"></span> Save</a>
+                        <button id="btnsubmit" class="btn btn-success text-dark shadow pull-right d-none" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+
+     function add() {
+
+        debugger;
+        var projectTitle = $('#projectTitle').val();
+        var fundingagency = $('#fundingagency').val();
+        var dateOfSan = $('#dateOfSan').val();
+        var grant_Amount = $('#grant_Amount').val();
+        var pType = $('#pType').val();
+        var roleInProject = $('#roleInProject').val();
+        var pStatus = $('#pStatus').val();
+        var attachment = $('#attachment').val();
+        var href = $('.anchor').attr('href');
+
+
+           if ($('#projectTitle').val() == -1||$('#projectTitle').val() == "" || $('#projectTitle').val() == null || $('#projectTitle').val() == undefined) {
+                swal("", "please enter Title of Research Project", "warning")
+                return false;
+            }
+            if ($('#fundingagency').val() == "" || $('#fundingagency').val() == null || $('#fundingagency').val() == undefined) {
+                swal("", "Please enter Funding Agency  ", "warning")
+                return false;
+            }
+            if ($('#dateOfSan').val() == "" || $('#dateOfSan').val() == null || $('#dateOfSan').val() == undefined) {
+                swal("", "please enter Date of Sanction", "warning")
+                return false;
+            }
+            if ( $('#grant_Amount').val() ==-1||$('#grant_Amount').val() == "" || $('#grant_Amount').val() == null || $('#grant_Amount').val() == undefined) {
+                swal("", "please select Grant / Amount Mobilized", "warning")
+                return false;
+            }
+            if ($('#pType').val()==-1||$('#pType').val() == "" || $('#pType').val() == null || $('#pType').val() == undefined) {
+                swal("", "please select Project Type ", "warning")
+                return false;
+         }
+         if ($('#roleInProject').val()==-1||$('#roleInProject').val() == "" || $('#roleInProject').val() == null || $('#roleInProject').val() == undefined) {
+                swal("", "please  select Your Role in Project ", "warning")
+                return false;
+         }
+         if ($('#pStatus').val()==-1||$('#pStatus').val() == "" || $('#pStatus').val() == null || $('#pStatus').val() == undefined) {
+                swal("", "please  select Status of Project ", "warning")
+                return false;
+         }
+         if ($('#pStatus').val()==-1||$('#pStatus').val() == "" || $('#pStatus').val() == null || $('#pStatus').val() == undefined) {
+                swal("", "please  select Status of Project ", "warning")
+                return false;
+            } if ($('#attachment').val()==-1||$('#attachment').val() == "" || $('#attachment').val() == null || $('#attachment').val() == undefined) {
+                swal("", "please Upload Scanned Attachment  ", "warning")
+                return false;
+            }
+
+
+        var row = "<tr><td class='pTitle'>" + projectTitle + "</td><td class='fundAgency'>" + fundingagency + "</td><td class='date'>" + dateOfSan + "</td><td class='amount'>" + grant_Amount + "</td><td class='pType'>" + pType + "</td><td class='roleInPro'>"+roleInProject+"</td><td class='pStatus'>"+pStatus+"</td><td></td><td class='lattachment'><span class='input-group-text btn-download' href=" + href +"><a href=" + href +" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td></tr>";
+
+
+        $('#projectDetails').append(row);
+
+         $('#projectTitle').val('');
+         $('#fundingagency').val('');
+         $('#dateOfSan').val('');
+         $('#grant_Amount').val(-1)
+         $('#pType').val(-1);
+          $('#roleInProject').val(-1)
+         $('#pStatus').val(-1);
+          $('#attachment').val('');
+    }
+
+
+      function Fileuploads(obj) {
+        debugger;
+        var filename = $(obj)[0].files[0].name;
+        var fileId = $(obj).attr("id");
+          var ext = obj.value.match(/\.(.+)$/)[1];
+       
+
+        switch (ext) {
+            case 'pdf':
+            case 'jpg':
+            case 'jpeg':
+                var fileSize = ($("#" + fileId)[0].files[0].size / 1024 / 1024);
+                if (fileSize > 2) {
+                    swal("", "File size should not exceed 2 MB.\r\nफाइल का साइज़ 2 MB से अधिक नहीं होना चाहिए।", "warning");
+                    return false;
+                }
+                else {
+                    var data = new FormData();
+                    var files = $("#" + fileId).get(0).files;
+                    if (files.length > 0) {
+                        data.append("File", files[0]);
+                          
+                    }
+                    $("#divLoader").show();
+                    $.ajax({
+                        url: '@Url.Action("UploadFileForProjectConsultancy", "Applicant")',
+                        type: "POST",
+                        processData: false,
+                        contentType: false,
+                        data: data,
+                        success: function (response) {
+                            $("#divLoader").hide();
+
+                            if (response != null) {
+                                if (response.result) {
+                                    $("#fileName" + fileId).text(filename);
+                                    $("#" + fileId + "Path").val(response.fpath);
+                                    var Url = response.fpath.replace('~/', '');
+                                    $("#" + fileId + "Anchor").empty();
+                                    $("#" + fileId + "Anchor").attr('href', Url);
+                                    //$("#" + fileId + "Anchor").show();
+                                    $("#" + fileId + "Anchor").append('<a href="' + '@Url.Content("~/")' + Url + '" target="_blank" class="btn btn-warning anchor"><i class="fa fa-download"></i></a>');
+                                    swal("", "File upload successfully. ", "success")
+                                }
+                                else {
+                                    swal("", response.mesg, "error")
+                                }
+                            }
+                            else {
+                                swal("", "Fail to Upload File", "error")
+                            }
+                            return false;
+
+                        },
+                        error: function (e) {
+
+                            $("#divLoader").hide();
+                            swal("", "An Error Occured while uploading file", "error");
+                        }
+                    });
+
+                }
+                break;
+            default:
+                swal("", 'File should be in PDF/JPG/JPEG format./फाइल PDF/JPG/JPEG प्रारूप में होनी चाहिए।', "warning");
+                this.value = '';
+                return false;
+        }
+
+        }
+
+
+
+
+    function finalSubmit() {
+
+        debugger;
+        var model = {
+            lst: []
+
+        }
+
+        var detailslist = [];
+
+
+        $(' #tables #projectDetails tr ').each(function (i, d) {
+            var details = {};
+            details.titleOfPrfoject = $(this).find('.pTitle').text();
+            details.agencyFund = $(this).find('.fundAgency').text()
+            details.dateOfSan = $(this).find('.date').text()
+            details.grant_Amount = $(this).find('.amount').text()
+            details.project_Type = $(this).find('.pType').text()
+            details.roleInProject = $(this).find('.roleInPro').text();
+            details.projectStatus = $(this).find('.pStatus').text();
+            details.attachment = $(this).find('.dnldbtn').attr('href');
+            detailslist.push(details)
+        })
+        if (detailslist==0) {
+            swal("", "please fill all field", "warning")
+            return false;
+        }
+        if (detailslist != 0) {
+            $.each(detailslist, function (key, value) {
+                model.lst.push(value);
+            })
+        }
+
+        $.ajax({
+            type: 'post',
+            url: '/Applicant/ProjectConsultancy',
+            data: JSON.stringify(model),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                if (data.ResponseCode == 0) {
+                    swal("", data.ResponseMessage, "success");
+
+                    $('#btnsubmit').removeClass('d-none')
+                    $('#projectDetails').empty()
+                }
+                else {
+                    swal("", "failure", "warning");
+                }
+            }
+
+
+        })
+    }
+</script>
 
