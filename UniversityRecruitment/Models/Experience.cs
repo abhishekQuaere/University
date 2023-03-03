@@ -24,6 +24,6 @@ namespace UniversityRecruitment.Models
         public long UserId { get; set; }
         public string Ipaddress { get; set; }
         public string ResponseMessage { get; set; }
-        public string ResponseCode { get; set; }
+        public int ResponseCode { get; set; }
     }
 }
