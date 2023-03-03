@@ -134,7 +134,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\academicsDetails.cs" />
+    <Compile Include="Models\Acceptance.cs" />
     <Compile Include="Models\ApplicantModel.cs" />
+    <Compile Include="Models\Award.cs" />
     <Compile Include="Models\Commons.cs" />
     <Compile Include="Models\Experience.cs" />
     <Compile Include="Models\Handler\AdharImageBack.ashx.cs">
@@ -167,6 +170,9 @@
     <Compile Include="Models\Handler\UploadImage.ashx.cs">
       <DependentUpon>UploadImage.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Information.cs" />
+    <Compile Include="Models\LecturesModel.cs" />
+    <Compile Include="Models\PersonalDoc.cs" />
     <Compile Include="Models\Personalinfo.cs" />
     <Compile Include="Models\Registration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -928,6 +934,18 @@
     <Content Include="Views\Applicant\Information.cshtml" />
     <Content Include="Views\Applicant\Lectures.cshtml" />
     <Content Include="Views\Applicant\ResearchGuidance.cshtml" />
+    <Content Include="Views\Applicant\BookAuthored.cshtml" />
+    <Content Include="Views\Applicant\BooksTranslationWork.cshtml" />
+    <Content Include="Views\Applicant\ChapterPublished.cshtml" />
+    <Content Include="Views\Applicant\ChapterTranslationWork.cshtml" />
+    <Content Include="Views\Applicant\DesignofNewCurricula.cshtml" />
+    <Content Include="Views\Applicant\EContent.cshtml" />
+    <Content Include="Views\Applicant\EditedBooks.cshtml" />
+    <Content Include="Views\Applicant\MOOCS.cshtml" />
+    <Content Include="Views\Applicant\PaymentReceipt.cshtml" />
+    <Content Include="Views\Applicant\ProjectConsultancy.cshtml" />
+    <Content Include="Views\Applicant\ResearchPaper.cshtml" />
+    <Content Include="Views\Applicant\TeachingPedagogy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
