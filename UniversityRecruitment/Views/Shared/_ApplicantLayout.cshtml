@@ -118,13 +118,16 @@
                             <a class="waves-effect waves-dark" href="@Url.Action("Index","Applicant")" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Apply For Post</span></a>
                         </li>
                         <li>
-                            <a class="waves-effect waves-dark" href="@Url.Action("FeePayment","Applicant")" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Apply For Post</span></a>
-                        </li>
-                        <li>
-                            <a class="waves-effect waves-dark" href="@Url.Action("PersonalDetails","Applicant")" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Personal Details</span></a>
+                            <a class="waves-effect waves-dark" href="/Applicant/PersonalDetails?ID=@sm.userId" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Personal Details</span></a>
                         </li>
                         <li>
                             <a class="waves-effect waves-dark" href="@Url.Action("UploadPhoto","Applicant")" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Upload Photo/Sign</span></a>
+                        </li>
+                        <li>
+                            <a class="waves-effect waves-dark" href="@Url.Action("ResearchGuidance","Applicant")" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Research/Guidance</span></a>
+                        </li>
+                        <li>
+                            <a class="waves-effect waves-dark" href="@Url.Action("Acceptance","Applicant")" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Acceptance</span></a>
                         </li>
 
                     </ul>

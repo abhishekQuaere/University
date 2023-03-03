@@ -35,7 +35,7 @@ namespace AyushastraShopping.Models.Handlers
                             flname = Obj.GetUniqueFileName(file.FileName);
                             fname = flname;
                         }
-                        fname = Path.Combine(context.Server.MapPath("/Content/images/"), fname);
+                        fname = Path.Combine(context.Server.MapPath("/Content/images/users/UploadImage/"), fname);
                         file.SaveAs(fname);
                         context.Response.ContentType = "text/plain";
                         string path = Obj.getImagePath();

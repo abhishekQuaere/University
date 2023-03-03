@@ -162,8 +162,8 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-12">
-                        <a id="" class="btn btn-warning text-dark shadow" href="" onclick="finalSubmit()"><span class="fa fa-save"></span> Save</a>
-                        <a id="" class="btn btn-success text-dark shadow pull-right btnSubmit" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
+                        <button class="btn btn-warning text-dark shadow" onclick="finalSubmit()"><span class="fa fa-save"></span> Save</button>
+                        <a id="btnSaveNext" class="btn btn-success text-dark shadow pull-right" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
                     </div>
                 </div>
             </div>
@@ -174,8 +174,8 @@
 <script>
 
     $(document).ready(function () {
-
-        $('.btnSubmit').prop('disabled', true);
+        debugger;
+        $('#btnSaveNext').hide();
 
     });
 
@@ -345,7 +345,8 @@
                                 content: a.ResponseMessage,
                                 buttons: {
                                     Ok: function () {
-
+                                        $('#addMoreData').html('');
+                                        $('#btnSaveNext').show();
                                     }
                                 }
                             });
@@ -370,11 +371,10 @@
             }
             else {
                 swal("", 'Something went wrong !', "warning");
-                $('.btnSubmit').prop('disabled', false);
             }
         }
         else {
-            $('.btnSubmit').prop('disabled', false);
+            swal("", 'Add altleast one record .', "info");
         }
     }
 

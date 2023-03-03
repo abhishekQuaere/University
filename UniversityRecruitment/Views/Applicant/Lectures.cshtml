@@ -1,4 +1,4 @@
-﻿
+﻿@model UniversityRecruitment.Models.LecturesModel
 @{
     ViewBag.Title = "Lectures";
     Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
@@ -19,7 +19,7 @@
     <div class="col-md-7 align-self-center">
 
     </div>
-    
+
 </div>
 
 <div class="container-fluid">
@@ -37,7 +37,7 @@
                             <div class="form-group">
                                 <label for=" " id=" " class="col-sm-12">Title of Lecture / Talk / Presentation</label>
                                 <div class="col-sm-12">
-                                    <input name=" " type="text" class="form-control">
+                                    <input name=" " type="text" class="form-control" id="title">
                                     @*<span id="body_reqTitle" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Name of Program with Date</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control">
+                                    <input type="date" class="form-control" id="Pdate">
                                     @*<span id="body_reqAcademicSession" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Type</label>
                                 <div class="col-sm-12">
-                                    <select id=" " class="form-control">
+                                    <select id="pType" class="form-control">
                                         <option value="-1">-- select --</option>
                                         <option value="Lecture">Lecture</option>
                                         <option value="Resource Person">Resource Person</option>
@@ -73,7 +73,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Level</label>
                                 <div class="col-sm-12">
-                                    <select  id=" " class="form-control">
+                                    <select id="Plevel" class="form-control">
                                         <option value="-1">-- select --</option>
                                         <option value="International (Abroad)">International (Abroad)</option>
                                         <option value="International (Within Country)">International (Within Country)</option>
@@ -90,7 +90,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Organizing Body / Agency</label>
                                 <div class="col-sm-12">
-                                    <input name=" " type="text" class="form-control">
+                                    <input name=" " type="text" class="form-control" id="organBY">
                                     @*<span id="body_reqAgency" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -99,16 +99,17 @@
                             <div class="form-group">
                                 <label id=" " class="col-sm-12">Upload Scanned Attachment</label>
                                 <div class="col-sm-12">
-                                    <input type="file" id=" " class="form-control">
-                                    @*<span id="body_reqAwardUpload" class="validator" style="display:none;">upload file</span>*@
+                                    <input type="file" class="form-control" id="Lattachment" onchange="UploadFileForLectures(this)">
+                                    <span id="LattachmentAnchor" style="display: none;" class="input-group-text btn-download"></span>
                                 </div>
+                                <span class="smallpdf">(File Format:JPG/JPEG and PDF । Max File Size: 2 MB)</span>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <label class="col-sm-12">&nbsp;</label>
                                 <div class="col-sm-12">
-                                    <a class="btn btn-primary btn-shadow" href="#"><span class="fa fa-plus-circle"></span> Add</a>
+                                    <a class="btn btn-primary btn-shadow" href="#" onclick="add()"><span class="fa fa-plus-circle"></span> Add</a>
                                 </div>
                             </div>
                         </div>
@@ -118,8 +119,8 @@
                         <div class="col-sm-12">
 
                             <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <tbody>
+                                <table class="table table-bordered" id="tables">
+                                    <thead>
                                         <tr class="table-primary">
                                             <th>Title of Lecture</th>
                                             <th>Name of Program with Date</th>
@@ -131,7 +132,9 @@
                                             <th></th>
                                         </tr>
 
-                                    </tbody>
+                                    </thead>
+                                    <tbody id="lectureslist"></tbody>
+
                                 </table>
                             </div>
 
@@ -148,12 +151,192 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-12">
-                        <a id="" class="btn btn-warning text-dark shadow" href=""><span class="fa fa-save"></span> Save</a>
-                        <a id="" class="btn btn-success text-dark shadow pull-right" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
+                        <a class="btn btn-warning text-dark shadow" href="#" onclick="finalSubmit()"><span class="fa fa-save"></span> Save</a>
+                        <button id="btnsubmit" class="btn btn-success text-dark shadow pull-right d-none" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
 
+    function add() {
+
+        debugger;
+        var title = $('#title').val();
+        var Pdate = $('#Pdate').val();
+        var pType = $('#pType').val();
+        var Plevel = $('#Plevel').val();
+        var organBY = $('#organBY').val();
+        var href = $('.anchor').attr('href');
+
+
+           if ($('#title').val() == -1||$('#title').val() == "" || $('#title').val() == null || $('#title').val() == undefined) {
+                swal("", "please enter title", "warning")
+                return false;
+            }
+            if ($('#Pdate').val() == "" || $('#Pdate').val() == null || $('#Pdate').val() == undefined) {
+                swal("", "Please enter date  ", "warning")
+                return false;
+            }
+            if ($('#pType').val() == "" || $('#pType').val() == null || $('#pType').val() == undefined) {
+                swal("", "please select Type", "warning")
+                return false;
+            }
+            if ( $('#Plevel').val() ==-1||$('#Plevel').val() == "" || $('#Plevel').val() == null || $('#Plevel').val() == undefined) {
+                swal("", "please select level", "warning")
+                return false;
+            }
+            if ($('#organBY').val() == "" || $('#organBY').val() == null || $('#organBY').val() == undefined) {
+                swal("", "please enter Organizing Body/ Agency ", "warning")
+                return false;
+            } if ($('#Lattachment').val() == "" || $('#Lattachment').val() == null || $('#Lattachment').val() == undefined) {
+                swal("", "please  Upload Scanned Attachment ", "warning")
+                return false;
+            }
+
+
+        var row = "<tr><td class='Ltitile'>" + title + "</td><td class='lDate'>" + Pdate + "</td><td class='ltype'>" + pType + "</td><td class='lLevel'>" + Plevel + "</td><td class='lOrganby'>" + organBY + "</td><td></td><td class='lattachment'><span class='input-group-text btn-download' href=" + href +"><a href=" + href +" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td></tr>";
+
+
+        $('#lectureslist').append(row);
+
+        $('#title').val('');
+        $('#Pdate').val('');
+        $('#pType').val(-1);
+        $('#Plevel').val(-1);
+        $('#organBY').val();
+        $('#attachment').val('');
+    }
+
+
+    function finalSubmit() {
+
+        debugger;
+        var model = {
+            lst: []
+
+        }
+
+        var detailslist = [];
+
+
+        $('#tables #lectureslist tr ').each(function (i, d) {
+            var details = {};
+            details.titleLectures = $(this).find('.Ltitile').text();
+            details.programDate = $(this).find('.lDate').text()
+            details.type = $(this).find('.ltype').text()
+            details.level = $(this).find('.lLevel').text()
+            details.organizingBody = $(this).find('.lOrganby').text()
+            details.attachment = $(this).find('.dnldbtn').attr('href');
+
+            detailslist.push(details)
+
+        })
+        if (detailslist==0) {
+            swal("", "please fill all field", "warning")
+            return false;
+        }
+        if (detailslist != 0) {
+            $.each(detailslist, function (key, value) {
+
+                model.lst.push(value);
+
+            })
+
+        }
+
+
+        $.ajax({
+            type: 'post',
+            url: '/Applicant/Lectures',
+            data: JSON.stringify(model),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                if (data.ResponseCode == 0) {
+                    swal("", data.ResponseMessage, "success");
+
+                    $('#btnsubmit').removeClass('d-none')
+                    $('#lectureslist').empty()
+                }
+                else {
+                    swal("", "failure", "warning");
+                }
+            }
+
+
+        })
+    }
+
+    function UploadFileForLectures(obj) {
+        debugger;
+        var filename = $(obj)[0].files[0].name;
+        var fileId = $(obj).attr("id");
+        var ext = obj.value.match(/\.(.+)$/)[1];
+
+        switch (ext) {
+            case 'pdf':
+            case 'jpg':
+            case 'jpeg':
+                var fileSize = ($("#" + fileId)[0].files[0].size / 1024 / 1024);
+                if (fileSize > 2) {
+                    swal("", "File size should not exceed 2 MB.\r\nफाइल का साइज़ 2 MB से अधिक नहीं होना चाहिए।", "warning");
+                    return false;
+                }
+                else {
+                    var data = new FormData();
+                    var files = $("#" + fileId).get(0).files;
+                    if (files.length > 0) {
+                        data.append("File", files[0]);
+                    }
+                    $("#divLoader").show();
+                    $.ajax({
+                        url: '@Url.Action("UploadFileForLectures", "Applicant")',
+                        type: "POST",
+                        processData: false,
+                        contentType: false,
+                        data: data,
+                        success: function (response) {
+                            $("#divLoader").hide();
+
+                            if (response != null) {
+                                if (response.result) {
+                                    $("#fileName" + fileId).text(filename);
+                                    $("#" + fileId + "Path").val(response.fpath);
+                                    var Url = response.fpath.replace('~/', '');
+                                    $("#" + fileId + "Anchor").empty();
+                                    $("#" + fileId + "Anchor").attr('href', Url);
+                                    //$("#" + fileId + "Anchor").show();
+                                    $("#" + fileId + "Anchor").append('<a href="' + '@Url.Content("~/")' + Url + '" target="_blank" class="btn btn-warning anchor"><i class="fa fa-download"></i></a>');
+                                    swal("", "File upload successfully. ", "success")
+                                }
+                                else {
+                                    swal("", response.mesg, "error")
+                                }
+                            }
+                            else {
+                                swal("", "Fail to Upload File", "error")
+                            }
+                            return false;
+
+                        },
+                        error: function (e) {
+
+                            $("#divLoader").hide();
+                            swal("", "An Error Occured while uploading file", "error");
+                        }
+                    });
+
+                }
+                break;
+            default:
+                swal("", 'File should be in PDF/JPG/JPEG format./फाइल PDF/JPG/JPEG प्रारूप में होनी चाहिए।', "warning");
+                this.value = '';
+                return false;
+        }
+
+    }
+
+</script>
