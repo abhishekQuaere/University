@@ -85,6 +85,29 @@ namespace UniversityRecruitment.Controllers
             return View();
         }
 
+        [HttpPost]
+        public JsonResult AcademicDetails(academicsDetails model)
+        {
+            ApplicantDB repo = new ApplicantDB();
+            academicsDetails obj = new academicsDetails();
+            model.ip = Common.GetIPAddress();
+            model.UserId = sm.userId;
+            if (model.lst != null && model.lst.Count() > 0)
+            {
+
+                obj = repo.saveQualification(model);
+            }
+            if (model.lst1 != null && model.lst1.Count() > 0)
+            {
+                obj = repo.saveugcDetails(model);
+            }
+
+
+
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
+
+
         public ActionResult Experience()
         {
             return View();
@@ -98,6 +121,20 @@ namespace UniversityRecruitment.Controllers
         public ActionResult Lectures()
         {
             return View();
+        }
+        [HttpPost]
+        public JsonResult Lectures(LecturesModel model)
+        {
+
+            LecturesModel obj = new LecturesModel();
+            ApplicantDB repo = new ApplicantDB();
+            model.ip = Common.GetIPAddress();
+            model.UserId = sm.userId;
+            if (model.lst != null && model.lst.Count() > 0)
+            {
+                obj = repo.saveLectures(model);
+            }
+            return Json(obj, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult FeePayment()
@@ -182,8 +219,84 @@ namespace UniversityRecruitment.Controllers
                 msg = status;
             }
             return Json(new { result = res, fpath = path, mesg = msg });
+
+
+
         }
 
 
+        public JsonResult UploadFileForAcadMicDetails(HttpPostedFileBase File)
+        {
+            string Dirpath = "~/Content/writereaddata/Academic/";
+            string path = "";
+            string filename = File.FileName;
+            bool res = false;
+            string msg = "";
+            if (!Directory.Exists(Server.MapPath(Dirpath)))
+            {
+                Directory.CreateDirectory(Server.MapPath(Dirpath));
+            }
+            string ext = Path.GetExtension(File.FileName);
+            var status = com.ValidateImagePDF_FileExtWithSize(File, 2048);
+            if (status == "Valid")
+            {
+
+                filename = DateTime.Now.ToString("yyyyMMddHHmmssffff") + "_" + filename;
+                string completepath = Path.Combine(Server.MapPath(Dirpath), filename);
+                if (System.IO.File.Exists(completepath))
+                {
+                    System.IO.File.Delete(completepath);
+                }
+
+                File.SaveAs(completepath);
+                path = Dirpath + filename;
+                res = true;
+            }
+            else
+            {
+                msg = status;
+            }
+            return Json(new { result = res, fpath = path, mesg = msg });
+
+
+
+        }
+
+        public JsonResult UploadFileForLectures(HttpPostedFileBase File)
+        {
+            string Dirpath = "~/Content/writereaddata/Lectures/";
+            string path = "";
+            string filename = File.FileName;
+            bool res = false;
+            string msg = "";
+            if (!Directory.Exists(Server.MapPath(Dirpath)))
+            {
+                Directory.CreateDirectory(Server.MapPath(Dirpath));
+            }
+            string ext = Path.GetExtension(File.FileName);
+            var status = com.ValidateImagePDF_FileExtWithSize(File, 2048);
+            if (status == "Valid")
+            {
+
+                filename = DateTime.Now.ToString("yyyyMMddHHmmssffff") + "_" + filename;
+                string completepath = Path.Combine(Server.MapPath(Dirpath), filename);
+                if (System.IO.File.Exists(completepath))
+                {
+                    System.IO.File.Delete(completepath);
+                }
+
+                File.SaveAs(completepath);
+                path = Dirpath + filename;
+                res = true;
+            }
+            else
+            {
+                msg = status;
+            }
+            return Json(new { result = res, fpath = path, mesg = msg });
+
+
+
+        }
     }
 }
