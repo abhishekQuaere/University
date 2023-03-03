@@ -38,12 +38,11 @@ namespace AyushastraShopping.Models.Handler
                                 flname = Obj.GetUniqueFileName(file.FileName);
                                 fname = flname;
                             }
-                            fname = Path.Combine(context.Server.MapPath("~/assets/FileUpload/Image/"), fname);
+                            fname = Path.Combine(context.Server.MapPath("/Content/images/users/UploadImage/"), fname);
                             file.SaveAs(fname);
                             context.Response.ContentType = "text/plain";
                             string path = Obj.getImagePath();
-                            context.Response.Write(path + "Image/" + flname);
-
+                            context.Response.Write(path + "/Content/images/users/UploadImage/" + flname);
                         }
                     }
                 }

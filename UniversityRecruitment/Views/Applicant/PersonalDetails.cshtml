@@ -4,6 +4,20 @@
     Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
 }
 
+<style>
+    input#Gender {
+        position: static;
+        margin-top: 0;
+        margin-right: 0.3125rem;
+        margin-left: 0;
+    }
+
+    [type=radio]:checked, [type=radio]:not(:checked) {
+        position: absolute;
+        left: -9999px;
+        opacity: 1;
+    }
+</style>
 <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css"
       rel="stylesheet">/>
 <div class="row page-titles">
@@ -20,7 +34,7 @@
         <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
     </div>
 </div>
-<form method="post">
+<form method="post" onsubmit="showbutton();" id="FormP">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
@@ -34,7 +48,7 @@
                                 <div class="form-group">
                                     <label for="body_txtFname" class="col-sm-12 required">First Name <span class="text-danger">*</span></label>
                                     <div class="col-sm-12">
-                                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "First Name", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "First Name", @autocomplete = "off", @readonly = "readonly" })
                                         @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
                                         @*<input type="text" class=" form-control" placeholder="Enter Your name">*@
                                     </div>
@@ -44,7 +58,7 @@
                                 <div class="form-group">
                                     <label for="body_txtFname" class="col-sm-12 required">Middle Name </label>
                                     <div class="col-sm-12">
-                                        @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control", @placeholder = "Middle Name", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control", @placeholder = "Middle Name", @autocomplete = "off", @readonly = "readonly" })
                                         @Html.ValidationMessageFor(m => m.MiddleName, "", new { @class = "text-danger" })
                                         @*<input type="text" class=" form-control" placeholder="Enter Your Middle Name">*@
                                     </div>
@@ -54,7 +68,7 @@
                                 <div class="form-group">
                                     <label for="body_txtFname" class="col-sm-12 required">Surname </label>
                                     <div class="col-sm-12">
-                                        @Html.TextBoxFor(m => m.SurName, new { @class = "form-control", @placeholder = "Sur Name", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.SurName, new { @class = "form-control", @placeholder = "Sur Name", @autocomplete = "off", @readonly = "readonly" })
                                         @Html.ValidationMessageFor(m => m.SurName, "", new { @class = "text-danger" })
                                         @*<input type="text" class=" form-control" placeholder="Enter Your Surname">*@
                                     </div>
@@ -68,13 +82,15 @@
                                             Female
                                             @Html.RadioButtonFor(model => model.Gender, "Male", new { @id = "male" })
                                             Male*@
-                                        <select id="Gender" name="Gender" class=" form-control">
-                                            <option value="-1">-- select --</option>
-                                            <option selected="selected" value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                            <option value="Transgender">Transgender</option>
+                                        @*<select id="Gender" name="Gender" class=" form-control">
+                                                <option value="-1">-- select --</option>
+                                                <option selected="selected" value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Transgender">Transgender</option>
 
-                                        </select>
+                                            </select>*@
+                                        @Html.RadioButtonFor(model => model.Gender, "Male") Male
+                                        @Html.RadioButtonFor(model => model.Gender, "Female") Female
 
                                     </div>
                                 </div>
@@ -86,7 +102,7 @@
                                 <div class="form-group">
                                     <label for="body_txtFname" class="col-sm-12 required">Father Name <span class="text-danger">*</span></label>
                                     <div class="col-sm-12">
-                                        @Html.TextBoxFor(m => m.FatherName, new { @class = "form-control", @placeholder = "Father Name", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.FatherName, new { @class = "form-control", @placeholder = "Father Name", @autocomplete = "off", @readonly = "readonly" })
                                         @Html.ValidationMessageFor(m => m.FatherName, "", new { @class = "text-danger" })
                                         @*<input type="text" class=" form-control" placeholder=" ">*@
                                     </div>
@@ -96,7 +112,7 @@
                                 <div class="form-group">
                                     <label for="body_txtFname" class="col-sm-12 required">Mother's Name <span class="text-danger">*</span></label>
                                     <div class="col-sm-12">
-                                        @Html.TextBoxFor(m => m.MotherName, new { @class = "form-control", @placeholder = "Mother Name", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.MotherName, new { @class = "form-control", @placeholder = "Mother Name", @autocomplete = "off", @readonly = "readonly" })
                                         @Html.ValidationMessageFor(m => m.MotherName, "", new { @class = "text-danger" })
                                         @*<input type="text" class=" form-control" placeholder=" ">*@
                                     </div>
@@ -109,7 +125,8 @@
                                 <div class="form-group">
                                     <label for="body_txtDob" class="col-sm-12 required">Date of Birth<span class="text-danger">*</span></label>
                                     <div class="col-sm-12">
-                                        @Html.TextBoxFor(m => m.DOB, new { @class = "form-control datepicker", @placeholder = "dd-mm-yyyy" })
+                                        @Html.TextBoxFor(m => m.DOB, new { @class = "form-control datepicker", @placeholder = "dd-mm-yyyy", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(m => m.DOB, "", new { @class = "text-danger" })
                                         @*<input type="text" class="form-control">*@
 
 
@@ -155,8 +172,8 @@
                                     @*@Html.DropDownListFor(m => m.Category, new SelectList(ViewBag.ddlCourseType, "Value", "Text"), "-- Select --", new { @class = "form-control select" })
                                         @Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger" })*@
                                     <select id="Category" class="form-control">
-                                        <option value="">-- select --</option>
-                                        <option selected="selected" value="General">General</option>
+                                        <option selected="selected" value="">-- select --</option>
+                                        <option value="General">General</option>
                                         <option value="OBC">OBC</option>
                                         <option value="SC">SC</option>
                                         <option value="ST">ST</option>
@@ -180,9 +197,9 @@
                                     <label class="col-sm-12 required">Marital Status <span class="text-danger">*</span></label>
                                     <div class="col-sm-12">
                                         <select id="MaritalStatus" name="MaritalStatus" class="form-control">
-                                            <option value="">-- select --</option>
+                                            <option selected="selected" value="">-- select --</option>
                                             <option value="Single">Single</option>
-                                            <option selected="selected" value="Married">Married</option>
+                                            <option value="Married">Married</option>
                                             <option value="Widowed">Widowed</option>
                                             <option value="Divorced">Divorced</option>
                                             <option value="Separated">Separated</option>
@@ -195,7 +212,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-12 required">AADHAR No. <span class="text-danger">*</span></label>
                                     <div class="col-sm-12">
-                                        @Html.TextBoxFor(m => m.Adhar, new { @class = "form-control", @placeholder = "Adhar No.", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Adhar, new { @class = "form-control", @placeholder = "Adhar No.", @autocomplete = "off", @readonly = "readonly" })
                                         @Html.ValidationMessageFor(m => m.Adhar, "", new { @class = "text-danger" })
                                         @*<input type="text" class="form-control">*@
 
@@ -246,7 +263,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-12">Address Line 1</label>
                                     <div class="col-sm-12">
-                                        @Html.TextBoxFor(m => m.Address1, new { @class = "form-control", @placeholder = "Address Line 1", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Address1, new { @class = "form-control", @placeholder = "Address Line 1", @autocomplete = "off", @readonly = "readonly" })
                                         @Html.ValidationMessageFor(m => m.Address1, "", new { @class = "text-danger" })
                                         @*<input type="text" class="form-control">*@
 
@@ -255,7 +272,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-12">Address Line 2</label>
                                     <div class="col-sm-12">
-                                        @Html.TextBoxFor(m => m.Address2, new { @class = "form-control", @placeholder = "Address Line 2", @autocomplete = "off" })
+                                        @Html.TextBoxFor(m => m.Address2, new { @class = "form-control", @placeholder = "Address Line 2", @autocomplete = "off", @readonly = "readonly" })
                                         @Html.ValidationMessageFor(m => m.Address2, "", new { @class = "text-danger" })
                                         @*<input type="text" class="form-control">*@
 
@@ -296,7 +313,7 @@
                                                 <label class="col-sm-12">Pin Code</label>
                                                 <div class="col-sm-12">
                                                     @Html.TextBoxFor(m => m.Pincode, new { @class = "form-control", @placeholder = "Pincode", @autocomplete = "off" })
-                                                    @Html.ValidationMessageFor(m => m.Pincode, "", new { @class = "text-danger" })
+                                                    @Html.ValidationMessageFor(m => m.Pincode, "", new { @class = "text-danger", @readonly = "readonly" })
                                                     @*<input type="text" class="form-control">*@
 
                                                 </div>
@@ -429,7 +446,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <button type="submit" id="body_BtnSave" class="btn btn-warning text-dark shadow" href="#"><span class="fa fa-save"></span> Save</button>
-                            <button type="submit" id="body_BtnSaveNext" class="btn btn-success text-dark shadow pull-right" href="#"><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></button>
+                            <a id="body_BtnSaveNext" class="btn btn-success text-dark shadow pull-right" href="/Applicant/UploadPhoto?ID=@Model.ID" style="display:none;"><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
                         </div>
                     </div>
                 </div>
@@ -479,6 +496,15 @@ maxDate: '-1d'
     $("#SotherCity").val(otjerC);
 }
 })
+           var state =  $( "#StateId option:selected" ).text();
+                if (state == "other") {
+                    $("#otherState").css("display", "block");
+                    $("#otherCity").css("display", "block");
+                }
+                else {
+                     LoadCourse($("#StateId").val(), "@Model.CityId", "CityId");
+                }
+
 
       });
 
@@ -492,6 +518,38 @@ maxDate: '-1d'
                 else {
                      LoadCourse($("#StateId").val(), "@Model.CityId", "CityId");
                 }
+
+
+                  function LoadCourse(StateId, CityId, dropdownId) {
+            debugger;
+            if (StateId != "") {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("CityList", "Applicant")',
+                    data: { StateId: StateId },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.length > 0) {
+                            $("#" + dropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
+                            $.each(data, function (key, value) {
+                                $("#" + dropdownId).append($("<option></option>").val(value.Value).text(value.Text));
+                            });
+                            if (CityId != "0") {
+                                $("#" + dropdownId).val(CityId);
+                            }
+                        }
+                        else {
+                            $("#" + dropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
+                        }
+                    },
+                    error: function () {
+                    }
+                });
+            }
+            else {
+                $("#" + dropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
+            }
+    }
 
             });
 
@@ -575,18 +633,34 @@ maxDate: '-1d'
         $('#fileuploadAadhar').on('change', function () {
             debugger
             var uploadcontrol = document.getElementById('fileuploadAadhar');
+             var file = input.uploadcontrol;
             //Regular Expression for fileupload control.
             var reg = /^(([a-zA-Z]:)|(\\{2}\w+)\$?)(\\(\w[\w].*))+(.jpg |.jpeg|.png)$/;
+              if(file.length==0){
+            alert("No File Chosen");
+            return false;
+            }
+             var fileSize = Math.round((file[0].size / 1024));
             if (uploadcontrol.length > 0) {
                 //Checks with the control value.
+
+        if (fileSize <= 5*1024) {
                 if (reg.test(uploadcontrol)) {
                     return true;
-                }
-                else {
+            }
+             else {
                     //If the condition not satisfied shows error message.
                     alert("Only .jpg, .png files are allowed!");
                     return false;
                 }
+             }
+
+        else {
+            alert(
+              "Error! File is too large");
+         }
+
+               
             }
             var fileUpload = $(this).get(0);
             var files = fileUpload.files;
@@ -623,6 +697,9 @@ maxDate: '-1d'
         });
     });
 
-
+     function showbutton() {
+         $("#body_BtnSaveNext").css("display", "block");
+         $("#FormP").submit();
+    }
 
 </script>

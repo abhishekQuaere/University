@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -15,13 +16,20 @@ namespace UniversityRecruitment.Models
         public string FatherName { get; set; }
         public string MotherName { get; set; }
         public string DOB { get; set; }
+        [Required]
         public string City { get; set; }
+        [Required]
         public string State { get; set; }
+        [Required]
         public string Country { get; set; }
+        [Required]
         public string Category { get; set; }
+        [Required]
         public string Nationality { get; set; }
+        [Required]
         public string MaritalStatus { get; set; }
         public string Adhar { get; set; }
+        [Required]
         public string AdharImage { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
