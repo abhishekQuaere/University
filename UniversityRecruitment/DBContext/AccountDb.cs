@@ -223,7 +223,6 @@ namespace UniversityRecruitment.DBContext
 
         public dynamic SaveAwardDetails(Award model)
         {
-
             Award obj = new Award();
 
             var res = new Award();
@@ -250,9 +249,76 @@ namespace UniversityRecruitment.DBContext
             {
                 throw ex;
             }
+        }
 
+        public dynamic SaveResearchPaper(ResearchPaper model)
+        {
+            ResearchPaper obj = new ResearchPaper();
 
+            var res = new ResearchPaper();
+            try
+            {
+                var perm = new DynamicParameters();
+                if (model.ResearchPaperList.Count() > 0)
+                {
+                    for (int i = 0; i < model.ResearchPaperList.Count; i++)
+                    {
+                        perm.Add("@Id", model.ID);
+                        perm.Add("@PublicationName", model.ResearchPaperList[i].PublicationTitle);
+                        perm.Add("@PublicationDate", model.ResearchPaperList[i].PublicationDate);
+                        perm.Add("@Journal", model.ResearchPaperList[i].Journal);
+                        perm.Add("@Isbn", model.ResearchPaperList[i].ISBN);
+                        perm.Add("@PeerReviewed", model.ResearchPaperList[i].PeerReviewed);
+                        perm.Add("@ImpactFactor", model.ResearchPaperList[i].ImpactFactor);
+                        perm.Add("@NoOfCoAuthors", model.ResearchPaperList[i].NoOfAuther);
+                        perm.Add("@IsMainAuthor", model.ResearchPaperList[i].IsMainAuthor);
+                        perm.Add("@RefereedJournal", model.ResearchPaperList[i].ReferredJournal);
+                        perm.Add("@ListedInUgc", model.ResearchPaperList[i].IsUGClist);
+                        perm.Add("@UgcSerialNo", model.ResearchPaperList[i].UGCSerialNo);
+                        perm.Add("@DocumentPath", model.ResearchPaperList[i].UploadAttachment);
+                        perm.Add("@IpAddress", model.Ipaddress);
+                        res = _dapper.ExecuteGet<ResearchPaper>("ManageApplicantResearchPublication", perm);
+                    }
+                }
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public dynamic SaveEditBook(Editedbooks model)
+        {
+            Editedbooks obj = new Editedbooks();
 
+            var res = new Editedbooks();
+            try
+            {
+                var perm = new DynamicParameters();
+                if (model.EditedBookList.Count() > 0)
+                {
+                    for (int i = 0; i < model.EditedBookList.Count; i++)
+                    {
+                        perm.Add("@Id", model.Id);
+                        perm.Add("@Category", model.EditedBookList[i].Category);
+                        perm.Add("@Title", model.EditedBookList[i].Title);
+                        perm.Add("@PublicationDate", model.EditedBookList[i].PublicationDate);
+                        perm.Add("@Publisher", model.EditedBookList[i].PublisherName);
+                        perm.Add("@PublisherType", model.EditedBookList[i].publisherType);
+                        perm.Add("@Isbn", model.EditedBookList[i].ISBNNo);
+                        perm.Add("@NoOfCoAuthors", model.EditedBookList[i].NoOfCoAuther);
+                        perm.Add("@IsMainAuthor", model.EditedBookList[i].IsMainAuther);
+                        perm.Add("@DocumentPath", model.EditedBookList[i].UploadAttachment);                       
+                        perm.Add("@IpAddress", model.Ipaddress);
+                        res = _dapper.ExecuteGet<Editedbooks>("ManageApplicantBookPublication", perm);
+                    }
+                }
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
 
