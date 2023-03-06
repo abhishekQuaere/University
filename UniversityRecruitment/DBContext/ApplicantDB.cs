@@ -653,6 +653,41 @@ namespace UniversityRecruitment.DBContext
 
         }
 
+
+        public TeachingPedgogyModel saveTeachingPedgogy(TeachingPedgogyModel model)
+        {
+
+            TeachingPedgogyModel obj = new TeachingPedgogyModel();
+            var reader = new TeachingPedgogyModel();
+
+            try
+            {
+                DynamicParameters perm = new DynamicParameters();
+                if (model.lst.Count() > 0)
+                {
+                    for (int i = 0; i < model.lst.Count; i++)
+                    {
+                        perm.Add("@Id", model.userId);
+                        perm.Add("@Title", model.lst[i].tTitle);
+                        perm.Add("@Description", model.lst[i].description);
+                        perm.Add("@Type", model.lst[i].Pedagogy);
+                        perm.Add("@Level", model.lst[i].level);
+                        perm.Add("@CecApproval", model.lst[i].cECApproval);
+                        perm.Add("@DocumentPath", model.lst[i].attachment);
+                     
+                        perm.Add("@IpAddress", model.ip);
+                        reader = _dapper.ExecuteGet<TeachingPedgogyModel>("ManageApplicantPedagogy", perm);
+                    }
+                }
+
+                return reader;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
         #endregion
     }
 
