@@ -342,6 +342,25 @@ namespace UniversityRecruitment.Utilities
             }
         }
 
+        public string UserExceptionSession
+        {
+            get
+            {
+                if (HttpContext.Current.Session["UserExceptionSession"] != null)
+                {
+                    return Convert.ToString(HttpContext.Current.Session["UserExceptionSession"].ToString());
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            set
+            {
+                HttpContext.Current.Session["UserExceptionSession"] = value;
+            }
+        }
+        
         public string Password
         {
             get

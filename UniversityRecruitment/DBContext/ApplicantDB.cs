@@ -181,6 +181,21 @@ namespace UniversityRecruitment.DBContext
                 throw;
             }
         }
+        
+        public T GetApplicantPhotoAndSign<T>(int Id)
+        {
+            try
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("@Id", Id);
+                var res = _dapper.ExecuteGet<T>("Proc_GetApplicantPhotoAndSign", dynamicParameters);
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         public T GetApplicantPersonalinfo<T>(int ID)
         {

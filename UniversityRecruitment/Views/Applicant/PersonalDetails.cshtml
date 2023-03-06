@@ -461,66 +461,77 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js">
 </script>
 <script>
-      $(document).ready(function () {
+    $(document).ready(function () {
 
-          $( ".datepicker" ).datepicker({
-dateFormat : 'mm/dd/yy',
-changeMonth : true,
-changeYear : true,
-yearRange: '-100y:c+nn',
-maxDate: '-1d'
-});
+        $(".datepicker").datepicker({
+            dateFormat: 'mm/dd/yy',
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '-100y:c+nn',
+            maxDate: '-1d'
+        });
 
-    if ('@TempData["Message"]' != '') {
+        if ('@TempData["Message"]' != '') {
             swal("", "@TempData["Message"]", "success")
         }
 
 
-    let checkBox = document.getElementById('SameMailingAddress');
-    checkBox.addEventListener('change', (event) => {
-    if(event.currentTarget.checked) {
-    // Respond to the result
-    var Address1 = $("#Address1").val();
-    var Address2 = $("#Address2").val();
-    var StateId = $("#StateId").val();
-    var CityId = $("#CityId").val();
-    var Pincode = $("#Pincode").val();
-       var otherS = $("#otherState").val();
-    var otjerC = $("#otherCity").val();
-    $("#MAddress1").val(Address1);
-    $("#MAddress2").val(Address2);
-    $("#MStateId").val(StateId);
-     $("#MCityId").val(CityId);
-    $("#MPincode").val(Pincode);
-     $("#SotherState").val(otherS);
-    $("#SotherCity").val(otjerC);
-}
-})
-           var state =  $( "#StateId option:selected" ).text();
-                if (state == "other") {
-                    $("#otherState").css("display", "block");
-                    $("#otherCity").css("display", "block");
-                }
-                else {
-                     LoadCourse($("#StateId").val(), "@Model.CityId", "CityId");
-                }
+        let checkBox = document.getElementById('SameMailingAddress');
+        checkBox.addEventListener('change', (event) => {
+            if (event.currentTarget.checked) {
+                // Respond to the result
+                var Address1 = $("#Address1").val();
+                var Address2 = $("#Address2").val();
+                var StateId = $("#StateId").val();
+                var CityId = $("#CityId").val();
+                var Pincode = $("#Pincode").val();
+                var otherS = $("#otherState").val();
+                var otjerC = $("#otherCity").val();
+                $("#MAddress1").val(Address1);
+                $("#MAddress2").val(Address2);
+                $("#MStateId").val(StateId);
+                $("#MCityId").val(CityId);
+                $("#MPincode").val(Pincode);
+                $("#SotherState").val(otherS);
+                $("#SotherCity").val(otjerC);
+                LoadCourseM($("#MStateId").val(), CityId, "MCityId")
+            }
+            else {
+              
+                $("#MAddress1").val('');
+                $("#MAddress2").val('');
+                $("#MStateId").val('');
+                $("#MCityId").val('');
+                $("#MPincode").val('');
+                $("#SotherState").val('');
+                $("#SotherCity").val('');
+            }
+        })
+        var state = $("#StateId option:selected").text();
+        if (state == "other") {
+            $("#otherState").css("display", "block");
+            $("#otherCity").css("display", "block");
+        }
+        else {
+            LoadCourse($("#StateId").val(), "@Model.CityId", "CityId");
+        }
 
 
-      });
+    });
 
-            $("#StateId").on("change", function () {
-                debugger;
-               var state =  $( "#StateId option:selected" ).text();
-                if (state == "other") {
-                    $("#otherState").css("display", "block");
-                    $("#otherCity").css("display", "block");
-                }
-                else {
-                     LoadCourse($("#StateId").val(), "@Model.CityId", "CityId");
-                }
+    $("#StateId").on("change", function () {
+        debugger;
+        var state = $("#StateId option:selected").text();
+        if (state == "other") {
+            $("#otherState").css("display", "block");
+            $("#otherCity").css("display", "block");
+        }
+        else {
+            LoadCourse($("#StateId").val(), "@Model.CityId", "CityId");
+        }
 
 
-                  function LoadCourse(StateId, CityId, dropdownId) {
+        function LoadCourse(StateId, CityId, dropdownId) {
             debugger;
             if (StateId != "") {
                 $.ajax({
@@ -548,119 +559,119 @@ maxDate: '-1d'
             }
             else {
                 $("#" + dropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
-            }
-    }
-
-            });
-
-
-     $("#MStateId").on("change", function () {
-         debugger;
-          var Mstate =  $( "#MStateId option:selected" ).text();
-                if (Mstate == "other") {
-                    $("#SotherState").css("display", "block");
-                    $("#SotherCity").css("display", "block");
-                }
-                else {
-                       LoadCourseM($("#MStateId").val(), "@Model.MCityId", "MCityId");
-                }
-
-
-            });
-
-     function LoadCourse(StateId, CityId, dropdownId) {
-            debugger;
-            if (StateId != "") {
-                $.ajax({
-                    type: "POST",
-                    url: '@Url.Action("CityList", "Applicant")',
-                    data: { StateId: StateId },
-                    dataType: 'json',
-                    success: function (data) {
-                        if (data.length > 0) {
-                            $("#" + dropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
-                            $.each(data, function (key, value) {
-                                $("#" + dropdownId).append($("<option></option>").val(value.Value).text(value.Text));
-                            });
-                            if (CityId != "0") {
-                                $("#" + dropdownId).val(CityId);
-                            }
-                        }
-                        else {
-                            $("#" + dropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
-                        }
-                    },
-                    error: function () {
-                    }
-                });
-            }
-            else {
-                $("#" + dropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
-            }
-    }
-     function LoadCourseM(MStateId, MCityId, MdropdownId) {
-            debugger;
-            if (MStateId != "") {
-                $.ajax({
-                    type: "POST",
-                    url: '@Url.Action("CityList", "Applicant")',
-                    data: { StateId: MStateId },
-                    dataType: 'json',
-                    success: function (data) {
-                        if (data.length > 0) {
-                            $("#" + MdropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
-                            $.each(data, function (key, value) {
-                                $("#" + MdropdownId).append($("<option></option>").val(value.Value).text(value.Text));
-                            });
-                            if (MCityId != "0") {
-                                $("#" + MdropdownId).val(MCityId);
-                            }
-                        }
-                        else {
-                            $("#" + MdropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
-                        }
-                    },
-                    error: function () {
-                    }
-                });
-            }
-            else {
-                $("#" + MdropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
             }
         }
+
+    });
+
+
+    $("#MStateId").on("change", function () {
+        debugger;
+        var Mstate = $("#MStateId option:selected").text();
+        if (Mstate == "other") {
+            $("#SotherState").css("display", "block");
+            $("#SotherCity").css("display", "block");
+        }
+        else {
+            LoadCourseM($("#MStateId").val(), "@Model.MCityId", "MCityId");
+        }
+
+
+    });
+
+    function LoadCourse(StateId, CityId, dropdownId) {
+        debugger;
+        if (StateId != "") {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("CityList", "Applicant")',
+                data: { StateId: StateId },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.length > 0) {
+                        $("#" + dropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
+                        $.each(data, function (key, value) {
+                            $("#" + dropdownId).append($("<option></option>").val(value.Value).text(value.Text));
+                        });
+                        if (CityId != "0") {
+                            $("#" + dropdownId).val(CityId);
+                        }
+                    }
+                    else {
+                        $("#" + dropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
+                    }
+                },
+                error: function () {
+                }
+            });
+        }
+        else {
+            $("#" + dropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
+        }
+    }
+    function LoadCourseM(MStateId, MCityId, MdropdownId) {
+        debugger;
+        if (MStateId != "") {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("CityList", "Applicant")',
+                data: { StateId: MStateId },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.length > 0) {
+                        $("#" + MdropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
+                        $.each(data, function (key, value) {
+                            $("#" + MdropdownId).append($("<option></option>").val(value.Value).text(value.Text));
+                        });
+                        if (MCityId != "0") {
+                            $("#" + MdropdownId).val(MCityId);
+                        }
+                    }
+                    else {
+                        $("#" + MdropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
+                    }
+                },
+                error: function () {
+                }
+            });
+        }
+        else {
+            $("#" + MdropdownId).children().remove().end().append($("<option></option>").val("").text("-Select-"));
+        }
+    }
 
     $(function () {
         $('#fileuploadAadhar').on('change', function () {
             debugger
             var uploadcontrol = document.getElementById('fileuploadAadhar');
-             var file = input.uploadcontrol;
+            var file = input.uploadcontrol;
             //Regular Expression for fileupload control.
             var reg = /^(([a-zA-Z]:)|(\\{2}\w+)\$?)(\\(\w[\w].*))+(.jpg |.jpeg|.png)$/;
-              if(file.length==0){
-            alert("No File Chosen");
-            return false;
+            if (file.length == 0) {
+                alert("No File Chosen");
+                return false;
             }
-             var fileSize = Math.round((file[0].size / 1024));
+            var fileSize = Math.round((file[0].size / 1024));
             if (uploadcontrol.length > 0) {
                 //Checks with the control value.
 
-        if (fileSize <= 5*1024) {
-                if (reg.test(uploadcontrol)) {
-                    return true;
-            }
-             else {
-                    //If the condition not satisfied shows error message.
-                    alert("Only .jpg, .png files are allowed!");
-                    return false;
+                if (fileSize <= 5 * 1024) {
+                    if (reg.test(uploadcontrol)) {
+                        return true;
+                    }
+                    else {
+                        //If the condition not satisfied shows error message.
+                        alert("Only .jpg, .png files are allowed!");
+                        return false;
+                    }
                 }
-             }
 
-        else {
-            alert(
-              "Error! File is too large");
-         }
+                else {
+                    alert(
+                        "Error! File is too large");
+                }
 
-               
+
             }
             var fileUpload = $(this).get(0);
             var files = fileUpload.files;
@@ -697,9 +708,9 @@ maxDate: '-1d'
         });
     });
 
-     function showbutton() {
-         $("#body_BtnSaveNext").css("display", "block");
-         $("#FormP").submit();
+    function showbutton() {
+        $("#body_BtnSaveNext").css("display", "block");
+        $("#FormP").submit();
     }
 
 </script>

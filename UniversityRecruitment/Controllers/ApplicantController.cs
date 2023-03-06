@@ -7,11 +7,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using UniversityRecruitment.DBContext;
+using UniversityRecruitment.Filters;
 using UniversityRecruitment.Models;
 using UniversityRecruitment.Utilities;
 
 namespace UniversityRecruitment.Controllers
 {
+    [AuthorizeAdmin]
     public class ApplicantController : Controller
     {
         // GET: Applicant
@@ -99,6 +101,7 @@ namespace UniversityRecruitment.Controllers
         {
             PersonalDoc obj = new PersonalDoc();
             obj.ID = Convert.ToInt32(ID);
+            obj = apdb.GetApplicantPhotoAndSign<PersonalDoc>(obj.ID);
             return View(obj);
         }
         [HttpPost]
