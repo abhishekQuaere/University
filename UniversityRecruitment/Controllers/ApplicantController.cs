@@ -89,7 +89,7 @@ namespace UniversityRecruitment.Controllers
             model = apdb.SavePersonalInfo<Personalinfo>(obj);
             if (model.ResponseCode == 0)
             {
-                TempData["Message"] = "Updated Succesfuly" ;
+                TempData["Message"] = "Updated Succesfuly";
                 return View(obj);
             }
             return View(obj);
@@ -210,7 +210,7 @@ namespace UniversityRecruitment.Controllers
         public ActionResult Activities()
         {
             Activities model = new Activities();
-           // ViewBag.ActivitiesList = apdb.ActivitieList();
+            // ViewBag.ActivitiesList = apdb.ActivitieList();
             return View(model);
         }
 
@@ -317,7 +317,7 @@ namespace UniversityRecruitment.Controllers
         public ActionResult PaymentReceipt(string RefCode)
         {
             PersontalDetails model = new PersontalDetails();
-            model = apdb.PaymentReciept(RefCode,sm.userId);
+            model = apdb.PaymentReciept(RefCode, sm.userId);
             return View(model);
         }
 
@@ -412,6 +412,19 @@ namespace UniversityRecruitment.Controllers
         public ActionResult TeachingPedagogy()
         {
             return View();
+        }
+        [HttpPost]
+        public JsonResult TeachingPedagogy(TeachingPedgogyModel model)
+        {
+            ApplicantDB repo = new ApplicantDB();
+            TeachingPedgogyModel obj = new TeachingPedgogyModel();
+            model.ip = Common.GetIPAddress();
+            model.userId = sm.userId;
+            if (model.lst != null && model.lst.Count() > 0)
+            {
+                obj = repo.saveTeachingPedgogy(model);
+            }
+            return Json(obj, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -967,7 +980,7 @@ namespace UniversityRecruitment.Controllers
             }
             return Json(new { result = res, fpath = path, mesg = msg });
         }
-        
+
         public JsonResult UploadFileChapterPublished(HttpPostedFileBase File)
         {
             string Dirpath = "~/Content/writereaddata/ChapterPublished/";
@@ -1001,10 +1014,43 @@ namespace UniversityRecruitment.Controllers
             }
             return Json(new { result = res, fpath = path, mesg = msg });
         }
-        
+
         public JsonResult UploadFileChapterTranslationWork(HttpPostedFileBase File)
         {
             string Dirpath = "~/Content/writereaddata/ChapterTranslationWork/";
+            string path = "";
+            string filename = File.FileName;
+            bool res = false;
+            string msg = "";
+            if (!Directory.Exists(Server.MapPath(Dirpath)))
+            {
+                Directory.CreateDirectory(Server.MapPath(Dirpath));
+            }
+            string ext = Path.GetExtension(File.FileName);
+            var status = com.ValidateImagePDF_FileExtWithSize(File, 2048);
+            if (status == "Valid")
+            {
+
+                filename = DateTime.Now.ToString("yyyyMMddHHmmssffff") + "_" + filename;
+                string completepath = Path.Combine(Server.MapPath(Dirpath), filename);
+                if (System.IO.File.Exists(completepath))
+                {
+                    System.IO.File.Delete(completepath);
+                }
+
+                File.SaveAs(completepath);
+                path = Dirpath + filename;
+                res = true;
+            }
+            else
+            {
+                msg = status;
+            }
+            return Json(new { result = res, fpath = path, mesg = msg });
+        }
+        public JsonResult UploadFileTeachingPedagogy(HttpPostedFileBase File)
+        {
+            string Dirpath = "~/Content/writereaddata/TeachingPedagogy/";
             string path = "";
             string filename = File.FileName;
             bool res = false;
