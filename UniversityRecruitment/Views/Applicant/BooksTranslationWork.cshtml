@@ -43,9 +43,36 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Category</label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text" id="bCategory" class="form-control">
+                                    @*<span id="body_reqBookTitle" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Title with page Nos. (Name of Book & Editor)</label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text" id="" class="form-control">
+                                    <input name="" type="text" id="bTitle" class="form-control">
+                                    @*<span id="body_reqBookTitle" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Language</label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text" id="lang" class="form-control">
+                                    @*<span id="body_reqBookTitle" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Book Chapter</label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text" id="bChapter" class="form-control">
                                     @*<span id="body_reqBookTitle" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -54,158 +81,340 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Date/Year of Publication</label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text" id="" class="form-control">
+                                    <input name="" type="date" id="bDate" class="form-control">
                                     @*<span id="" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-sm-2">
+                        @*<div class="col-sm-2">
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">Publisher Type</label>
                                 <div class="col-sm-12">
-                                    <select name="" id="" class="form-control">
+                                    <select name="" id="pType" class="form-control">
                                         <option value="-1">-- select --</option>
                                         <option value="National">National</option>
                                         <option value="International">International</option>
 
                                     </select>
-                                    @*<span id="" class="validator" style="display:none;">select an item</span>*@
-                                </div>
-                            </div>
-                        </div>
+                                    @*<span id="" class="validator" style="display:none;">select an item</span>
+                    @*</div>
+                </div>
+            </div>*@
 
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label for="" id="" class="col-sm-12">Name of the Publisher</label>
-                                <div class="col-sm-12">
-                                    <input name="" type="text" id="" class="form-control">
-                                    @*<span id="" class="validator" style="display:none;">enter value</span>*@
-                                </div>
-                            </div>
-                        </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="" id="" class="col-sm-12">Name of the Publisher</label>
+                    <div class="col-sm-12">
+                        <input name="" type="text" id="nameOfP" class="form-control">
+                        @*<span id="" class="validator" style="display:none;">enter value</span>*@
                     </div>
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label for="" id="" class="col-sm-12">ISSN / ISBN No.</label>
-                                <div class="col-sm-12">
-                                    <input name="" type="text" id="" class="form-control">
-                                    @*<span id="body_reqIsbn" class="validator" style="display:none;">enter value</span>*@
-                                </div>
-                            </div>
-                        </div>
-                        
-
-                        <div class="col-sm-2">
-                            <div class="form-group">
-                                <label for="" id="" class="col-sm-12">No. of co-translator</label>
-                                <div class="col-sm-12">
-                                    <input name="" type="text" id="" class="form-control">
-                                    @*<span id="body_reqNoOfCoAuthor" class="validator" style="display:none;">enter value</span>*@
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label for="" id="" class="col-sm-12">Whether you are main translator</label>
-                                <div class="col-sm-12">
-                                    <select name="" id="" class="form-control">
-                                        <option value="-1">-- select --</option>
-                                        <option value="true">Yes</option>
-                                        <option value="false">No</option>
-
-                                    </select>
-                                    @*<span id="body_reqBookMainAuthor" class="validator" style="display:none;">select an item</span>*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="form-group">
-                                <label for="" id="" class="col-sm-12">Upload Scanned Attachment</label>
-                                <div class="col-sm-12">
-                                    <input type="file" name="" id="" class="form-control">
-                                    @*<span id="body_reqBookUpload" class="validator" style="display:none;">upload file</span>*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="form-group">
-                                <label for="" id="" class="col-sm-12">&nbsp;</label>
-                                <div class="col-sm-12">
-                                    <a id="body_btnBookAdd" class="btn btn-primary btn-shadow" href=""><span class="fa fa-plus-circle"></span> Add</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-
-
-
-                    <div class="row mt-3">
-                        <div class="col-sm-12">
-
-                            <div class="table-responsive">
-                                <table class="table full-color-table full-info-table hover-table">
-                                    <thead>
-                                        <tr class="">
-                                            <th>Title with page Nos. (Name of Book &amp; Editor)</th>
-                                            <th>Date of publication</th>
-                                            <th>Type of Translation</th>
-                                            <th>Publisher</th>
-                                            <th>ISSN / ISBN No.</th>
-
-                                            <th>No. of co-translator</th>
-                                            <th>Whether main Translator</th>
-                                            <th>API Score</th>
-                                            <th>Attachment</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    @*<tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Nigam</td>
-                                                <td>Eichmann</td>
-                                                <td>@@Genelia</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Roshan</td>
-                                                <td>Rogahn</td>
-                                                <td>@@Hritik</td>
-                                            </tr>
-                                        </tbody>*@
-                                </table>
-                            </div>
-
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
 
-    </div>
-
-    <div class="row">
-        <div class="card-shadow-primary col-sm-12 card bg-secondary">
-            <div class="card-body">
-                <div class="row">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="" id="" class="col-sm-12">ISSN / ISBN No.</label>
                     <div class="col-sm-12">
-                        <a id="" class="btn btn-warning text-dark shadow" href=""><span class="fa fa-save"></span> Save</a>
-                        <a id="" class="btn btn-success text-dark shadow pull-right" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
+                        <input name="" type="text" id="ISSN" class="form-control">
+                        @*<span id="body_reqIsbn" class="validator" style="display:none;">enter value</span>*@
                     </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="" id="" class="col-sm-12">No. of co-translator</label>
+                    <div class="col-sm-12">
+                        <input name="" type="text" id="translator" class="form-control">
+                        @*<span id="body_reqNoOfCoAuthor" class="validator" style="display:none;">enter value</span>*@
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="" id="" class="col-sm-12">Whether you are main translator</label>
+                    <div class="col-sm-12">
+                        <select name="" id="wYAMA" class="form-control">
+                            <option value="-1">-- select --</option>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+
+                        </select>
+                        @*<span id="body_reqBookMainAuthor" class="validator" style="display:none;">select an item</span>*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="" id="" class="col-sm-12">Upload Scanned Attachment</label>
+                    <div class="col-sm-12">
+                        <input type="file" id="attachment" class="form-control" onchange="Fileuploads(this)">
+                        <span id="attachmentAnchor" hidden></span>
+                        @*<span id="body_reqBookUpload" class="validator" style="display:none;">upload file</span>*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="" id="" class="col-sm-12">&nbsp;</label>
+                    <div class="col-sm-12">
+                        <a id="body_btnBookAdd" class="btn btn-primary btn-shadow" href="#" onclick="add()"><span class="fa fa-plus-circle"></span> Add</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-3">
+            <div class="col-sm-12">
+
+                <div class="table-responsive">
+                    <table class="table full-color-table full-info-table " id="table">
+                        <thead>
+                            <tr class="">
+                                <th>Category</th>
+                                <th>Title with page Nos. (Name of Book &amp; Editor)</th>
+                                <th>Date of publication</th>
+                                <th>Language</th>
+                                <th>BookChapter</th>
+                                @*<th>Type of Translation</th>*@
+                                <th>Publisher</th>
+                                <th>ISSN / ISBN No.</th>
+
+                                <th>No. of co-translator</th>
+                                <th>Whether main Translator</th>
+                                @*<th>API Score</th>*@
+                                <th>Attachment</th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="tbody"></tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="card-shadow-primary col-sm-12 card bg-secondary">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <a  class="btn btn-warning text-dark shadow" href="#" onclick="finalSubmit()"><span class="fa fa-save"></span> Save</a>
+                    <button class="btn btn-success text-dark shadow pull-right d-none" href="" id="btnsubmit"><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+
+<script>
+    function add() {
+        debugger;
+           var category = $('#bCategory').val();
+           var bTitle = $('#bTitle').val();
+        var Date = $('#bDate').val();
+        var nameOfP = $('#nameOfP').val();
+        //var pType = $('#pType').val();
+        var ISSN = $('#ISSN').val();
+        var translator = $('#translator').val();
+        var wYAMA = $('#wYAMA').val();
+        var lang = $('#lang').val();
+        var bChapter = $('#bChapter').val();
+        //= $('#wYAMA').select.options[selectedIndex].text;
+        var wYAMA1 = $("#wYAMA option:selected").text();
+           var attachment = $('#attachment').val();
+        var href = $('.anchor').attr('href');
+        if ($('#bCategory').val() == "" || $('#bCategory').val() == null || $('#bCategory').val() == undefined) {
+                swal("", "please enter category", "info")
+                return false;
+            }if ($('#bTitle').val() == "" || $('#bTitle').val() == null || $('#bTitle').val() == undefined) {
+                swal("", "please enter Book title with page nos.", "info")
+                return false;
+            }
+            if ($('#bDate').val() == "" || $('#bDate').val() == null || $('#bDate').val() == undefined) {
+                swal("", "Please enter Date/Year of Publication  ", "info")
+                return false;
+            }
+            if ($('#nameOfP').val() == "" || $('#nameOfP').val() == null || $('#nameOfP').val() == undefined) {
+                swal("", "please enter Name of the Publisher", "info")
+                return false;
+            }
+            //if ( $('#pType').val() =="-1"||$('#pType').val() == "" || $('#pType').val() == null || $('#pType').val() == undefined) {
+            //    swal("", "please select Publisher Type", "info")
+            //    return false;
+            //}
+            if ($('#ISSN').val() == "" || $('#ISSN').val() == null || $('#ISSN').val() == undefined) {
+                swal("", "please enter ISSN / ISBN No. ", "info")
+                return false;
+         }
+         if ($('#translator').val() == "" || $('#translator').val() == null || $('#translator').val() == undefined) {
+                swal("", "please  enter Translator ", "info")
+                return false;
+         }
+         if ($('#wYAMA').val()==-1||$('#wYAMA').val() == "" || $('#wYAMA').val() == null || $('#wYAMA').val() == undefined) {
+                swal("", "please  select Whether you are main author ", "info")
+                return false;
+         }
+         if ($('#attachment').val()==-1||$('#attachment').val() == "" || $('#attachment').val() == null || $('#attachment').val() == undefined) {
+                swal("", "please Upload Upload Scanned Attachment  ", "info")
+                return false;
+            }
+
+            var row = "<tr><td class='category'>"+category+"</td><td class='bTitle'>" + bTitle + "</td><td class='bDate'>" + Date + "</td><td class='lang'>" + lang + "</td><td class='bChapter'>" + bChapter + "</td><td class='nameOfP'>" + nameOfP + "</td><td class='ISSN'>" + ISSN + "</td><td class='noOftranslater'>" + translator + "</td><td >" + wYAMA1 + "</td><td hidden class='wYAMA'>" + wYAMA + "</td><td class='lattachment'><span class='input-group-text btn-download' href=" + href + "><a href=" + href + " target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td></tr>";
+
+            $('#tbody').append(row);
+     $('#bTitle').val('');
+        $('#bDate').val('');
+        $('#nameOfP').val('');
+      
+        $('#ISSN').val('');
+        $('#translator').val('');
+        $('#wYAMA').val(-1);
+            $('#attachment').val('');
+            $('#bCategory').val('');
+            $('#bChapter').val('');
+            $('#lang').val('');
+
+        }
+    function finalSubmit() {
+
+        debugger;
+        var model = {
+            lst: []
+
+        }
+
+        var detailslist = [];
+
+
+        $(' #table #tbody tr ').each(function (i, d) {
+            var details = {};
+            details.category = $(this).find('.category').text();
+            details.bookTitle = $(this).find('.bTitle').text();
+            details.Date = $(this).find('.bDate').text()
+            details.nameofP = $(this).find('.nameOfP').text()
+            //details.publisherType = $(this).find('.pType').text()
+            details.ISSN = $(this).find('.ISSN').text()
+            details.noOftranslater = $(this).find('.noOftranslater').text();
+            details.wheatherUMainAutor = $(this).find('.wYAMA').text();
+            details.lang = $(this).find('.lang').text();
+            details.bChapter = $(this).find('.bChapter').text();
+
+            details.attachment = $(this).find('.dnldbtn').attr('href');
+            detailslist.push(details)
+        })
+        if (detailslist==0) {
+            swal("", "please fill all field", "warning")
+            return false;
+        }
+        if (detailslist != 0) {
+            $.each(detailslist, function (key, value) {
+                model.lst.push(value);
+            })
+        }
+
+        $.ajax({
+            type: 'post',
+            url: '/Applicant/BooksTranslationWork',
+            data: JSON.stringify(model),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                if (data.ResponseCode == 0) {
+                    swal("", data.ResponseMessage, "success");
+
+                    $('#btnsubmit').removeClass('d-none')
+                    $('#tbody').empty()
+
+                }
+                else {
+                    swal("", "failure", "warning");
+                }
+            }
+
+
+        })
+    }
+    function Fileuploads(obj) {
+        debugger;
+        var filename = $(obj)[0].files[0].name;
+        var fileId = $(obj).attr("id");
+          var ext = obj.value.match(/\.(.+)$/)[1];
+
+
+        switch (ext) {
+            case 'pdf':
+            case 'jpg':
+            case 'jpeg':
+                var fileSize = ($("#" + fileId)[0].files[0].size / 1024 / 1024);
+                if (fileSize > 2) {
+                    swal("", "File size should not exceed 2 MB.\r\nफाइल का साइज़ 2 MB से अधिक नहीं होना चाहिए।", "warning");
+                    return false;
+                }
+                else {
+                    var data = new FormData();
+                    var files = $("#" + fileId).get(0).files;
+                    if (files.length > 0) {
+                        data.append("File", files[0]);
+
+                    }
+                    $("#divLoader").show();
+                    $.ajax({
+                   url: '@Url.Action("UploadFileBookTranslationEork", "Applicant")',
+                        type: "POST",
+                        processData: false,
+                        contentType: false,
+                        data: data,
+                        success: function (response) {
+                            $("#divLoader").hide();
+
+                            if (response != null) {
+                                if (response.result) {
+                                    $("#fileName" + fileId).text(filename);
+                                    $("#" + fileId + "Path").val(response.fpath);
+                                    var Url = response.fpath.replace('~/', '');
+                                    $("#" + fileId + "Anchor").empty();
+                                    $("#" + fileId + "Anchor").attr('href', Url);
+                                    //$("#" + fileId + "Anchor").show();
+                                    $("#" + fileId + "Anchor").append('<a href="' + '@Url.Content("~/")' + Url + '" target="_blank" class="btn btn-warning anchor"><i class="fa fa-download"></i></a>');
+                                    swal("", "File upload successfully. ", "success")
+                                }
+                                else {
+                                    swal("", response.mesg, "error")
+                                }
+                            }
+                            else {
+                                swal("", "Fail to Upload File", "error")
+                            }
+                            return false;
+
+                        },
+                        error: function (e) {
+
+                            $("#divLoader").hide();
+                            swal("", "An Error Occured while uploading file", "error");
+                        }
+                    });
+
+                }
+                break;
+            default:
+                swal("", 'File should be in PDF/JPG/JPEG format./फाइल PDF/JPG/JPEG प्रारूप में होनी चाहिए।', "warning");
+                this.value = '';
+                return false;
+        }
+
+        }
+</script>

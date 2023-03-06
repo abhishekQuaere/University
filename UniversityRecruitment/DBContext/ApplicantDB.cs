@@ -699,6 +699,47 @@ namespace UniversityRecruitment.DBContext
             }
 
         }
+
+
+        public bookTranslationWrokModel saveBookTranslationWork(bookTranslationWrokModel model)
+        {
+
+            bookTranslationWrokModel obj = new bookTranslationWrokModel();
+            var reader = new bookTranslationWrokModel();
+
+            try
+            {
+                DynamicParameters perm = new DynamicParameters();
+                if (model.lst.Count() > 0)
+                {
+                    for (int i = 0; i < model.lst.Count; i++)
+                    {
+                        perm.Add("@Id", model.userId);
+                        perm.Add("@Category", model.lst[i].category);
+                        perm.Add("@Title", model.lst[i].bookTitle);
+                        perm.Add("@PublicationDate", model.lst[i].Date);
+                        perm.Add("@Language", model.lst[i].lang);
+                   
+                        perm.Add("@Publisher", model.lst[i].nameofP);
+                        perm.Add("@Isbn", model.lst[i].ISSN);
+                        perm.Add("@BookChapter", model.lst[i].bchapter);
+                        perm.Add("@NoOfCoTranslators", model.lst[i].noOftranslater);
+                        perm.Add("@IsMainTranslator", model.lst[i].wheatherUMainAutor);
+                        perm.Add("@DocumentPath", model.lst[i].attachment);
+
+                        perm.Add("@IpAddress", model.ip);
+                        reader = _dapper.ExecuteGet<bookTranslationWrokModel>("[ManageApplicantTranslation]", perm);
+                    }
+                }
+
+                return reader;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
         #endregion
 
         public List<T> GetResearchGuidanceById<T>(long ID)
