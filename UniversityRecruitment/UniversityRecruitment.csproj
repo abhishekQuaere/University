@@ -131,6 +131,7 @@
     <Compile Include="DBContext\AccountDb.cs" />
     <Compile Include="DBContext\ApplicantDB.cs" />
     <Compile Include="DBContext\DapperDbContext.cs" />
+    <Compile Include="Filter\Authorization.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -141,6 +142,7 @@
     <Compile Include="Models\Award.cs" />
     <Compile Include="Models\bookAuthoredModel.cs" />
     <Compile Include="Models\BookPublication.cs" />
+    <Compile Include="Models\bookTranslationWrokModel.cs" />
     <Compile Include="Models\Commons.cs" />
     <Compile Include="Models\DesignofNewCurricula.cs" />
     <Compile Include="Models\Editedbooks.cs" />
@@ -184,6 +186,7 @@
     <Compile Include="Models\Registration.cs" />
     <Compile Include="Models\ResearchDegree.cs" />
     <Compile Include="Models\ResearchPaper.cs" />
+    <Compile Include="Models\TeachingPedgogyModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilitis\Common.cs" />
     <Compile Include="Utilitis\MessageStatus.cs" />
@@ -802,6 +805,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\Handler\AdharImageBack.ashx" />
+    <Content Include="Models\Handler\AdharImageFront1.ashx" />
+    <Content Include="Models\Handler\Category.ashx" />
+    <Content Include="Models\Handler\DoctorDegree.ashx" />
+    <Content Include="Models\Handler\DoctorKyc.ashx" />
+    <Content Include="Models\Handler\DoctorProfile.ashx" />
+    <Content Include="Models\Handler\DoctorRegistration.ashx" />
+    <Content Include="Models\Handler\ItemImage.ashx" />
+    <Content Include="Models\Handler\ProfilePic.ashx" />
+    <Content Include="Models\Handler\UploadImage.ashx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\Assests\css\main.css.map" />
@@ -887,16 +900,6 @@
     <Content Include="Content\scss\icons\themify-icons\fonts\themify9f24.eot" />
     <Content Include="Content\scss\icons\themify-icons\fonts\themifyd41d.eot" />
     <Content Include="Content\scss\icons\weather-icons\fonts\weathericons-regular-webfont.eot" />
-    <Content Include="Models\Handler\AdharImageBack.ashx" />
-    <Content Include="Models\Handler\AdharImageFront1.ashx" />
-    <Content Include="Models\Handler\Category.ashx" />
-    <Content Include="Models\Handler\DoctorDegree.ashx" />
-    <Content Include="Models\Handler\DoctorKyc.ashx" />
-    <Content Include="Models\Handler\DoctorProfile.ashx" />
-    <Content Include="Models\Handler\DoctorRegistration.ashx" />
-    <Content Include="Models\Handler\ItemImage.ashx" />
-    <Content Include="Models\Handler\ProfilePic.ashx" />
-    <Content Include="Models\Handler\UploadImage.ashx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
