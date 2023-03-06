@@ -391,7 +391,7 @@ namespace UniversityRecruitment.Controllers
             model.IpAddress = Common.GetIPAddress();
             if (model.bookPublications.Count() > 0 && model.bookPublications != null)
             {
-                model = apdb.SaveChapterPublished(model);
+                model = apdb.SaveChapterTranslationWork(model);
             }
             else
             {

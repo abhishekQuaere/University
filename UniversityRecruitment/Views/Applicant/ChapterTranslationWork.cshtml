@@ -114,7 +114,7 @@
                             <div class="form-group">
                                 <label for="" id="" class="col-sm-12">No. of co-translator</label>
                                 <div class="col-sm-12">
-                                    <input name="" type="text" id="NoOfCoTranslator" class="form-control">
+                                    <input name="" type="text" id="NoOfCoTranslator" class="form-control only-numeric">
                                     @*<span id="body_reqNoOfCoAuthor" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -123,7 +123,24 @@
 
                     <div class="row">
                         
-                        
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Language</label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text" id="Language" class="form-control">
+                                    @*<span id="body_reqNoOfCoAuthor" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="" id="" class="col-sm-12">Book Chapter</label>
+                                <div class="col-sm-12">
+                                    <input name="" type="text" id="BookChapter" class="form-control">
+                                    @*<span id="body_reqNoOfCoAuthor" class="validator" style="display:none;">enter value</span>*@
+                                </div>
+                            </div>
+                        </div>
 
                         
 
@@ -241,10 +258,13 @@
         var IsMainAuthor = $('#IsMainAuthor').val();
         var IsMainAuthorText = $("#IsMainAuthor option:selected").text();
         var href = $('.anchor').attr('href');
+        var Language = $('#Language').val();
+        var BookChapter = $('#BookChapter').val();
 
-        if (Title != "" && Title != null && Title != undefined || PublicationDate != "" && PublicationDate != null && PublicationDate != undefined || Publisher != "" && Publisher != null && Publisher != undefined || PublisherType != "-1" && PublisherType != null && PublisherType != undefined || Isbn != "" && Isbn != null && Isbn != undefined || NoOfCoAuthors != "" && NoOfCoAuthors != null && NoOfCoAuthors != undefined || IsMainAuthor != "-1" && IsMainAuthor != null && IsMainAuthor != undefined || NameofBookEditor != "" && NameofBookEditor != null && NameofBookEditor != undefined || NoOfCoTranslator != "" && NoOfCoTranslator != null && NoOfCoTranslator != undefined || href != "" && href != null && href != undefined) {
 
-            var row = "<tr><td class='Title'>" + Title + "</td><td class='Category'>" + Category + "</td><td class='PublicationDate'>" + PublicationDate + "</td><td class='PublisherTypeText'>" + PublisherTypeText + "<input type='hidden' value=" + PublisherType + " class='PublisherType'/></td><td class='Publisher'>" + Publisher + "</td><td class='Isbn'>" + Isbn + "</td><td class='NameofBookEditor'>" + NameofBookEditor + "</td><td class='NoOfCoTranslator'>" + NoOfCoTranslator + "</td><td class='IsMainAuthorText'>" + IsMainAuthorText + "<input type='hidden' value=" + IsMainAuthor +" class='IsMainAuthor'/></td><td><span class='input-group-text btn-download' href=" + href +"><a href=" + href +" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td></tr>";
+        if (Title != "" && Title != null && Title != undefined || PublicationDate != "" && PublicationDate != null && PublicationDate != undefined || Publisher != "" && Publisher != null && Publisher != undefined || PublisherType != "-1" && PublisherType != null && PublisherType != undefined || Isbn != "" && Isbn != null && Isbn != undefined || NoOfCoAuthors != "" && NoOfCoAuthors != null && NoOfCoAuthors != undefined || IsMainAuthor != "-1" && IsMainAuthor != null && IsMainAuthor != undefined || NameofBookEditor != "" && NameofBookEditor != null && NameofBookEditor != undefined || NoOfCoTranslator != "" && NoOfCoTranslator != null && NoOfCoTranslator != undefined || href != "" && href != null && href != undefined || Language != "" && Language != null && Language != undefined || BookChapter != "" && BookChapter != null && BookChapter != undefined) {
+
+            var row = "<tr><td class='Title'>" + Title + "</td><td class='Category'>" + Category + "</td><td class='PublicationDate'>" + PublicationDate + "</td><td class='PublisherTypeText'>" + PublisherTypeText + "<input type='hidden' value=" + PublisherType + " class='PublisherType'/></td><td class='Publisher'>" + Publisher + "</td><td class='Isbn'>" + Isbn + "</td><td class='NameofBookEditor'>" + NameofBookEditor + "<input type='hidden' value=" + Language + " class='language'/></td><td class='NoOfCoTranslator'>" + NoOfCoTranslator + "<input type='hidden' value=" + BookChapter +" class='bookChapter'/></td><td class='IsMainAuthorText'>" + IsMainAuthorText + "<input type='hidden' value=" + IsMainAuthor +" class='IsMainAuthor'/></td><td><span class='input-group-text btn-download' href=" + href +"><a href=" + href +" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td></tr>";
 
             $('#addMoreData').append(row);
 
@@ -257,6 +277,8 @@
            $('#NameofBookEditor').val('');
             $('#NoOfCoTranslator').val('');
             $('#IsMainAuthor').val('-1');
+            $('#Language').val('');
+            $('#BookChapter').val('');
 
             var $el = $('#attachment');
             $el.wrap('<form>').closest('form').get(0).reset();
@@ -360,6 +382,8 @@
             bookPublications.NoOfCoTranslator = $(this).find(".NoOfCoTranslator").text();
             bookPublications.IsMainAuthor = $(this).find(".IsMainAuthor").val();
             bookPublications.DocumentPath = $(this).find('.dnldbtn').attr('href');
+            bookPublications.Language = $(this).find('.language').val();
+            bookPublications.BookChapter = $(this).find('.bookChapter').val();
 
             bookPublicationsList.push(bookPublications);
             IsPass = true;

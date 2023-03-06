@@ -535,16 +535,16 @@ namespace UniversityRecruitment.DBContext
                         dynamicParameters.Add("Category", itm.Category, DbType.String);
                         dynamicParameters.Add("Title", itm.Title, DbType.String);
                         dynamicParameters.Add("PublicationDate", itm.PublicationDate, DbType.String);
+                        dynamicParameters.Add("Language", itm.Language, DbType.String);
                         dynamicParameters.Add("Publisher", itm.Publisher, DbType.String);
-                        dynamicParameters.Add("PublisherType", itm.PublisherType, DbType.String);
+                        //dynamicParameters.Add("PublisherType", itm.PublisherType, DbType.String);
                         dynamicParameters.Add("Isbn", itm.Isbn, DbType.String);
-                        dynamicParameters.Add("NoOfCoAuthors", itm.NoOfCoAuthors, DbType.String);
-                        dynamicParameters.Add("IsMainAuthor", itm.IsMainAuthor, DbType.String);
+                        dynamicParameters.Add("BookChapter", itm.BookChapter, DbType.String);
+                        dynamicParameters.Add("NoOfCoTranslators", itm.NoOfCoTranslator, DbType.Int32);
+                        dynamicParameters.Add("IsMainTranslator", itm.IsMainAuthor, DbType.String);
                         dynamicParameters.Add("DocumentPath", itm.DocumentPath, DbType.String);
-                        dynamicParameters.Add("NameofBookEditor", itm.NameofBookEditor, DbType.String);
-                        dynamicParameters.Add("Noofcotranslator", itm.NoOfCoTranslator, DbType.String);
                         dynamicParameters.Add("IpAddress", model.IpAddress, DbType.String);
-                        res = _dapper.ExecuteGet<BookPublication>("ManageApplicantBookPublication_New", dynamicParameters);
+                        res = _dapper.ExecuteGet<BookPublication>("ManageApplicantTranslation", dynamicParameters);
 
                     }
                     catch (Exception ex)
