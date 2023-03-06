@@ -13,7 +13,7 @@ using UniversityRecruitment.Utilities;
 
 namespace UniversityRecruitment.Controllers
 {
-    [AuthorizeAdmin]
+    //[AuthorizeAdmin]
     public class ApplicantController : Controller
     {
         // GET: Applicant
@@ -408,6 +408,19 @@ namespace UniversityRecruitment.Controllers
         public ActionResult BooksTranslationWork()
         {
             return View();
+        }
+
+        [HttpPost]
+        public JsonResult BooksTranslationWork(bookTranslationWrokModel model)
+        {
+            ApplicantDB repo = new ApplicantDB();
+            bookTranslationWrokModel obj = new bookTranslationWrokModel();
+            if (model.lst != null && model.lst.Count() > 0)
+            {
+                obj = repo.saveBookTranslationWork(model);
+            }
+
+            return Json(obj, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -1084,7 +1097,39 @@ namespace UniversityRecruitment.Controllers
             }
             return Json(new { result = res, fpath = path, mesg = msg });
         }
+        public JsonResult UploadFileBookTranslationEork(HttpPostedFileBase File)
+        {
+            string Dirpath = "~/Content/writereaddata/BookTranslationEork/";
+            string path = "";
+            string filename = File.FileName;
+            bool res = false;
+            string msg = "";
+            if (!Directory.Exists(Server.MapPath(Dirpath)))
+            {
+                Directory.CreateDirectory(Server.MapPath(Dirpath));
+            }
+            string ext = Path.GetExtension(File.FileName);
+            var status = com.ValidateImagePDF_FileExtWithSize(File, 2048);
+            if (status == "Valid")
+            {
 
+                filename = DateTime.Now.ToString("yyyyMMddHHmmssffff") + "_" + filename;
+                string completepath = Path.Combine(Server.MapPath(Dirpath), filename);
+                if (System.IO.File.Exists(completepath))
+                {
+                    System.IO.File.Delete(completepath);
+                }
+
+                File.SaveAs(completepath);
+                path = Dirpath + filename;
+                res = true;
+            }
+            else
+            {
+                msg = status;
+            }
+            return Json(new { result = res, fpath = path, mesg = msg });
+        }
 
         [HttpPost]
         public JsonResult BookAuthored(bookAuthoredModel model)
