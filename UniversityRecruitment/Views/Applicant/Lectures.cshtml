@@ -46,7 +46,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Name of Program with Date</label>
                                 <div class="col-sm-12">
-                                    <input type="date" class="form-control" id="Pdate">
+                                    <input type="text" class="form-control" id="Ptext"><input type="date" class="form-control" id="Pdate">
                                     @*<span id="body_reqAcademicSession" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -127,13 +127,38 @@
                                             <th>Type</th>
                                             <th>Level</th>
                                             <th>Organizing Body / Agency</th>
-                                            <th>API Score</th>
+                                            @*<th>API Score</th>*@
                                             <th>Attachment</th>
                                             <th></th>
                                         </tr>
 
                                     </thead>
-                                    <tbody id="lectureslist"></tbody>
+                                    <tbody id="lectureslist">
+                                        @if (Model != null)
+                                        {
+                                            if (Model.lst.Count() > 0)
+                                            {
+                                                int sr = 1;
+                                                foreach (var itm in Model.lst)
+                                                {
+
+                                                    <tr>
+                                                        <td>@itm.titleLectures</td>
+                                                        <td>@itm.programTextAndDate</td>
+                                                        <td>@itm.type</td>
+                                                        <td>@itm.level</td>
+                                                        <td>@itm.organizingBody</td>
+                                                        <td><span class='input-group-text btn-download' href="@itm.attachment.Replace("~","")"><a href="@itm.attachment.Replace("~","")" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td>
+                                                    </tr>
+
+                                                }
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        }
+                                    </tbody>
 
                                 </table>
                             </div>
@@ -165,6 +190,7 @@
 
         debugger;
         var title = $('#title').val();
+        var Ptext = $('#Ptext').val();
         var Pdate = $('#Pdate').val();
         var pType = $('#pType').val();
         var Plevel = $('#Plevel').val();
@@ -176,7 +202,10 @@
                 swal("", "please enter title", "warning")
                 return false;
             }
-            if ($('#Pdate').val() == "" || $('#Pdate').val() == null || $('#Pdate').val() == undefined) {
+        if ($('#Ptext').val() == "" || $('#Ptext').val() == null || $('#Ptext').val() == undefined) {
+                swal("", "Please Name Of Program  ", "warning")
+                return false;
+            } if ($('#Pdate').val() == "" || $('#Pdate').val() == null || $('#Pdate').val() == undefined) {
                 swal("", "Please enter date  ", "warning")
                 return false;
             }
@@ -197,13 +226,14 @@
             }
 
 
-        var row = "<tr><td class='Ltitile'>" + title + "</td><td class='lDate'>" + Pdate + "</td><td class='ltype'>" + pType + "</td><td class='lLevel'>" + Plevel + "</td><td class='lOrganby'>" + organBY + "</td><td></td><td class='lattachment'><span class='input-group-text btn-download' href=" + href +"><a href=" + href +" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td></tr>";
+        var row = "<tr class='new'><td class='Ltitile'>" + title + "</td><td class='lptpd'>" + Ptext +'/'+ Pdate + "</td><input type='hidden' value=" + Ptext + " class='lPtext'/><input type='hidden' value=" + Pdate +" class='lDate'/><td class='ltype'>" + pType + "</td><td class='lLevel'>" + Plevel + "</td><td class='lOrganby'>" + organBY + "</td><td class='lattachment'><span class='input-group-text btn-download' href=" + href +"><a href=" + href +" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td></tr>";
 
 
         $('#lectureslist').append(row);
 
         $('#title').val('');
         $('#Pdate').val('');
+        $('#Ptext').val('');
         $('#pType').val(-1);
         $('#Plevel').val(-1);
         $('#organBY').val('');
@@ -222,13 +252,15 @@
         var detailslist = [];
 
 
-        $('#tables #lectureslist tr ').each(function (i, d) {
+        $('.new').each(function (i, d) {
             var details = {};
             details.titleLectures = $(this).find('.Ltitile').text();
-            details.programDate = $(this).find('.lDate').text()
-            details.type = $(this).find('.ltype').text()
-            details.level = $(this).find('.lLevel').text()
-            details.organizingBody = $(this).find('.lOrganby').text()
+            details.programDate = $(this).find('.lDate').val();
+            details.programText = $(this).find('.lPtext').val();
+            details.programTextAndDate = $(this).find('.lptpd').text();
+            details.type = $(this).find('.ltype').text();
+            details.level = $(this).find('.lLevel').text();
+            details.organizingBody = $(this).find('.lOrganby').text();
             details.attachment = $(this).find('.dnldbtn').attr('href');
 
             detailslist.push(details)
@@ -256,10 +288,18 @@
             dataType: "json",
             success: function (data) {
                 if (data.ResponseCode == 0) {
-                    swal("", data.ResponseMessage, "success");
-
-                    $('#btnsubmit').removeClass('d-none')
-                    $('#lectureslist').empty()
+                    //swal("", data.ResponseMessage, "success");
+                    //$('#btnsubmit').removeClass('d-none')
+                    //$('#lectureslist').empty()
+                    $.confirm({
+                        title: 'success',
+                        content: data.ResponseMessage,
+                        buttons: {
+                            Ok: function () {
+                                window.location.reload();
+                            }
+                        }
+                    });
                 }
                 else {
                     swal("", "failure", "warning");

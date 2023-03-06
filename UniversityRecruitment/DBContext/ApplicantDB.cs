@@ -340,7 +340,7 @@ namespace UniversityRecruitment.DBContext
                 {
                     for (int i = 0; i < model.lst.Count; i++)
                     {
-                        perm.Add("@id", 1);
+                        perm.Add("@id", model.UserId);
                         perm.Add("@Qualification", model.lst[i].qualification);
                         perm.Add("@CourseName", model.lst[i].nameOfCourse);
                         perm.Add("@Specialization", model.lst[i].specialization);
@@ -418,12 +418,8 @@ namespace UniversityRecruitment.DBContext
                         perm.Add("@LectureType", model.lst[i].type);
                         perm.Add("@Agency", model.lst[i].organizingBody);
                         perm.Add("@LectureLevel", model.lst[i].level);
-                        perm.Add("@AcademicSession", model.lst[i].programDate);
-
-
-
+                        perm.Add("@AcademicSession", model.lst[i].programTextAndDate);
                         perm.Add("@DocumentPath", model.lst[i].attachment);
-
                         perm.Add("@IpAddress", model.ip);
                         reader = _dapper.ExecuteGet<LecturesModel>("[ManageApplicantInvitedLecture]", perm);
                     }
@@ -704,6 +700,119 @@ namespace UniversityRecruitment.DBContext
 
         }
         #endregion
+
+        public List<T> GetResearchGuidanceById<T>(long ID)
+        {
+            try
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("Id", ID, DbType.Int32);
+                return _dapper.GetAll<T>("Proc_GetResearchGuidanceById", dynamicParameters);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+     
+        public dynamic GetRefereeById(long Id)
+        {
+            Referee model = new Referee();
+            RefereeByIdModel req = new RefereeByIdModel();
+
+            using (SqlConnection objConnection = new SqlConnection(DapperDbContext.connect()))
+            {
+                try
+                {
+                    req.Id = Id;
+
+                    var reader = objConnection.QueryMultiple("Proc_GetRefereeById", req, commandType: System.Data.CommandType.StoredProcedure);
+                    var list = reader.Read<Referee>().ToList();
+                    var list1 = reader.Read<Acceptance>().FirstOrDefault();
+
+                    model.referee = list;
+                    model.acceptance = list1;
+
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                return model;
+            }
+
+        }
+        
+        public dynamic GetQualificationById(long Id)
+        {
+            academicsDetails model = new academicsDetails();
+            RefereeByIdModel req = new RefereeByIdModel();
+
+            using (SqlConnection objConnection = new SqlConnection(DapperDbContext.connect()))
+            {
+                try
+                {
+                    req.Id = Id;
+
+                    var reader = objConnection.QueryMultiple("Proc_GetQualificationById", req, commandType: System.Data.CommandType.StoredProcedure);
+                    var list = reader.Read<academicQualification>().ToList();
+                    var list1 = reader.Read<ugcDetails>().ToList();
+
+                    model.lst = list;
+                    model.lst1 = list1;
+
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                return model;
+            }
+
+        }
+
+        public List<T> GetInvitedLectureById<T>(long ID)
+        {
+            try
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("Id", ID, DbType.Int32);
+                return _dapper.GetAll<T>("Proc_GetInvitedLectureById", dynamicParameters);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public dynamic GetExperienceById(long Id)
+        {
+            Experience model = new Experience();
+            RefereeByIdModel req = new RefereeByIdModel();
+
+            using (SqlConnection objConnection = new SqlConnection(DapperDbContext.connect()))
+            {
+                try
+                {
+                    req.Id = Id;
+
+                    var reader = objConnection.QueryMultiple("Proc_GetExperienceById", req, commandType: System.Data.CommandType.StoredProcedure);
+                    var list = reader.Read<Experience>().ToList();
+                    var list1 = reader.Read<Experience>().ToList();
+
+                    model.Designationlist = list;
+                    model.Agencylist = list1;
+
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                return model;
+            }
+
+        }
+
     }
 
 }

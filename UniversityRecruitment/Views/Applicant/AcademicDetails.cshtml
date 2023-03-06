@@ -1,4 +1,4 @@
-﻿@model UniversityRecruitment.Models.academicQualification﻿
+﻿@model UniversityRecruitment.Models.academicsDetails
 @{
     ViewBag.Title = "AcademicDetails";
     Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
@@ -156,11 +156,42 @@
                                             <th>Attachment</th>
                                             <th></th>
                                         </tr>
-
-
-
                                     </thead>
-                                    <tbody id="educationaldetails"></tbody>
+                                    <tbody id="educationaldetails">
+                                        @if (Model != null)
+                                        {
+                                            if (Model.lst.Count() > 0)
+                                            {
+                                                foreach (var itm in Model.lst)
+                                                {
+
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>@itm.nameOfCourse</td>
+                                                        <td>@itm.specialization</td>
+                                                        <td>@itm.nameofBoard</td>
+                                                        <td>@itm.yearPassed</td>
+                                                        <td>@itm.divison</td>
+                                                        <td>@itm.cgpa</td>
+                                                        <td>@itm.perMarks</td>
+                                                        <td>@itm.subjectStudied</td>
+                                                        <td>
+                                                            @if (!String.IsNullOrEmpty(itm.attachment))
+                                                            {
+                                                                <span class='input-group-text btn-download' href="@itm.attachment.Replace("~", "")"><a href="@itm.attachment.Replace("~", "")" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span>
+                                                            }
+                                                        </td>
+
+                                                    </tr>
+
+                                                }
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        }
+                                    </tbody>
                                 </table>
                             </div>
 
@@ -258,7 +289,36 @@
 
 
                                     </thead>
-                                    <tbody id="Pdetails"></tbody>
+                                    <tbody id="Pdetails">
+                                        @if (Model != null)
+                                        {
+                                            if (Model.lst1.Count() > 0)
+                                            {
+                                                foreach (var itm in Model.lst1)
+                                                {
+
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>@itm.subject</td>
+                                                        <td>@itm.rollno</td>
+                                                        <td>@itm.year</td>
+                                                        <td>
+                                                            @if (!String.IsNullOrEmpty(itm.uDocument))
+                                                            {
+                                                                <span class='input-group-text btn-download' href="@itm.uDocument.Replace("~", "")"><a href="@itm.uDocument.Replace("~", "")" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span>
+                                                            }
+                                                        </td>
+
+                                                    </tr>
+
+                                                }
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        }
+                                    </tbody>
                                 </table>
 
                             </div>
@@ -278,7 +338,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <a id="body_BtnSave" class="btn btn-warning text-dark shadow" href="#" onclick="finalSubmit()"><span class="fa fa-save"></span> Save</a>
-                        <button id="btnsubmit" class="btn btn-success text-dark shadow pull-right d-none" href="#" ><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></button>
+                        <button id="btnsubmit" class="btn btn-success text-dark shadow pull-right" href="#"><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></button>
                     </div>
                 </div>
             </div>
@@ -336,7 +396,7 @@
             }
 
 
-            var row = "<tr><td class='qu'>" + Qu + "</td><td class='courseName'>" + courseName + "</td><td class='specialize'>" + specialize + "</td><td class='boardName'>" + boardName + "</td><td class='passedYear'>" + passedYear + "</td><td class='divison'>" + divison + "</td><td class='cgpa'>" + cgpa + "</td><td class='perMarks'>" + perMarks + "</td><td class='subjectStudied'>" + subjectStudied + "</td><td class='attachment'><span class='input-group-text btn-download' href=" + href +"><a href=" + href +" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td></tr>";
+            var row = "<tr class='new'><td class='qu'>" + Qu + "</td><td class='courseName'>" + courseName + "</td><td class='specialize'>" + specialize + "</td><td class='boardName'>" + boardName + "</td><td class='passedYear'>" + passedYear + "</td><td class='divison'>" + divison + "</td><td class='cgpa'>" + cgpa + "</td><td class='perMarks'>" + perMarks + "</td><td class='subjectStudied'>" + subjectStudied + "</td><td class='attachment'><span class='input-group-text btn-download' href=" + href +"><a href=" + href +" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td></tr>";
 
 
             $('#educationaldetails').append(row);
@@ -386,7 +446,7 @@
                 return false;
             }
 
-            var row = "<tr><td class='exam'>" + exam + "</td><td class='sub'>" + sub + "</td><td class='rollno'>" + rollno + "</td><td class='year'>" + year + "</td><td class='document'><span class='input-group-text btn-download' href=" + href +"><a href=" + href +" target='_blank' class='btn btn-warning dnldbtn1'><i class='fa fa-download'></i></a></span></td></tr>"
+            var row = "<tr class='new1'><td class='exam'>" + exam + "</td><td class='sub'>" + sub + "</td><td class='rollno'>" + rollno + "</td><td class='year'>" + year + "</td><td class='document'><span class='input-group-text btn-download' href=" + href +"><a href=" + href +" target='_blank' class='btn btn-warning dnldbtn1'><i class='fa fa-download'></i></a></span></td></tr>"
 
             $('#Pdetails').append(row);
 
@@ -409,7 +469,7 @@
 
             var detailslist = [];
             var detailslist1 = [];
-            $('#tab #educationaldetails tr ').each(function (i, d) {
+        $('.new').each(function (i, d) {
                 var details = {};
                 details.qualification = $(this).find('.qu').text();
                 details.nameOfCourse = $(this).find('.courseName').text()
@@ -423,7 +483,7 @@
                 details.attachment = $(this).find('.dnldbtn').attr('href');
                 detailslist.push(details)
             })
-            $('#tables #Pdetails tr ').each(function (i, d) {
+        $('.new1').each(function (i, d) {
                 var details1 = {};
                 details1.exam = $(this).find('.exam').text();
                 details1.subject = $(this).find('.sub').text()
@@ -454,11 +514,11 @@
 
                 model.lst1.push(value);
             })
-            
+
 
         }
-      
-    
+
+
             $.ajax({
                 type: 'post',
                 url: '/Applicant/AcademicDetails',
@@ -467,10 +527,21 @@
                 dataType: "json",
                 success: function (data) {
                     if (data.ResponseCode == 0) {
-                        swal("", data.ResponseMessage, "success");
-                        $('#btnsubmit').removeClass('d-none')
-                        $('#Pdetails').empty();
-                        $('#educationaldetails').empty();
+                        //swal("", data.ResponseMessage, "success");
+                        //$('#btnsubmit').removeClass('d-none')
+                        //$('#Pdetails').empty();
+                        //$('#educationaldetails').empty();
+                        $.confirm({
+                            title: 'success',
+                            content: data.ResponseMessage,
+                            buttons: {
+                                Ok: function () {
+                                    //$('#addMoreData').html('');
+                                    //$('#btnSaveNext').show();
+                                    window.location.reload();
+                                }
+                            }
+                        });
                     }
                     else {
                         swal("", "failure", "warning");
@@ -636,9 +707,9 @@
 
         }
 
-   
 
-  
+
+
 
 
 </script>

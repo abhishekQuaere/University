@@ -1,4 +1,4 @@
-﻿
+﻿@model UniversityRecruitment.Models.Referee
 @{
     ViewBag.Title = "Acceptance";
     Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
@@ -79,7 +79,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Mobile No.</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control only-numeric" id="mobileNo">
+                                    <input type="text" class="form-control only-numeric" id="mobileNo" maxlength="10">
                                     @*<span id="body_reqRefereeMobile" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -104,7 +104,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">&nbsp;</label>
                                 <div class="col-sm-12">
-                                    <a class="btn btn-alternate shadow" href="#"id="addMore">Add Referee</a>
+                                    <a class="btn btn-alternate shadow" href="#" id="addMore">Add Referee</a>
                                 </div>
                             </div>
                         </div>
@@ -126,12 +126,31 @@
                                                 Phone(landline)<br>
                                                 Fax
                                             </th>
-                                            <th></th>
                                         </tr>
 
                                     </thead>
                                     <tbody id="addMoreData">
+                                        @if (Model != null)
+                                        {
+                                            if (Model.referee.Count() > 0)
+                                            {
+                                                foreach (var itm in Model.referee)
+                                                {
 
+                                                    <tr>
+                                                        <td>@itm.refereeName</td>
+                                                        <td>@itm.address</td>
+                                                        <td>@itm.emailId / @itm.Mobile</td>
+                                                        <td>@itm.landline / @itm.Fax</td>
+                                                    </tr>
+
+                                                }
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        }
                                     </tbody>
                                 </table>
                             </div>
@@ -158,12 +177,34 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Are you willing to accept the initial salary of the grade?</label>
                                 <div class="col-sm-6">
-                                    <select id="salaryGrade" class="form-control">
-                                        <option value="-1">-- select --</option>
-                                        <option value="true">Yes</option>
-                                        <option value="false">No</option>
+                                    @if (Model.Salary == true)
+                                    {
+                                        <select id="salaryGrade" class="form-control">
+                                            <option value="-1">-- select --</option>
+                                            <option value="true" selected>Yes</option>
+                                            <option value="false">No</option>
 
-                                    </select>
+                                        </select>
+                                    }
+                                    else if (Model.Salary == false)
+                                    {
+                                        <select id="salaryGrade" class="form-control">
+                                            <option value="-1">-- select --</option>
+                                            <option value="true">Yes</option>
+                                            <option value="false" selected>No</option>
+
+                                        </select>
+                                    }
+                                    else
+                                    {
+                                        <select id="salaryGrade" class="form-control">
+                                            <option value="-1">-- select --</option>
+                                            <option value="true">Yes</option>
+                                            <option value="false" selected>No</option>
+
+                                        </select>
+                                    }
+
                                     @*<span id="body_reqSalaryAcceptance" class="validator" style="display:none;">select value</span>*@
                                 </div>
                             </div>
@@ -172,7 +213,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">If no state what is the minimum salary acceptable with justification thereof:</label>
                                 <div class="col-sm-12">
-                                    <input id="salaryGradeText" type="text" class="form-control">
+                                    <input id="salaryGradeText" type="text" class="form-control" value="@Model.acceptance.SalaryDetail">
                                 </div>
                             </div>
                         </div>
@@ -183,12 +224,34 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Have there been any break in your academic / service career?</label>
                                 <div class="col-sm-6">
-                                    <select id="break" class="form-control">
-                                        <option value="-1">-- select --</option>
-                                        <option value="true">Yes</option>
-                                        <option value="false">No</option>
+                                    @if (Model.AcademicBreak == true)
+                                    {
+                                        <select id="break" class="form-control">
+                                            <option value="-1">-- select --</option>
+                                            <option value="true" selected>Yes</option>
+                                            <option value="false">No</option>
 
-                                    </select>
+                                        </select>
+                                    }
+                                    else if (Model.AcademicBreak == false)
+                                    {
+                                        <select id="break" class="form-control">
+                                            <option value="-1">-- select --</option>
+                                            <option value="true">Yes</option>
+                                            <option value="false" selected>No</option>
+
+                                        </select>
+                                    }
+                                    else
+                                    {
+                                        <select id="break" class="form-control">
+                                            <option value="-1">-- select --</option>
+                                            <option value="true">Yes</option>
+                                            <option value="false">No</option>
+
+                                        </select>
+                                    }
+
                                     @*<span id="body_reqAcademicBreakAcceptance" class="validator" style="display:none;">select value</span>*@
                                 </div>
                             </div>
@@ -197,7 +260,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">If so, give details:</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control" id="breakText">
+                                    <input type="text" class="form-control" id="breakText" value="@Model.acceptance.AcademicBreakDetail">
                                 </div>
                             </div>
                         </div>
@@ -208,12 +271,34 @@
                             <div class="form-group">
                                 <label for=" " id=" " class="col-sm-12">Have you been punished during you services or convicted by a court of law?</label>
                                 <div class="col-sm-6">
-                                    <select class="form-control" id="punished">
-                                        <option value="-1">-- select --</option>
-                                        <option value="true">Yes</option>
-                                        <option value="false">No</option>
+                                    @if (Model.Law == true)
+                                    {
+                                        <select class="form-control" id="punished">
+                                            <option value="-1">-- select --</option>
+                                            <option value="true" selected>Yes</option>
+                                            <option value="false">No</option>
 
-                                    </select>
+                                        </select>
+                                    }
+                                    else if (Model.Law == false)
+                                    {
+                                        <select class="form-control" id="punished">
+                                            <option value="-1">-- select --</option>
+                                            <option value="true">Yes</option>
+                                            <option value="false" selected>No</option>
+
+                                        </select>
+                                    }
+                                    else
+                                    {
+                                        <select class="form-control" id="punished">
+                                            <option value="-1">-- select --</option>
+                                            <option value="true">Yes</option>
+                                            <option value="false">No</option>
+
+                                        </select>
+                                    }
+
                                     @*<span id="body_reqLawAcceptance" class="validator" style="display:none;">select value</span>*@
                                 </div>
                             </div>
@@ -222,7 +307,7 @@
                             <div class="form-group">
                                 <label for=" " id=" " class="col-sm-12">If so, give details:</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control" id="punishedText">
+                                    <input type="text" class="form-control" id="punishedText" value="@Model.acceptance.LawDetail">
                                 </div>
                             </div>
                         </div>
@@ -233,12 +318,34 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Do you have any case pending against you in any court of law?</label>
                                 <div class="col-sm-6">
-                                    <select class="form-control" id="courtCase">
-                                        <option value="-1">-- select --</option>
-                                        <option value="true">Yes</option>
-                                        <option value="false">No</option>
+                                    @if (Model.CaseFiled == true)
+                                    {
+                                        <select class="form-control" id="courtCase">
+                                            <option value="-1">-- select --</option>
+                                            <option value="true" selected>Yes</option>
+                                            <option value="false">No</option>
 
-                                    </select>
+                                        </select>
+                                    }
+                                    else if (Model.CaseFiled == false)
+                                    {
+                                        <select class="form-control" id="courtCase">
+                                            <option value="-1">-- select --</option>
+                                            <option value="true">Yes</option>
+                                            <option value="false" selected>No</option>
+
+                                        </select>
+                                    }
+                                    else
+                                    {
+                                        <select class="form-control" id="courtCase">
+                                            <option value="-1">-- select --</option>
+                                            <option value="true">Yes</option>
+                                            <option value="false">No</option>
+
+                                        </select>
+                                    }
+
                                     @*<span id="body_reqCaseAcceptance" class="validator" style="display:none;">select value</span>*@
                                 </div>
                             </div>
@@ -247,7 +354,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">If so, give details:</label>
                                 <div class="col-sm-12">
-                                    <input type="text" autocomplete="off" id="CaseText" class="form-control">
+                                    <input type="text" autocomplete="off" id="CaseText" class="form-control" value="@Model.acceptance.CaseDetail">
                                 </div>
                             </div>
                         </div>
@@ -258,7 +365,7 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Any other relevant information, if not given above.</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control"id="otherInfo">
+                                    <input type="text" class="form-control" id="otherInfo" value="@Model.acceptance.OtherInformation">
                                     @*<span id="body_reqOtherInfo" class="validator" style="display:none;">enter value</span>*@
                                 </div>
                             </div>
@@ -272,12 +379,18 @@
                             <div class="form-group">
                                 <label class="col-sm-12">Upload NOC certificate from your present employer</label>
                                 <div class="col-sm-12">
+
                                     <input type="file" class="form-control" id="noc" onchange="Fileupload(this)">
                                     <span id="nocAnchor" style="display: none;" class="input-group-text btn-download"></span>
+
                                 </div>
                                 <span class="smallpdf">(File Format:JPG/JPEG and PDF । Max File Size: 2 MB)</span>
                             </div>
                         </div>
+                        @if (Model.acceptance.NocDocumentPath != null)
+                        {
+                            <span class='input-group-text btn-download' href="@Model.acceptance.NocDocumentPath.Replace("~","")"><a href="@Model.acceptance.NocDocumentPath.Replace("~","")" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span>
+                        }
 
                     </div>
                 </div>
@@ -304,7 +417,7 @@
 
     $(document).ready(function () {
 
-        $('#btnSaveNext').hide();
+        //$('#btnSaveNext').hide();
 
     });
 
@@ -320,7 +433,7 @@
 
         if (refereeName != "" && refereeName != null && refereeName != undefined || address != "" && address != null && address != undefined || emailId != "" && emailId != null && emailId != undefined || mobileNo != "" && mobileNo != null && mobileNo != undefined || landline != "" && landline != null && landline != undefined || fax != "" && fax != null && fax != undefined) {
 
-            var row = "<tr><td class='refereeName'>" + refereeName + "</td><td class='address'>" + address + "</td><td class='emailIdAndMobile'>" + emailId + "/" + mobileNo + "<input type='hidden' value=" + emailId + " class='emailId'/><input type='hidden' value=" + mobileNo + " class='mobileNo'/></td><td class='landlineAndFax'>" + landline + "/" + fax + "<input type='hidden' value=" + landline + " class='landline'/><input type='hidden' value=" + fax + " class='fax'/></td></tr>";
+            var row = "<tr class='new'><td class='refereeName'>" + refereeName + "</td><td class='address'>" + address + "</td><td class='emailIdAndMobile'>" + emailId + "/" + mobileNo + "<input type='hidden' value=" + emailId + " class='emailId'/><input type='hidden' value=" + mobileNo + " class='mobileNo'/></td><td class='landlineAndFax'>" + landline + "/" + fax + "<input type='hidden' value=" + landline + " class='landline'/><input type='hidden' value=" + fax + " class='fax'/></td></tr>";
 
             $('#addMoreData').append(row);
 
@@ -420,7 +533,7 @@
         }
         var refereeList = [];
 
-        $('#addMoreData tr').each(function (i, d) {
+        $('.new').each(function (i, d) {
 
             var referee = {};
 
@@ -442,7 +555,12 @@
             model.CaseFiled = $('#courtCase').val();
             model.CaseDetail = $('#CaseText').val();
             model.OtherInformation = $('#otherInfo').val();
-            model.NocDocumentPath = $('.anchor').attr('href');
+            if ($('.anchor').attr('href') == "" || $('.anchor').attr('href') == null || $('.anchor').attr('href') == undefined && '@Model.acceptance.NocDocumentPath' != '') {
+                model.NocDocumentPath = '@Model.acceptance.NocDocumentPath'
+            }
+            else {
+                model.NocDocumentPath = $('.anchor').attr('href');
+            }
 
             refereeList.push(referee);
             IsPass = true;
@@ -467,22 +585,22 @@
                                 content: a.ResponseMessage,
                                 buttons: {
                                     Ok: function () {
-                                        $('#addMoreData').html('');
-                                        $("#salaryGrade").val('-1');
-                                        $('#salaryGradeText').val('');
-                                        $('#break').val('-1');
-                                        $('#breakText').val('');
-                                        $('#punished').val('-1');
-                                        $('#punishedText').val('');
-                                        $('#courtCase').val('-1');
-                                        $('#CaseText').val('');
-                                        $('#otherInfo').val('');
-                                        $('.anchor').attr('');
-                                        var $el = $('#noc');
-                                        $el.wrap('<form>').closest('form').get(0).reset();
-                                        $el.unwrap();
-
-                                        $('#btnSaveNext').show();
+                                        //$('#addMoreData').html('');
+                                        //$("#salaryGrade").val('-1');
+                                        //$('#salaryGradeText').val('');
+                                        //$('#break').val('-1');
+                                        //$('#breakText').val('');
+                                        //$('#punished').val('-1');
+                                        //$('#punishedText').val('');
+                                        //$('#courtCase').val('-1');
+                                        //$('#CaseText').val('');
+                                        //$('#otherInfo').val('');
+                                        //$('.anchor').attr('');
+                                        //var $el = $('#noc');
+                                        //$el.wrap('<form>').closest('form').get(0).reset();
+                                        //$el.unwrap();
+                                        window.location.reload();
+                                        //$('#btnSaveNext').show();
                                     }
                                 }
                             });

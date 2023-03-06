@@ -1,4 +1,4 @@
-﻿
+﻿@model UniversityRecruitment.Models.ResearchGuidance
 @{
     ViewBag.Title = "ResearchGuidance";
     Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
@@ -8,7 +8,6 @@
     .mysheader {
         background-color: #096499;
     }
-
 </style>
 
 <div class="row page-titles">
@@ -142,9 +141,31 @@
 
                                     </thead>
                                     <tbody id="addMoreData">
+                                        @if (Model != null)
+                                        {
+                                            if (Model.researchGuidances.Count() > 0)
+                                            {
+                                                int sr = 1;
+                                                foreach (var itm in Model.researchGuidances)
+                                                {
 
+                                                    <tr>
+                                                        <td class="snr">@(sr++)</td>
+                                                        <td>@itm.Degree</td>
+                                                        <td>@itm.Subject</td>
+                                                        <td>@itm.NoOfStudents</td>
+                                                        <td>@itm.ThesisSubmitted</td>
+                                                        <td>@itm.DegreeAwarded</td>
+                                                        <td><span class='input-group-text btn-download' href="@itm.DocumentPath.Replace("~","")"><a href="@itm.DocumentPath.Replace("~","")" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td>
+                                                    </tr>
 
+                                                }
+                                            }
+                                            else
+                                            {
 
+                                            }
+                                        }
                                     </tbody>
                                 </table>
                             </div>
@@ -176,7 +197,7 @@
 
     $(document).ready(function () {
         debugger;
-        $('#btnSaveNext').hide();
+        //$('#btnSaveNext').hide();
 
     });
 
@@ -199,9 +220,11 @@
 
     })
 
-    var ser = 1;
+    
     $('#addMore').click(function () {
         debugger;
+
+        var snr = $('#addMoreData tr:last').find('.snr').text();
         var Degree = $('#degree').val();
         var DegreeText = $("#degree option:selected").text();
         var CourseAndSubject = $("#subAndCou").val();
@@ -211,10 +234,11 @@
         var Awarded = $('#awarded').val();
         var AwardedText = $("#awarded option:selected").text();
         var href = $('.anchor').attr('href');
+        var ser = parseInt(snr++);
 
         if (Degree != "-1" && Degree != null && Degree != undefined || CourseAndSubject != "" && CourseAndSubject != null && CourseAndSubject != undefined || NoOfStudents != "" && NoOfStudents != null && NoOfStudents != undefined || Thesis != "-1" && Thesis != null && Thesis != undefined || Awarded != "-1" && Awarded != null && Awarded != undefined) {
 
-            var row = "<tr><td>" + ser++ + "</td><td class='DegreeText'>" + DegreeText + "</td><td class='CourseAndSubject'>" + CourseAndSubject + "</td><td class='NoOfStudents'>" + NoOfStudents + "</td><td class='ThesisText'>" + ThesisText + "</td><td class='AwardedText'>" + AwardedText + "</td><td><span class='input-group-text btn-download' href=" + href +"><a href=" + href +" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td></tr>";
+            var row = "<tr class='new'><td class='snr'>" + snr + "</td><td class='DegreeText'>" + DegreeText + "</td><td class='CourseAndSubject'>" + CourseAndSubject + "</td><td class='NoOfStudents'>" + NoOfStudents + "</td><td class='ThesisText'>" + ThesisText + "</td><td class='AwardedText'>" + AwardedText + "</td><td><span class='input-group-text btn-download' href=" + href + "><a href=" + href + " target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td></tr>";
 
             $('#addMoreData').append(row);
 
@@ -305,7 +329,7 @@
     }
 
     function finalSubmit() {
-       
+
         debugger;
         var IsPass = false;
         var model = {
@@ -313,8 +337,8 @@
         }
         var researchGuidancesList = [];
 
-        $('#addMoreData tr').each(function (i, d) {
-            
+        $('.new').each(function (i, d) {
+
             var researchGuidances = {};
             researchGuidances.Degree = $(this).find('.DegreeText').text();
             researchGuidances.Subject = $(this).find('.CourseAndSubject').text();
@@ -322,10 +346,10 @@
             researchGuidances.ThesisSubmitted = $(this).find(".ThesisText").text();
             researchGuidances.DegreeAwarded = $(this).find(".AwardedText").text();
             researchGuidances.DocumentPath = $(this).find('.dnldbtn').attr('href');
-                   
+
             researchGuidancesList.push(researchGuidances);
             IsPass = true;
-            
+
         });
         if (researchGuidancesList.length != 0) {
             if (IsPass != false) {
@@ -346,8 +370,9 @@
                                 content: a.ResponseMessage,
                                 buttons: {
                                     Ok: function () {
-                                        $('#addMoreData').html('');
-                                        $('#btnSaveNext').show();
+                                        //$('#addMoreData').html('');
+                                        //$('#btnSaveNext').show();
+                                        window.location.reload();
                                     }
                                 }
                             });

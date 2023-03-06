@@ -29,6 +29,7 @@ namespace UniversityRecruitment.Models
         public string OtherInformation { get; set; }
         public string NocDocumentPath { get; set; }
         public string EwsDocumentPath { get; set; }
+        public Acceptance acceptance { get; set; }
     }
 
     public class Acceptance
@@ -48,6 +49,11 @@ namespace UniversityRecruitment.Models
         public int ResponseCode { get; set; }
         public string ResponseMessage { get; set; }
         public string IpAddress { get; set; }
+    }
+
+    public class RefereeByIdModel
+    {
+        public long Id { get; set; }
     }
 
 }

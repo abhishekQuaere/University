@@ -118,7 +118,9 @@ namespace UniversityRecruitment.Controllers
         }
         public ActionResult AcademicDetails()
         {
-            return View();
+            academicsDetails model = new academicsDetails();
+            model = apdb.GetQualificationById(sm.userId);
+            return View(model);
         }
 
         [HttpPost]
@@ -158,7 +160,9 @@ namespace UniversityRecruitment.Controllers
 
         public ActionResult Lectures()
         {
-            return View();
+            LecturesModel model = new LecturesModel();
+            model.lst = apdb.GetInvitedLectureById<LecturesModel>(sm.userId);
+            return View(model);
         }
         [HttpPost]
         public JsonResult Lectures(LecturesModel model)
@@ -225,7 +229,9 @@ namespace UniversityRecruitment.Controllers
 
         public ActionResult Acceptance()
         {
-            return View();
+            Referee model = new Referee();
+            model = apdb.GetRefereeById(sm.userId);
+            return View(model);
         }
 
         public JsonResult saveAcceptance(Referee model)
@@ -233,6 +239,8 @@ namespace UniversityRecruitment.Controllers
             Acceptance obj = new Acceptance();
             model.Id = sm.userId;
             model.IpAddress = Common.GetIPAddress();
+            obj.Id = model.Id;
+            obj.IpAddress = model.IpAddress;
             obj.Salary = model.Salary;
             obj.SalaryDetail = model.SalaryDetail;
             obj.AcademicBreak = model.AcademicBreak;
@@ -260,7 +268,10 @@ namespace UniversityRecruitment.Controllers
 
         public ActionResult ResearchGuidance()
         {
-            return View();
+            ResearchGuidance model = new ResearchGuidance();
+            model.Id = sm.userId;
+            model.researchGuidances = apdb.GetResearchGuidanceById<ResearchGuidance>(model.Id);
+            return View(model);
         }
 
         public JsonResult SaveResearchGuidances(ResearchGuidance model)

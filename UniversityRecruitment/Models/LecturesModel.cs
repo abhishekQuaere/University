@@ -10,6 +10,8 @@ namespace UniversityRecruitment.Models
         public int id { get; set; }
         public string titleLectures { get; set; }
         public string programDate { get; set; }
+        public string programText { get; set; }
+        public string programTextAndDate { get; set; }
         public string type { get; set; }
         public string level { get; set; }
         public string organizingBody { get; set; }
