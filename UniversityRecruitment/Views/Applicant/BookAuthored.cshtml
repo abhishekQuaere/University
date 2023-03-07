@@ -1,4 +1,4 @@
-﻿
+﻿@model UniversityRecruitment.Models.bookAuthoredModel
 @{
     ViewBag.Title = "BookAuthored";
     Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
@@ -165,7 +165,47 @@
                                             <th></th>
                                         </tr>
                                     </thead>
-                                    <tbody id="BookAuthoredList"></tbody>
+                                    <tbody id="BookAuthoredList">
+
+
+                                        @if (Model != null)
+                                        {
+                                            if (Model.lst.Count() > 0)
+                                            {
+                                                foreach (var itm in Model.lst)
+                                                {
+                                                    <tr>
+                                                        <td>@itm.category</td>
+                                                        <td>@itm.bookTitle</td>
+
+                                                        <td>@itm.Date</td>
+
+                                                        <td>@itm.nameOfPublisher</td>
+                                                        <td>@itm.publisherType</td>
+                                                        <td>@itm.ISSN</td>
+                                                        <td>@itm.NoOfCoAuthor</td>
+                                                        <td>@itm.wheatherUMainAutor</td>
+
+
+                                                        @if (!String.IsNullOrEmpty(itm.attachment))
+                                                        {
+                                                            <td><span class='input-group-text btn-download' href="@itm.attachment.Replace("~", "")"><a href="@itm.attachment.Replace("~", "")" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td></td>
+                                                        }
+                                                    </tr>
+
+                                                }
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        }
+
+                                    </tbody>
                                 </table>
                             </div>
 
@@ -184,7 +224,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <a id="" class="btn btn-warning text-dark shadow" href="#" onclick="finalSubmit()"><span class="fa fa-save"></span> Save</a>
-                        <button id="btnsubmit" class="btn btn-success text-dark shadow pull-right d-none"><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></button>
+                        <button id="btnsubmit" class="btn btn-success text-dark shadow pull-right"><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></button>
                     </div>
                 </div>
             </div>
@@ -298,13 +338,24 @@
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (data) {
-                if (data.ResponseCode == 0) {
-                    swal("", data.ResponseMessage, "success");
-
-                    $('#btnsubmit').removeClass('d-none')
-                    $('#BookAuthoredList').empty()
-                  
-                }
+                 if (data.ResponseCode == 0) {
+                        //swal("", data.ResponseMessage, "success")
+                        // $('#body_BtnSaveNext').removeClass('d-none')
+                        //$('#TblDesignation').empty();
+                        //$('#TblAgency').empty();
+                        $.confirm({
+                            title: 'success',
+                            content: data.ResponseMessage,
+                            buttons: {
+                                Ok: function () {
+                                    //$('#addMoreData').html('');
+                                    //$('#btnSaveNext').show();
+                                    window.location.reload();
+                                }
+                            }
+                        });
+      
+                    }
                 else {
                     swal("", "failure", "warning");
                 }
@@ -313,6 +364,9 @@
 
         })
     }
+
+
+
     function Fileuploads(obj) {
         debugger;
         var filename = $(obj)[0].files[0].name;

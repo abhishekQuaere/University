@@ -114,7 +114,37 @@
                                         </tr>
 
                                     </thead>
-                                    <tbody id="TblAward"></tbody>
+                                    <tbody id="TblAward">
+
+                                        @if (Model != null)
+                                        {
+                                            if (Model.AwardList.Count() > 0)
+                                            {
+                                                foreach (var itm in Model.AwardList)
+                                                {
+                                                    <tr>
+                                                        <td>@itm.Name</td>
+                                                        <td>@itm.DateOfAward</td>
+                                                        <td>@itm.Organization</td>
+                                                        <td colspan="2">@itm.Level</td>
+                                                        @if (!String.IsNullOrEmpty(itm.UploadAward))
+                                                        {
+                                                            <td><span class='input-group-text btn-download' href="@itm.UploadAward.Replace("~", "")"><a href="@itm.UploadAward.Replace("~", "")" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td></td>
+                                                        }
+                                                    </tr>
+
+                                                }
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        }
+                                    </tbody>
                                 </table>
                             </div>
 
@@ -175,7 +205,7 @@
             }
              
 
-        var row = '<tr><td class="AwardName">' + Name + '</td><td class="DateAward">' + DateOfAward + '</td><td class="Org" >' + Organization + '</td><td  class="ArLevel">' + Level + '</td><td></td><td><span class="input-group-text btn-download" href=' + href +'><a href=' + href +' target="_blank" class="btn btn-warning dldbtn"><i class="fa fa-download"></i></a></span></td></tr>';
+        var row = '<tr class="new"><td class="AwardName">' + Name + '</td><td class="DateAward">' + DateOfAward + '</td><td class="Org" >' + Organization + '</td><td  class="ArLevel">' + Level + '</td><td></td><td><span class="input-group-text btn-download" href=' + href +'><a href=' + href +' target="_blank" class="btn btn-warning dldbtn"><i class="fa fa-download"></i></a></span></td></tr>';
 
         $('#TblAward').append(row);
         $('#Name').val('');
@@ -198,7 +228,7 @@
 
         var entrylist = [];
         
-        $('#tab #TblAward tr').each(function (i, d) { 
+        $('.new').each(function (i, d) { 
             var AwardEntry = {}; 
             AwardEntry.Name = $(this).find('.AwardName').text();
             AwardEntry.DateOfAward = $(this).find('.DateAward').text();
@@ -231,13 +261,25 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-                     
-                        if (data.ResponseCode == 0) {
-                            swal("", data.ResponseMessage, "success")
+                      if (data.ResponseCode == 0) {
+                        //swal("", data.ResponseMessage, "success")
+                        // $('#body_BtnSaveNext').removeClass('d-none')
+                        //$('#TblDesignation').empty();
+                        //$('#TblAgency').empty();
+                        $.confirm({
+                            title: 'success',
+                            content: data.ResponseMessage,
+                            buttons: {
+                                Ok: function () {
+                                    //$('#addMoreData').html('');
+                                    //$('#btnSaveNext').show();
+                                    window.location.reload();
+                                }
 
-                            $('#body_BtnSaveNext').removeClass('d-none')
-                        $('#TblAward').empty();
-                        }
+                            }
+                        });
+
+                    }
 
                         else {
                            swal("", data.ResponseMessage, "warning")

@@ -275,6 +275,7 @@ namespace UniversityRecruitment.DBContext
                         perm.Add("@RefereedJournal", model.ResearchPaperList[i].ReferredJournal);
                         perm.Add("@ListedInUgc", model.ResearchPaperList[i].IsUGClist);
                         perm.Add("@UgcSerialNo", model.ResearchPaperList[i].UGCSerialNo);
+                        perm.Add("@journalIndex", model.ResearchPaperList[i].JournalIndex);
                         perm.Add("@DocumentPath", model.ResearchPaperList[i].UploadAttachment);
                         perm.Add("@IpAddress", model.Ipaddress);
                         res = _dapper.ExecuteGet<ResearchPaper>("ManageApplicantResearchPublication", perm);

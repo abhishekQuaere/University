@@ -79,7 +79,37 @@
                                         </tr>
 
                                     </thead>
-                                    <tbody id="TblInformation"></tbody>
+                                    <tbody id="TblInformation">
+
+                                        @if (Model != null)
+                                        {
+                                            if (Model.InformationList.Count() > 0)
+                                            {
+                                                foreach (var itm in Model.InformationList)
+                                                {
+                                                    <tr>
+                                                        <td>@itm.serial</td>
+                                                        <td>@itm.Detail</td>
+                                                      
+                                                        @if (!String.IsNullOrEmpty(itm.UploadInformation))
+                                                        {
+                                                            <td><span class='input-group-text btn-download' href="@itm.UploadInformation.Replace("~", "")"><a href="@itm.UploadInformation.Replace("~", "")" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td></td>
+                                                        }
+                                                    </tr>
+
+                                                }
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        }
+
+                                    </tbody>
                                 </table>
                             </div>
 
@@ -97,7 +127,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <a id="" class="btn btn-warning text-dark shadow" href="#" onclick="Savedata()"><span class="fa fa-save"></span> Save</a>
-                        <a id="body_BtnSaveNext" class="btn btn-success text-dark shadow pull-right" href=""><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
+                        <a id="body_BtnSaveNext" class="btn btn-success text-dark shadow pull-right" href="#"><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
                     </div>
                 </div>
             </div>
@@ -127,7 +157,7 @@
             }
              
 
-        var row = '<tr><td>' + Sno++ + '</td><td class="InformationDetail">' + Detail + '</td><td><span class="input-group-text btn-download" href=' + href +'><a href=' + href +' target="_blank" class="btn btn-warning dldbtn"><i class="fa fa-download"></i></a></span></td></tr>';
+        var row = '<tr class="new"><td>' + Sno++ + '</td><td class="InformationDetail">' + Detail + '</td><td><span class="input-group-text btn-download" href=' + href +'><a href=' + href +' target="_blank" class="btn btn-warning dldbtn"><i class="fa fa-download"></i></a></span></td></tr>';
 
         $('#TblInformation').append(row);
         $('#Detail').val('');
@@ -149,7 +179,7 @@
 
         var entrylist = [];
 
-        $('#tab #TblInformation tr').each(function (i, d) {
+        $('.new').each(function (i, d) {
             var InformationEntry = {};
             InformationEntry.Detail = $(this).find('.InformationDetail').text();
             InformationEntry.UploadInformation = $(this).find('.dldbtn').attr('href');
@@ -177,10 +207,23 @@
                 dataType: "json",
                 success: function (data) {
                     debugger;
-                    if (data.ResponseCode == 0) {
-                        swal("", data.ResponseMessage, "success")
-                        $('#body_BtnSaveNext').show();
-                        $('#TblInformation').empty();
+                     if (data.ResponseCode == 0) {
+                        //swal("", data.ResponseMessage, "success")
+                        // $('#body_BtnSaveNext').removeClass('d-none')
+                        //$('#TblDesignation').empty();
+                        //$('#TblAgency').empty();
+                        $.confirm({
+                            title: 'success',
+                            content: data.ResponseMessage,
+                            buttons: {
+                                Ok: function () {
+                                    //$('#addMoreData').html('');
+                                    //$('#btnSaveNext').show();
+                                    window.location.reload();
+                                }
+                            }
+                        });
+
                     }
 
                     else {

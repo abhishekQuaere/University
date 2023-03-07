@@ -854,6 +854,90 @@ namespace UniversityRecruitment.DBContext
 
         }
 
+        public List<T> GetAwardById<T>(long ID)
+        {
+            try
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("Id", ID, DbType.Int32);
+                return _dapper.GetAll<T>("Proc_GetAwardById", dynamicParameters);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<T> GetInformationId<T>(long ID)
+        {
+            try
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("Id", ID, DbType.Int32);
+                return _dapper.GetAll<T>("Proc_GetInformationId", dynamicParameters);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<T> GetResearchPaperbyId<T>(long ID)
+        {
+            try
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("Id", ID, DbType.Int32);
+                return _dapper.GetAll<T>("Proc_GetResearchPaperByIdId", dynamicParameters);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<T> GetEditBooksById<T>(long ID)
+        {
+            try
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("Id", ID, DbType.Int32);
+                return _dapper.GetAll<T>("Proc_editBookById", dynamicParameters);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<T> GetChapterById<T>(long ID)
+        {
+            try
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("Id", ID, DbType.Int32);
+                return _dapper.GetAll<T>("Proc_ChapterTranslationById", dynamicParameters);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<T> GetBookAuthoredById<T>(long ID)
+        {
+            try
+            {
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("Id", ID, DbType.Int32);
+                return _dapper.GetAll<T>("proc_getBookAuthoredById", dynamicParameters);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 
 }

@@ -10,6 +10,7 @@ namespace UniversityRecruitment.Models
         public string Detail { get; set; }
         
         public string UploadInformation { get; set; }
+        public int serial { get; set; }
 
 
         public List<Information> InformationList { get; set; }

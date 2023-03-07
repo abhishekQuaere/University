@@ -12,6 +12,7 @@ namespace UniversityRecruitment.Models
         public string Organization { get; set; }
         public string Level { get; set; }
         public string UploadAward { get; set; }
+        public int score { get; set; }
          
         
         public List<Award> AwardList { get; set; }

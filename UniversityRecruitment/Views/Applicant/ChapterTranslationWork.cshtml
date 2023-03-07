@@ -1,4 +1,4 @@
-﻿
+﻿@model UniversityRecruitment.Models.BookPublication
 @{
     ViewBag.Title = "ChapterTranslationWork";
     Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
@@ -208,6 +208,41 @@
                                         </tr>
                                     </thead>
                                     <tbody id="addMoreData">
+
+                                        @if (Model != null)
+                                        {
+                                            if (Model.bookPublications.Count() > 0)
+                                            {
+                                                foreach (var itm in Model.bookPublications)
+                                                {
+                                                    <tr>
+                                                        <td>@itm.Title</td>
+                                                        <td>@itm.Category</td>
+                                                        <td>@itm.PublicationDate</td>
+                                                        <td></td>
+                                                        <td>@itm.Publisher</td>
+                                                        <td>@itm.Isbn</td>
+                                                        <td></td>
+                                                        <td>@itm.NoOfCoTranslator</td>
+                                                        <td>@itm.IsMainTranslator</td>
+                                                      
+                                                        @if (!String.IsNullOrEmpty(itm.DocumentPath))
+                                                        {
+                                                            <td><span class='input-group-text btn-download' href="@itm.DocumentPath.Replace("~", "")"><a href="@itm.DocumentPath.Replace("~", "")" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td></td>
+                                                        }
+                                                    </tr>
+
+                                                }
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        }
                                     </tbody>
                                 </table>
                             </div>
@@ -264,7 +299,7 @@
 
         if (Title != "" && Title != null && Title != undefined || PublicationDate != "" && PublicationDate != null && PublicationDate != undefined || Publisher != "" && Publisher != null && Publisher != undefined || PublisherType != "-1" && PublisherType != null && PublisherType != undefined || Isbn != "" && Isbn != null && Isbn != undefined || NoOfCoAuthors != "" && NoOfCoAuthors != null && NoOfCoAuthors != undefined || IsMainAuthor != "-1" && IsMainAuthor != null && IsMainAuthor != undefined || NameofBookEditor != "" && NameofBookEditor != null && NameofBookEditor != undefined || NoOfCoTranslator != "" && NoOfCoTranslator != null && NoOfCoTranslator != undefined || href != "" && href != null && href != undefined || Language != "" && Language != null && Language != undefined || BookChapter != "" && BookChapter != null && BookChapter != undefined) {
 
-            var row = "<tr><td class='Title'>" + Title + "</td><td class='Category'>" + Category + "</td><td class='PublicationDate'>" + PublicationDate + "</td><td class='PublisherTypeText'>" + PublisherTypeText + "<input type='hidden' value=" + PublisherType + " class='PublisherType'/></td><td class='Publisher'>" + Publisher + "</td><td class='Isbn'>" + Isbn + "</td><td class='NameofBookEditor'>" + NameofBookEditor + "<input type='hidden' value=" + Language + " class='language'/></td><td class='NoOfCoTranslator'>" + NoOfCoTranslator + "<input type='hidden' value=" + BookChapter +" class='bookChapter'/></td><td class='IsMainAuthorText'>" + IsMainAuthorText + "<input type='hidden' value=" + IsMainAuthor +" class='IsMainAuthor'/></td><td><span class='input-group-text btn-download' href=" + href +"><a href=" + href +" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td></tr>";
+            var row = "<tr class='new'><td class='Title'>" + Title + "</td><td class='Category'>" + Category + "</td><td class='PublicationDate'>" + PublicationDate + "</td><td class='PublisherTypeText'>" + PublisherTypeText + "<input type='hidden' value=" + PublisherType + " class='PublisherType'/></td><td class='Publisher'>" + Publisher + "</td><td class='Isbn'>" + Isbn + "</td><td class='NameofBookEditor'>" + NameofBookEditor + "<input type='hidden' value=" + Language + " class='language'/></td><td class='NoOfCoTranslator'>" + NoOfCoTranslator + "<input type='hidden' value=" + BookChapter +" class='bookChapter'/></td><td class='IsMainAuthorText'>" + IsMainAuthorText + "<input type='hidden' value=" + IsMainAuthor +" class='IsMainAuthor'/></td><td><span class='input-group-text btn-download' href=" + href +"><a href=" + href +" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td></tr>";
 
             $('#addMoreData').append(row);
 
@@ -369,7 +404,7 @@
         }
         var bookPublicationsList = [];
 
-        $('#addMoreData tr').each(function (i, d) {
+        $('.new').each(function (i, d) {
 
             var bookPublications = {};
             bookPublications.Title = $(this).find('.Title').text();

@@ -239,8 +239,43 @@
                                     </tr>
                                 </thead>
                                 <tbody id="ResearchPaper">
-                                       
-                                    </tbody>
+                                    @if (Model != null)
+                                    {
+                                        if (Model.ResearchPaperList.Count() > 0)
+                                        {
+                                            foreach (var itm in Model.ResearchPaperList)
+                                            {
+                                                <tr>
+                                                    <td>@itm.PublicationTitle</td>
+                                                    <td>@itm.PublicationDate</td>
+                                                    <td>@itm.Journal</td>
+                                                    <td>@itm.ISBN</td>
+                                                    <td>@itm.PeerReviewed</td>
+                                                    <td>@itm.ImpactFactor</td>
+                                                    <td>@itm.NoOfAuther</td>
+                                                    <td>@itm.IsMainAuthor</td>
+                                                    <td>@itm.ReferredJournal</td>
+                                                    <td>@itm.IsUGClist</td>
+                                                    <td>@itm.JournalIndex</td>
+
+                                                    @if (!String.IsNullOrEmpty(itm.UploadAttachment))
+                                                    {
+                                                        <td><span class='input-group-text btn-download' href="@itm.UploadAttachment.Replace("~", "")"><a href="@itm.UploadAttachment.Replace("~", "")" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td></td>
+                                                    }
+                                                </tr>
+
+                                            }
+                                        }
+                                        else
+                                        {
+
+                                        }
+                                    }
+                                </tbody>
                             </table>
                         </div>
 
@@ -419,7 +454,7 @@
             }            
              
 
-        var row = '<tr><td class="PublicationTitle">' + PublicationTitle + '</td><td class="PublicationDate">' + PublicationDate + '</td><td class="Journal">' + Journal + '</td><td class="ISBN">' + ISBN + '</td><td class="PeerReviewed">' + PeerReviewed +  '</td><td class="PeerReviewedval d-none">' + PeerReviewedval +  '</td><td class="IsMainAuthorval d-none">' + IsMainAuthorval +  '</td><td class="ReferredJournalval d-none">' + ReferredJournalval +  '</td><td class="IsUGClistval d-none">' + IsUGClistval +  '</td><td class="JournalIndexval d-none">' + JournalIndexval +  '</td><td class="ImpactFactor">' + ImpactFactor + '</td><td class="NoOfAuther">' + NoOfAuther + '</td><td class="IsMainAuthor">' + IsMainAuthor + '</td><td class="ReferredJournal">' + ReferredJournal + '</td><td class="IsUGClist">' + IsUGClist + '</td><td class="UGCSerialNo d-none">' + UGCSerialNo + '</td><td class="JournalIndex">' + JournalIndex + '</td><td><span class="input-group-text btn-download" href=' + href +'><a href=' + href +' target="_blank" class="btn btn-warning dldbtn"><i class="fa fa-download"></i></a></span></td></tr>';
+        var row = '<tr class="new"><td class="PublicationTitle">' + PublicationTitle + '</td><td class="PublicationDate">' + PublicationDate + '</td><td class="Journal">' + Journal + '</td><td class="ISBN">' + ISBN + '</td><td class="PeerReviewed">' + PeerReviewed +  '</td><td class="PeerReviewedval d-none">' + PeerReviewedval +  '</td><td class="IsMainAuthorval d-none">' + IsMainAuthorval +  '</td><td class="ReferredJournalval d-none">' + ReferredJournalval +  '</td><td class="IsUGClistval d-none">' + IsUGClistval +  '</td><td class="JournalIndexval d-none">' + JournalIndexval +  '</td><td class="ImpactFactor">' + ImpactFactor + '</td><td class="NoOfAuther">' + NoOfAuther + '</td><td class="IsMainAuthor">' + IsMainAuthor + '</td><td class="ReferredJournal">' + ReferredJournal + '</td><td class="IsUGClist">' + IsUGClist + '</td><td class="UGCSerialNo d-none">' + UGCSerialNo + '</td><td class="JournalIndex">' + JournalIndex + '</td><td><span class="input-group-text btn-download" href=' + href +'><a href=' + href +' target="_blank" class="btn btn-warning dldbtn"><i class="fa fa-download"></i></a></span></td></tr>';
 
         $('#ResearchPaper').append(row);
         $('#PublicationTitle').val('');
@@ -445,7 +480,7 @@
             ResearchPaperList: [],   
         }
         var entrylist = [];        
-        $('#tab #ResearchPaper tr').each(function (i, d) { 
+        $('.new').each(function (i, d) { 
             var ResearchPaperEntry = {}; 
             ResearchPaperEntry.PublicationTitle = $(this).find('.PublicationTitle').text();
             ResearchPaperEntry.PublicationDate = $(this).find('.PublicationDate').text();
@@ -485,11 +520,24 @@
                 success: function (data) {
                      
                         if (data.ResponseCode == 0) {
-                            swal("", data.ResponseMessage, "success")
+                        //swal("", data.ResponseMessage, "success")
+                        // $('#body_BtnSaveNext').removeClass('d-none')
+                        //$('#TblDesignation').empty();
+                        //$('#TblAgency').empty();
+                        $.confirm({
+                            title: 'success',
+                            content: data.ResponseMessage,
+                            buttons: {
+                                Ok: function () {
+                                    //$('#addMoreData').html('');
+                                    //$('#btnSaveNext').show();
+                                    window.location.reload();
+                                }
+                            }
+                        });
+                              $('#body_BtnSaveNext').removeClass('d-none')
 
-                            $('#body_BtnSaveNext').removeClass('d-none')
-                        $('#ResearchPaper').empty();
-                        }
+                    }
 
                         else {
                            swal("", data.ResponseMessage, "warning")

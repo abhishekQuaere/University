@@ -184,8 +184,40 @@
                                         </tr>
                                     </thead>
                                     <tbody id="BookTable">
-                                           
-                                        </tbody>
+                                        @if (Model != null)
+                                        {
+                                            if (Model.EditedBookList.Count() > 0)
+                                            {
+                                                foreach (var itm in Model.EditedBookList)
+                                                {
+                                                    <tr>
+                                                        <td>@itm.Category</td>
+                                                        <td>@itm.Title</td>
+                                                        <td>@itm.PublicationDate</td>
+                                                        <td >@itm.PublisherName</td>
+                                                        <td>@itm.publisherType</td>
+                                                        <td >@itm.ISBNNo</td>
+                                                        <td >@itm.NoOfCoAuther</td>
+
+                                                        <td >@itm.IsMainAuther</td>
+                                                        @if (!String.IsNullOrEmpty(itm.UploadAttachment))
+                                                        {
+                                                            <td><span class='input-group-text btn-download' href="@itm.UploadAttachment.Replace("~", "")"><a href="@itm.UploadAttachment.Replace("~", "")" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td></td>
+                                                        }
+                                                    </tr>
+
+                                                }
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        }
+                                    </tbody>
                                 </table>
                             </div>
 
@@ -336,7 +368,7 @@
          }                         
              
 
-        var row = '<tr><td class="Category">' + Category + '</td><td class="Title">' + Title + '</td><td class="PublicationDate">' + PublicationDate + '</td><td class="PublisherName">' + PublisherName + '</td><td class="publisherType">' + publisherType + '</td><td class="ISBNNo">' + ISBNNo +  '</td><td class="NoOfCoAuther">' + NoOfCoAuther + '</td><td class="IsMainAuther d-none">' + IsMainAuther + '</td><td class="IsMainAuthertext">' + IsMainAuthertext + '</td><td><span class="input-group-text btn-download" href=' + href +'><a href=' + href +' target="_blank" class="btn btn-warning dldbtn"><i class="fa fa-download"></i></a></span></td></tr>';
+        var row = '<tr class="new"><td class="Category">' + Category + '</td><td class="Title">' + Title + '</td><td class="PublicationDate">' + PublicationDate + '</td><td class="PublisherName">' + PublisherName + '</td><td class="publisherType">' + publisherType + '</td><td class="ISBNNo">' + ISBNNo +  '</td><td class="NoOfCoAuther">' + NoOfCoAuther + '</td><td class="IsMainAuther d-none">' + IsMainAuther + '</td><td class="IsMainAuthertext">' + IsMainAuthertext + '</td><td><span class="input-group-text btn-download" href=' + href +'><a href=' + href +' target="_blank" class="btn btn-warning dldbtn"><i class="fa fa-download"></i></a></span></td></tr>';
 
         $('#BookTable').append(row);
          $('#Title').val('');
@@ -358,7 +390,7 @@
             EditedBookList: [],   
         }
         var entrylist = [];        
-        $('#tab #BookTable tr').each(function (i, d) { 
+        $('.new').each(function (i, d) { 
             var EditedBookEntry = {}; 
             EditedBookEntry.Title = $(this).find('.Title').text();
             EditedBookEntry.PublicationDate = $(this).find('.PublicationDate').text();
@@ -394,12 +426,24 @@
                 dataType: "json",
                 success: function (data) {
                      
-                        if (data.ResponseCode == 0) {
-                            swal("", data.ResponseMessage, "success")
-
-                            $('#body_BtnSaveNext').removeClass('d-none')
-                        $('#BookTable').empty();
-                        }
+                       if (data.ResponseCode == 0) {
+                        //swal("", data.ResponseMessage, "success")
+                        // $('#body_BtnSaveNext').removeClass('d-none')
+                        //$('#TblDesignation').empty();
+                        //$('#TblAgency').empty();
+                        $.confirm({
+                            title: 'success',
+                            content: data.ResponseMessage,
+                            buttons: {
+                                Ok: function () {
+                                    //$('#addMoreData').html('');
+                                    //$('#btnSaveNext').show();
+                                    window.location.reload();
+                                }
+                            }
+                        });
+     $('#body_BtnSaveNext').removeClass('d-none')
+                    }
 
                         else {
                            swal("", data.ResponseMessage, "warning")

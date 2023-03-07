@@ -156,7 +156,19 @@ namespace UniversityRecruitment.Controllers
         public ActionResult Awards()
         {
             Award model = new Award();
+            model.AwardList = apdb.GetAwardById<Award>(sm.userId);
             return View(model);
+        }
+        public JsonResult SaveAwardDetails(Award model)
+        {
+
+            AccountDb repo = new AccountDb();
+            Award obj = new Award();
+            model.UserId = sm.userId;
+            model.Ipaddress = Common.GetIPAddress();
+            obj = repo.SaveAwardDetails(model);
+            return Json(obj, JsonRequestBehavior.AllowGet);
+
         }
 
         public ActionResult Lectures()
@@ -225,6 +237,7 @@ namespace UniversityRecruitment.Controllers
         public ActionResult Information()
         {
             Information model = new Information();
+            model.InformationList = apdb.GetInformationId<Information>(sm.userId);
             return View(model);
         }
 
@@ -338,7 +351,9 @@ namespace UniversityRecruitment.Controllers
 
         public ActionResult ResearchPaper()
         {
-            return View();
+            ResearchPaper model = new ResearchPaper();
+            model.ResearchPaperList = apdb.GetResearchPaperbyId<ResearchPaper>(sm.userId);
+            return View(model);
         }
         public JsonResult SaveResearchPaper(ResearchPaper model)
         {
@@ -365,7 +380,10 @@ namespace UniversityRecruitment.Controllers
 
         public ActionResult BookAuthored()
         {
-            return View();
+            bookAuthoredModel model = new bookAuthoredModel();
+            model.lst = apdb.GetBookAuthoredById<bookAuthoredModel>(sm.userId);
+
+            return View(model);
         }
 
 
@@ -392,12 +410,18 @@ namespace UniversityRecruitment.Controllers
 
         public ActionResult EditedBooks()
         {
-            return View();
+            Editedbooks model = new Editedbooks();
+
+            model.EditedBookList = apdb.GetEditBooksById<Editedbooks>(sm.userId);
+
+            return View(model);
         }
 
         public ActionResult ChapterTranslationWork()
         {
-            return View();
+            BookPublication model = new BookPublication();
+            model.bookPublications = apdb.GetChapterById<BookPublication>(sm.userId);
+            return View(model);
         }
 
         public JsonResult SaveChapterTranslationWork(BookPublication model)
@@ -530,17 +554,7 @@ namespace UniversityRecruitment.Controllers
         }
 
 
-        public JsonResult SaveAwardDetails(Award model)
-        {
-
-            AccountDb repo = new AccountDb();
-            Award obj = new Award();
-            model.UserId = sm.userId;
-            model.Ipaddress = Common.GetIPAddress();
-            obj = repo.SaveAwardDetails(model);
-            return Json(obj, JsonRequestBehavior.AllowGet);
-
-        }
+     
 
         public JsonResult SaveInformationDetails(Information model)
         {
@@ -1142,7 +1156,39 @@ namespace UniversityRecruitment.Controllers
             }
             return Json(new { result = res, fpath = path, mesg = msg });
         }
+        public JsonResult UploadFileForBookAuthored(HttpPostedFileBase File)
+        {
+            string Dirpath = "~/Content/writereaddata/BookAuthored/";
+            string path = "";
+            string filename = File.FileName;
+            bool res = false;
+            string msg = "";
+            if (!Directory.Exists(Server.MapPath(Dirpath)))
+            {
+                Directory.CreateDirectory(Server.MapPath(Dirpath));
+            }
+            string ext = Path.GetExtension(File.FileName);
+            var status = com.ValidateImagePDF_FileExtWithSize(File, 2048);
+            if (status == "Valid")
+            {
 
+                filename = DateTime.Now.ToString("yyyyMMddHHmmssffff") + "_" + filename;
+                string completepath = Path.Combine(Server.MapPath(Dirpath), filename);
+                if (System.IO.File.Exists(completepath))
+                {
+                    System.IO.File.Delete(completepath);
+                }
+
+                File.SaveAs(completepath);
+                path = Dirpath + filename;
+                res = true;
+            }
+            else
+            {
+                msg = status;
+            }
+            return Json(new { result = res, fpath = path, mesg = msg });
+        }
         [HttpPost]
         public JsonResult BookAuthored(bookAuthoredModel model)
         {
