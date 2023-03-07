@@ -124,9 +124,9 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-12" >
+                        <div class="col-sm-12">
 
-                            <div class="table-responsive" id="tab" >
+                            <div class="table-responsive" id="tab">
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr class="table-primary">
@@ -140,12 +140,44 @@
                                         </tr>
                                         <tr class="table-primary">
                                             <th>From</th>
-                                            <th>To</th>
-                                            <th>Duration</th>
+                                            <th colspan="2">To</th>
+                                            @*<th>Duration</th>*@
                                         </tr>
 
                                     </thead>
-                                    <tbody id="TblDesignation"></tbody>
+                                    <tbody id="TblDesignation">
+                                        @if (Model != null)
+                                        {
+                                            if (Model.Designationlist.Count() > 0)
+                                            {
+                                                foreach (var itm in Model.Designationlist)
+                                                {
+                                                    <tr>
+                                                        <td>@itm.Designation</td>
+                                                        <td>@itm.NatureofPost</td>
+                                                        <td>@itm.GradeAgp</td>
+                                                        <td>@itm.NameAddress</td>
+                                                        <td>@itm.DesignationPeriodFrom</td>
+                                                        <td colspan="2">@itm.DesignationPeriodTo</td>
+                                                        @if (!String.IsNullOrEmpty(itm.DesignationImage))
+                                                        {
+                                                            <td><span class='input-group-text btn-download' href="@itm.DesignationImage.Replace("~", "")"><a href="@itm.DesignationImage.Replace("~", "")" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td></td>
+                                                        }
+                                                    </tr>
+
+                                                }
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        }
+
+                                    </tbody>
                                 </table>
                             </div>
 
@@ -249,11 +281,40 @@
                                         <tr class="table-primary">
                                             <th>From</th>
                                             <th>To</th>
-                                            <th>Duration</th>
+                                            @*<th>Duration</th>*@
                                         </tr>
 
                                     </thead>
-                                    <tbody id="TblAgency"></tbody>
+                                    <tbody id="TblAgency">
+                                        @if (Model != null)
+                                        {
+                                            if (Model.Agencylist.Count() > 0)
+                                            {
+                                                foreach (var itm in Model.Agencylist)
+                                                {
+                                                    <tr>
+                                                        <td>@itm.Agency</td>
+                                                        <td>@itm.HostInstitution</td>
+                                                        <td>@itm.AgencyPeriodFrom</td>
+                                                        <td colspan="2">@itm.AgencyPeriodTo</td>
+                                                        @if (!String.IsNullOrEmpty(itm.AgencyImage))
+                                                        {
+                                                            <td><span class='input-group-text btn-download' href="@itm.AgencyImage.Replace("~", "")"><a href="@itm.AgencyImage.Replace("~", "")" target='_blank' class='btn btn-warning dnldbtn'><i class='fa fa-download'></i></a></span></td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td></td>
+                                                        }
+                                                    </tr>
+
+                                                }
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        }
+                                    </tbody>
                                 </table>
                             </div>
 
@@ -273,7 +334,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <a id="body_BtnSave" class="btn btn-warning text-dark shadow" href="#" onclick="Savedata()"><span class="fa fa-save"></span> Save</a>
-                        <a id="body_BtnSaveNext" class="btn btn-success text-dark shadow pull-right d-none" href="#"  ><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
+                        <a id="body_BtnSaveNext" class="btn btn-success text-dark shadow pull-right" href="#"><span class="fa fa-save"></span> Save &amp; Next <span class="fa fa-chevron-circle-right"></span></a>
                     </div>
                 </div>
             </div>
@@ -323,7 +384,7 @@
                 return false;
             }
 
-        var row = '<tr><td class="Desig">' + Designation + '</td><td class="NaturePost">' + NatureofPost + '</td><td class="GradeandAgp" >' + GradeAgp + '</td><td  class="NameAdd">' + NameAddress + '</td><td  class="DPeriodFrom">' + DesignationPeriodFrom + '</td><td  class="DPeriodTo">' + DesignationPeriodTo + '</td><td ></td><td><span class="input-group-text btn-download" href=' + href +'><a href=' + href +' target="_blank" class="btn btn-warning dldbtn"><i class="fa fa-download"></i></a></span></td></tr>';
+        var row = '<tr class="new"><td class="Desig">' + Designation + '</td><td class="NaturePost">' + NatureofPost + '</td><td class="GradeandAgp" >' + GradeAgp + '</td><td  class="NameAdd">' + NameAddress + '</td><td  class="DPeriodFrom">' + DesignationPeriodFrom + '</td><td  class="DPeriodTo">' + DesignationPeriodTo + '</td><td ></td><td><span class="input-group-text btn-download" href=' + href +'><a href=' + href +' target="_blank" class="btn btn-warning dldbtn"><i class="fa fa-download"></i></a></span></td></tr>';
 
         $('#TblDesignation').append(row);
         $('#Designation').val('');
@@ -369,7 +430,7 @@
                 return false;
         }
 
-        var row = '<tr><td class="Agen">' + Agency + '</td><td class="HostInsti">' + HostInstitution + '</td><td  class="AgPeriodFrom">' + AgencyPeriodFrom + '</td><td class="AgPeriodTo" >' + AgencyPeriodTo + '</td><td></td><td><span class="input-group-text btn-download" href=' + href +'><a href=' + href +' target="_blank" class="btn btn-warning dnldbtn"><i class="fa fa-download"></i></a></span></td></tr>';
+        var row = '<tr class="new1"><td class="Agen">' + Agency + '</td><td class="HostInsti">' + HostInstitution + '</td><td  class="AgPeriodFrom">' + AgencyPeriodFrom + '</td><td class="AgPeriodTo" >' + AgencyPeriodTo + '</td><td></td><td><span class="input-group-text btn-download" href=' + href +'><a href=' + href +' target="_blank" class="btn btn-warning dnldbtn"><i class="fa fa-download"></i></a></span></td></tr>';
 
         $('#TblAgency').append(row);
         $('#Agency').val('');
@@ -384,7 +445,7 @@
 
     function Savedata() {
         debugger;
-         
+
         var model = {
             Designationlist: [],
             Agencylist: []
@@ -393,8 +454,8 @@
 
         var entrylist = [];
         var Agencyentrylist = [];
-        $('#tab #TblDesignation tr').each(function (i, d) { 
-            var DesignationEntry = {}; 
+        $('.new').each(function (i, d) {
+            var DesignationEntry = {};
             DesignationEntry.Designation = $(this).find('.Desig').text();
             DesignationEntry.NatureofPost = $(this).find('.NaturePost').text();
             DesignationEntry.GradeAgp = $(this).find('.GradeandAgp').text();
@@ -405,7 +466,7 @@
             entrylist.push(DesignationEntry)
 
         });
-        $('#tab1 #TblAgency tr').each(function (i, d) {
+        $('.new1').each(function (i, d) {
 
             var AgencyEntry = {};
             AgencyEntry.Agency = $(this).find('.Agen').text();
@@ -443,29 +504,40 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-                    
+
                     if (data.ResponseCode == 0) {
-                        swal("", data.ResponseMessage, "success")
-                         $('#body_BtnSaveNext').removeClass('d-none')
-                        $('#TblDesignation').empty();
-                        $('#TblAgency').empty();
-                          
+                        //swal("", data.ResponseMessage, "success")
+                        // $('#body_BtnSaveNext').removeClass('d-none')
+                        //$('#TblDesignation').empty();
+                        //$('#TblAgency').empty();
+                        $.confirm({
+                            title: 'success',
+                            content: data.ResponseMessage,
+                            buttons: {
+                                Ok: function () {
+                                    //$('#addMoreData').html('');
+                                    //$('#btnSaveNext').show();
+                                    window.location.reload();
+                                }
+                            }
+                        });
+
                     }
 
                     else {
                         swal("", data.ResponseMessage, "warning")
-                         
+
                     }
                 }
 
-                
+
             })
         }
 
-         
+
     }
 
-     
+
 
 
 

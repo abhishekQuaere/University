@@ -149,6 +149,7 @@ namespace UniversityRecruitment.Controllers
         public ActionResult Experience()
         {
             Experience model = new Experience();
+            model = apdb.GetExperienceById(sm.userId);
             return View(model);
         }
 
