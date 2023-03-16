@@ -298,5 +298,33 @@ namespace UniversityRecruitment.Controllers
             }           
         }
 
+
+        public ActionResult changePassword(changePasword model)
+        {
+
+            return View(model);
+        }
+
+        public JsonResult CheckPassword(string oldpassword)
+        {
+            changePasword model = new changePasword();
+            model.userId = sm.userId;
+            model.oldPassword = oldpassword;
+            var res = acdb.chekPassword(model);
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult changePass(string newPassword)
+        {
+            changePasword model = new changePasword();
+            model.userId = sm.userId;
+            model.newPassword = newPassword;
+            var res = acdb.changePassword(model);
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
     }
 }
