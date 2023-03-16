@@ -461,10 +461,75 @@ namespace UniversityRecruitment.DBContext
         }
 
 
+        public changePassRes chekPassword(changePasword model)
+        {
+            changePassRes obj = new changePassRes();
+            try
+            {
+                var perm = new DynamicParameters();
+                perm.Add("@loginId", model.userId);
+                perm.Add("@Password", model.oldPassword);
+                perm.Add("@procId", 1);
+                obj = _dapper.ExecuteGet<changePassRes>("[proc_checkPassword]", perm);
+                return obj;
+                
+            }
+            catch(Exception ex){
+                throw ex;
+            }
+        }
+
+        public changePassRes changePassword(changePasword model)
+        {
+            changePassRes obj = new changePassRes();
+            try
+            {
+                var perm = new DynamicParameters();
+                perm.Add("@loginId", model.userId);
+                perm.Add("@Password", model.newPassword);
+                perm.Add("@procId", 2);
+                obj = _dapper.ExecuteGet<changePassRes>("[proc_checkPassword]", perm);
+                return obj;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         #endregion
 
 
+        public feePaymentResponse saveFeePayment(AppliedForm model)
+        {
+            feePaymentResponse obj = new feePaymentResponse();
+            try
+            {
+                var perm = new DynamicParameters();
 
+                if (model.list != null && model.list.Count() > 0)
+                {
+                    foreach (var i in model.list)
+                    {
+                        perm.Add("@Module", i.FeeAmount);
+                        perm.Add("txnId", i.FeeAmount);
+                        perm.Add("@payeeAmount", i.FeeAmount);
+                        perm.Add("@sabPaisaRespCode", i.FeeAmount);
+                        perm.Add("@status", i.FeeAmount);
+                        perm.Add("@transCompleteDate", i.FeeAmount);
+                        perm.Add("@paymentMode", i.FeeAmount);
+                        obj = _dapper.ExecuteGet<feePaymentResponse>("", perm);
+                    }
+                }
+              
+                return obj;
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
