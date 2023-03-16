@@ -501,35 +501,5 @@ namespace UniversityRecruitment.DBContext
         #endregion
 
 
-        public feePaymentResponse saveFeePayment(AppliedForm model)
-        {
-            feePaymentResponse obj = new feePaymentResponse();
-            try
-            {
-                var perm = new DynamicParameters();
-
-                if (model.list != null && model.list.Count() > 0)
-                {
-                    foreach (var i in model.list)
-                    {
-                        perm.Add("@Module", i.FeeAmount);
-                        perm.Add("txnId", i.FeeAmount);
-                        perm.Add("@payeeAmount", i.FeeAmount);
-                        perm.Add("@sabPaisaRespCode", i.FeeAmount);
-                        perm.Add("@status", i.FeeAmount);
-                        perm.Add("@transCompleteDate", i.FeeAmount);
-                        perm.Add("@paymentMode", i.FeeAmount);
-                        obj = _dapper.ExecuteGet<feePaymentResponse>("", perm);
-                    }
-                }
-              
-                return obj;
-                
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
     }
 }

@@ -140,5 +140,20 @@ namespace UniversityRecruitment.Models
         public int MobileVerified { get; set; }
 
     }
+    public class changePasword
+    {
+        public string oldPassword { get; set; }
+        public string newPassword { get; set; }
+        public string confirmPassword { get; set; }
+        public long userId { get; set; }
+
+    }
+
+    public class changePassRes
+    {
+        public int flag { get; set; }
+        public string Password { get; set; }
+        public string message { get; set; }
+    }
 
 }
