@@ -298,5 +298,13 @@ namespace UniversityRecruitment.Controllers
             }           
         }
 
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            Session.RemoveAll();
+            Session.Clear();
+            return RedirectToAction("Login");
+        }
+
     }
 }
